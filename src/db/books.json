@@ -1,0 +1,206 @@
+{
+  "business": [
+    {
+        "id": "63ca7627f79ebdac69926ffc7",
+        "image": ["http://www.google.com/image.jpg"],
+        "category": "business",
+        "author": "Catherine Case",
+        "title": "Covert Street, Bonanza, Washington",
+        "rating": 3,
+        "year": 1972,
+        "isBooked": true,
+        "bookedTill": "2024-11-09T05:28:02 -03:00"
+    },
+    {
+        "id": "63ca7627f79ebdac69926ffc5",
+        "image": ["https://swiperjs.com/demos/images/nature-5.jpg"],
+        "category": "business",
+        "author": "Catherine Case",
+        "title": "Covert Street, Bonanza, Washington",
+        "rating": 3,
+        "year": 1972,
+        "isBooked": true,
+        "bookedTill": "2024-11-09T05:28:02 -03:00"
+    },
+    {
+      "id": "63ca7627f79ebdac69926ffc4",
+      "image": ["https://swiperjs.com/demos/images/nature-1.jpg", "https://swiperjs.com/demos/images/nature-2.jpg", "https://swiperjs.com/demos/images/nature-3.jpg", "https://swiperjs.com/demos/images/nature-4.jpg", "https://swiperjs.com/demos/images/nature-5.jpg"],
+      "category": "business",
+      "author": "Catherine Case",
+      "title": "Covert Street, Bonanza, Washington",
+      "rating": 3,
+      "year": 1972,
+      "isBooked": true,
+      "bookedTill": "2024-11-09T05:28:02 -03:00"
+    }
+  ],
+  "detective": [
+    {
+      "id": "63ca7605925148fe9a388088",
+      "image": "http://www.google.com/image.jpg",
+      "category": "detective",
+      "author": "Annabelle Valentine",
+      "title": "Sedgwick Street, Collins, Northern Mariana Islands",
+      "rating": 4,
+      "year": 1925,
+      "isBooked": true,
+      "bookedTill": "2024-04-13T05:56:43 -03:00"
+    }
+  ],
+  "children": [
+    {
+      "id": "63ca716d6eb160eac2bc0a53",
+      "image": "http://www.google.com/image.jpg",
+      "category": "children",
+      "author": "Jessie Nunez",
+      "title": "Stockton Street, Vivian, Missouri",
+      "rating": 1,
+      "year": 1970,
+      "isBooked": false,
+      "bookedTill": "2023-11-17T05:38:20 -03:00"
+    }
+  ],
+  "foreign": [
+    {
+      "id": "63ca717a8cab2a2d48c7abbc",
+      "image": "http://www.google.com/image.jpg",
+      "category": "foreign",
+      "author": "Lana Ray",
+      "title": "India Street, Ellerslie, Illinois",
+      "rating": 0,
+      "year": 1933,
+      "isBooked": true,
+      "bookedTill": "2023-10-25T11:27:42 -03:00"
+    }
+  ],
+  "history": [
+    {
+      "id": "63ca718e7080ac88f456ac17",
+      "image": "http://www.google.com/image.jpg",
+      "category": "history",
+      "author": "Caitlin Adams",
+      "title": "Poly Place, Como, Northern Mariana Islands",
+      "rating": 5,
+      "year": 1903,
+      "isBooked": true,
+      "bookedTill": "2023-08-18T07:28:13 -03:00"
+    }
+  ],
+  "classic": [
+    {
+      "id": "63ca71a5ccf1256a2427ee8e",
+      "image": "http://www.google.com/image.jpg",
+      "category": "classic",
+      "author": "Obrien Atkinson",
+      "title": "Degraw Street, Gulf, Virginia",
+      "rating": 3,
+      "year": 2021,
+      "isBooked": false,
+      "bookedTill": "2023-08-09T07:50:26 -03:00"
+    }
+  ],
+  "psychology": [
+    {
+      "id": "63ca71b7fe38a00197d6423b",
+      "image": "http://www.google.com/image.jpg",
+      "category": "psychology",
+      "author": "Abbott Merritt",
+      "title": "Beverly Road, Villarreal, Alabama",
+      "rating": 0,
+      "year": 1907,
+      "isBooked": false,
+      "bookedTill": "2024-05-28T09:20:37 -03:00"
+    }
+  ],
+  "computers": [
+    {
+      "id": "63ca71c94c9bb5ba1cefd584",
+      "image": "http://www.google.com/image.jpg",
+      "category": "computers",
+      "author": "Clemons Guthrie",
+      "title": "Montieth Street, Bartonsville, Wyoming",
+      "rating": 2,
+      "year": 2022,
+      "isBooked": false,
+      "bookedTill": "2024-08-19T08:55:48 -03:00"
+    }
+  ],
+  "culture": [
+    {
+      "id": "63ca71e6d970b7f0ae3b8c6b",
+      "image": "http://www.google.com/image.jpg",
+      "category": "culture",
+      "author": "Powers Harrell",
+      "title": "Division Avenue, Cleary, Connecticut",
+      "rating": 4,
+      "year": 1958,
+      "isBooked": false,
+      "bookedTill": "2023-10-05T07:48:25 -03:00"
+    }
+  ],
+  "science": [
+    {
+      "id": "63ca7214c12cad014deb6ca3",
+      "image": "http://www.google.com/image.jpg",
+      "category": "science",
+      "author": "Hardin Rosales",
+      "title": "Malbone Street, Oberlin, Louisiana",
+      "rating": 3,
+      "year": 1990,
+      "isBooked": false,
+      "bookedTill": "2024-08-31T02:41:51 -03:00"
+    }
+  ],
+  "publicistic": [
+    {
+      "id": "63ca721f13f819f5347e7e06",
+      "image": "http://www.google.com/image.jpg",
+      "category": "publicistic",
+      "author": "Lori Sykes",
+      "title": "Ira Court, Ribera, Federated States Of Micronesia",
+      "rating": 5,
+      "year": 1952,
+      "isBooked": true,
+      "bookedTill": "2023-02-28T07:36:21 -03:00"
+    }
+  ],
+  "references": [
+    {
+      "id": "63ca7235890c875463bcb2ac",
+      "image": "http://www.google.com/image.jpg",
+      "category": "references",
+      "author": "Ana Fuentes",
+      "title": "Junius Street, Cazadero, New Hampshire",
+      "rating": 5,
+      "year": 2008,
+      "isBooked": false,
+      "bookedTill": "2023-02-23T09:35:44 -03:00"
+    }
+  ],
+  "scifi": [
+    {
+      "id": "63ca7260584997167a862a87",
+      "image": "http://www.google.com/image.jpg",
+      "category": "scifi",
+      "author": "Reyes Bright",
+      "title": "Vermont Street, Rose, Iowa",
+      "rating": 5,
+      "year": 1940,
+      "isBooked": false,
+      "bookedTill": "2023-04-13T01:36:18 -03:00"
+    }
+  ],
+  "humor": [
+    {
+      "id": "63ca727213ff27e62c10bfef",
+      "image": "http://www.google.com/image.jpg",
+      "category": "humor",
+      "author": "Garrett Foreman",
+      "title": "Sharon Street, Coyote, Georgia",
+      "rating": 1,
+      "year": 1910,
+      "isBooked": true,
+      "bookedTill": "2023-07-28T01:51:18 -03:00"
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+.container-header {
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+
+    margin: 32px 64px 0;
+}
+
+.wrapper-header {
+    display: flex;
+    align-items: center;
+
+    max-width: 1110px;
+    width: 100%;
+    max-height: 58px;
+}
+
+.logo-site {
+    max-width: 165px;
+    width: 165px;
+    height: 40px;
+}
+
+.container-header-menu {
+    display: none;
+}
+
+.container-header-info{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 100%;
+
+    margin: 0 0 0 120px;
+}
+
+.title-header {
+    font-family: 'Montserrat', Helvetica;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 40px;
+    letter-spacing: 0.1px;
+    color: #363636;
+}
+
+.container-user {
+    display: flex;
+
+    align-items: center;
+
+    cursor: pointer;
+}
+
+.name-user {
+    font-family: 'Montserrat', Helvetica;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: 0.1px;
+    color: #363636;
+}
+
+.avatar-user {
+    width: 58px;
+    height: 58px;
+
+    margin: 0 0 0 16px;
+}

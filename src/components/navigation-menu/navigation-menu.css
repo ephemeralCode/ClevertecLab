@@ -1,0 +1,13 @@
+.wrapper-sidebar {
+    width: 279px;
+}
+
+.container-btns-menu {
+    display: none;
+
+    margin: 16px 0 0 20px;
+}
+
+.container-btns-menu.active {
+    display: block;
+}

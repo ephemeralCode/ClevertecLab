@@ -1,0 +1,142 @@
+.container-navbar {
+    display: flex;
+    justify-content: space-between;
+
+    width: 100%;
+}
+
+.container-search {
+    display: flex;
+
+    width: 100%;
+    height: 38px;
+}
+
+.container-input-search{
+    max-width: 350px;
+    height: 38px;
+    width: 100%;
+}
+
+.btn-search-open-mobile {
+    display: none;
+    justify-content: center;
+    align-items: center;
+
+    width: 32px;
+    height: 32px;
+
+    background: none;
+    border: none;
+    border-radius: 50px;
+
+    box-shadow: 0px 2px 4px rgba(191, 196, 201, 0.2), 0px 3px 4px rgba(191, 196, 201, 0.18), 0px 1px 5px rgba(191, 196, 201, 0.24);
+}
+
+.input-search {
+    width: 350px;
+    height: 38px;
+    padding: 0 0 0 40px;
+
+    border-radius: 50px;
+    border: none;
+
+    background-image: url('../../assets/icons/btn/icon-input-sort.svg');   
+    background-repeat: no-repeat; 
+    background-position: 16px; 
+    outline: none;
+
+    font-family: 'Montserrat', Helvetica;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: 0.1px;
+    color: #A7A7A7;
+    caret-color: #F83600;
+
+    box-shadow: 0px 2px 4px rgba(191, 196, 201, 0.2), 0px 3px 4px rgba(191, 196, 201, 0.18), 0px 1px 5px rgba(191, 196, 201, 0.24);
+}
+
+.wrapper-input-search.active {
+    display: flex;
+}
+
+.btn-search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    min-width: 150px;
+    width: 150px;
+
+    margin: 0 16px;
+
+    border-radius: 50px;
+    border: none;
+    background: #fff;
+
+    font-family: 'Montserrat', Helvetica;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: 0.1px;
+    color: #A7A7A7;
+
+    box-shadow: 0px 2px 4px rgba(191, 196, 201, 0.2), 0px 3px 4px rgba(191, 196, 201, 0.18), 0px 1px 5px rgba(191, 196, 201, 0.24);
+
+    cursor: pointer;
+}
+
+::placeholder {
+    color: #A7A7A7;
+    opacity: 1;
+}
+  
+:-ms-input-placeholder {
+    color: #A7A7A7;
+}
+  
+::-ms-input-placeholder {
+    color: #A7A7A7;
+}
+
+.wrapper-input-search {
+    position: relative;
+}
+
+.input-search-btn-close {
+    position: absolute;
+    top: 50%;
+    right: 0px;
+
+    display: flex;
+
+    border: none;
+    background: none;
+
+    padding: 10px 16px;
+
+    transform: translateY(-50%);
+
+    cursor: pointer;
+}
+
+.input-search-btn-close-icon {
+    width: 16px;
+    height: 16px;
+}
+
+.icon-btn-sort {
+    width: 16px;
+    height: 16px;
+}
+
+.text-btn-sort {
+    margin: 0 0 0 8px;
+}
+
+.container-btn-group {
+    display: flex;
+}

@@ -1,0 +1,41 @@
+.link-legal-terms-title {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 40px;
+    letter-spacing: 0.1px;
+    color: #363636;
+}
+
+.link-legal-terms-main-text {
+    margin: 32px 0 0 0;
+
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.1px;
+    color: #363636;
+}
+
+.link-legal-terms-text {
+    margin: 16px 0 0 0;
+
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.1px;
+    color: #363636;
+}
+
+.link-legal-terms-p1 {
+    margin: 32px 0 0 0;
+}
+
+.link-legal-terms-p2, .link-legal-terms-p3, .link-legal-terms-p4 {
+    margin: 16px 0 0 30px;
+}

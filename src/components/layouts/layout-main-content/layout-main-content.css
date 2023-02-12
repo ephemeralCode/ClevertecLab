@@ -1,0 +1,17 @@
+.container-main-content {
+    display: flex;
+    justify-content: center;
+
+    margin: 46px 64px 0;
+}
+
+.wrapper-main-content {
+    display: flex;
+    
+    max-width: 1110px;
+    width: 100%;
+}
+
+.container-sidebar {
+    width: 279px;
+}

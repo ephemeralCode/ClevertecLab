@@ -1,0 +1,42 @@
+.container-btn-menu + .container-btn-menu {
+    margin: 16px 0 0 0;
+}
+
+.btn-menu {
+    text-align: start;
+
+    border: none;
+    background: none;
+
+    font-family: 'Montserrat', Helvetica;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.1px;
+    color: #363636;
+
+    cursor: pointer;
+}
+
+.active {
+    font-family: 'Montserrat', Helvetica;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 28px;
+    letter-spacing: 0.1px;
+    color: #F83600;
+}
+
+.quantity-type-product {
+    margin: 0 0 0 6px;
+
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    letter-spacing: 0.1px;
+    color: #A7A7A7;
+}

@@ -1,0 +1,32 @@
+.container-footer {
+    display: flex;
+    justify-content: center;
+
+    margin: 62px 64px 0 ;
+}
+
+.wrapper-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    max-width: 1110px;
+    width: 100%;
+    min-height: 56px;
+
+    border-top: 1px solid #BFC4C9;
+}
+
+.text-copyright {
+    font-family: 'Montserrat', Helvetica;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.1px;
+    color: #363636;
+}
+
+.container-footer-social-icons {
+    display: flex;
+}
