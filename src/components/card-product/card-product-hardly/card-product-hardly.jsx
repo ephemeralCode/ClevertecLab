@@ -8,35 +8,34 @@ import { StarRating } from '../../product-general/star-rating/star-rating'
 
 export const CardProductHardly = ({ general, groupCardProducts }) => (
     <Link 
-        to={`/product/${general.category}/${general.id}`} 
+        to={`/product/${general.categories}/${general.id}`} 
         className='container-product-hardly'
         
         data-test-id='card'
     >
         <div className='container-info-product-hardly'>
             <CardProductImage 
-                image={general.image[0]}
+                image={general.image?.url}
                 groupCardProducts={groupCardProducts}
             />
 
             <div>
                 <div className='container-feedback-product-hardly'>
                     <StarRating
-                        general={general}
+                        amount={general?.rating}
                     />
                 </div>
                 
                 <div className='wrapper-info-product-hardly'>
                     <h3 className='title-product-hardly'>{general.title}</h3>
 
-                    <p className='author-product-hardly'>{`${general.author}, ${general.year}`}</p>
+                    <p className='author-product-hardly'>{`${general.authors}, ${general.issueYear}`}</p>
                 </div>
             </div>
         </div>
     
         <CardProductBtn 
-            isBooked={general.isBooked}
-            bookedTill={general.bookedTill}
+            isBooked={general?.booking}
             groupCardProducts={groupCardProducts}
         />
     </Link>

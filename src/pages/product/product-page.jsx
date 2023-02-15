@@ -6,7 +6,7 @@ import iconBreadcrumbs from '../../assets/icons/page-product/icon-breadcrumbs.sv
 
 import './product-page.css'
 
-import products from '../../db/books.json'
+import products from '../../api/books.json'
 
 import { ProductPageReview } from "../../components/product-page/product-page-review/product-page-review"
 import { ProductPageSwiper } from "../../components/product-page/product-page-swiper/product-page-swiper"
@@ -14,8 +14,8 @@ import { StarRating } from "../../components/product-general/star-rating/star-ra
 
 export const ProductPage = () => {
     const { id } = useParams()
-    const [product, setProduct] = useState('');
-    const [isOpenReview, setIsOpenReview] = useState(false);
+    const [product, setProduct] = useState('')
+    const [isOpenReview, setIsOpenReview] = useState(false)
 
     // placeholder для динамичесекого получения данных и добавления их, в моем json слишком мало нужных данных
     useEffect(() => {

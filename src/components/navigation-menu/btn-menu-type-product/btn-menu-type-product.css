@@ -1,5 +1,5 @@
 .container-btn-menu + .container-btn-menu {
-    margin: 16px 0 0 0;
+    margin: 16px 0 0;
 }
 
 .btn-menu {
@@ -8,7 +8,6 @@
     border: none;
     background: none;
 
-    font-family: 'Montserrat', Helvetica;
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
@@ -19,8 +18,15 @@
     cursor: pointer;
 }
 
+.btn-menu:not(.active):hover {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #FF5253;
+}
+
 .active {
-    font-family: 'Montserrat', Helvetica;
     font-style: normal;
     font-weight: 700;
     font-size: 18px;
@@ -32,7 +38,6 @@
 .quantity-type-product {
     margin: 0 0 0 6px;
 
-    font-family: 'Montserrat';
     font-style: normal;
     font-weight: 400;
     font-size: 14px;

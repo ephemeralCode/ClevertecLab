@@ -14,5 +14,5 @@ export const MainPage = () => {
                 setGroupCardProducts={setGroupCardProducts}
             />
         </section>
-    )
+)
 }

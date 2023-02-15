@@ -3,8 +3,8 @@ import IconStarRatingOutline from '../../../assets/icons/card-product/icon-ratin
 
 import './star-rating.css'
 
-export const StarRating = ({ general, amount, showRatingNumber }) => {
-    const rating = general?.rating || amount || 0
+export const StarRating = ({ amount, showRatingNumber }) => {
+    const rating =  amount || 0
 
     return rating ? 
         <div className="container-product-star-rating"> 

@@ -1,6 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import { Provider } from 'react-redux'
+
 import { HashRouter, Route, Routes, Navigate } from 'react-router-dom'
+
+import { store } from './components/state-manager/loader'
 
 import { MainPage } from './pages/main'
 import { ProductPage } from './pages/product'
@@ -17,19 +21,21 @@ import './css/adaptive.css'
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
     <React.StrictMode>
-        <HashRouter>
-            <Routes>
-                <Route path='/' element={<Layout />}>
-                    <Route element={<LayoutMainContent />}>
-                        <Route index={true} element={<Navigate to='/product/all' />} replace={true} />
-                        <Route path='/product/:type' element={<MainPage />} />
-                        <Route path='/terms-use' element={<LinkLegalTerms title='Правила пользования' />} />
-                        <Route path='/offer-agreement' element={<LinkLegalTerms title='Договор оферты' />} />
-                    </Route>
+        <Provider store={store}>
+            <HashRouter>
+                <Routes>
+                    <Route path='/' element={<Layout />}>
+                        <Route element={<LayoutMainContent />}>
+                            <Route index={true} element={<Navigate to='/product/all' />} replace={true} />
+                            <Route path='/product/:type' element={<MainPage />} />
+                            <Route path='/terms-use' element={<LinkLegalTerms title='Правила пользования' />} />
+                            <Route path='/offer-agreement' element={<LinkLegalTerms title='Договор оферты' />} />
+                        </Route>
 
-                    <Route path='/product/:type/:id' element={<ProductPage />} replace={true} />
-                </Route>
-            </Routes>
-        </HashRouter>
+                        <Route path='/product/:type/:id' element={<ProductPage />} replace={true} />
+                    </Route>
+                </Routes>
+            </HashRouter>
+        </Provider>
     </React.StrictMode>
 )

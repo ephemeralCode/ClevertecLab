@@ -1,11 +1,11 @@
-export const CardProductBtn = ({ bookedTill, isBooked, groupCardProducts }) => {
-    const dateBooked = new Date((bookedTill).split(' ')[0])
-
+export const CardProductBtn = ({ isBooked, groupCardProducts }) => {
+    const bookedTill = new Date((isBooked?.dateOrder))
+    
     return (
-        <button className={`btn-book ${groupCardProducts} ${isBooked ? 'disabled' : 'primary'}`} type='button'>
+        <button className={`btn-book ${groupCardProducts} ${isBooked?.order ? 'disabled' : 'primary'}`} type='button'>
             {
-                isBooked ?
-                    `Занято до ${String(dateBooked.getDay()).padStart(2, '0')}.${String(dateBooked.getMonth()).padStart(2, '0')}`
+                isBooked?.order ?
+                    `Занято до ${String(bookedTill.getDay()).padStart(2, '0')}.${String(bookedTill.getMonth()).padStart(2, '0')}`
 
                     :
 
