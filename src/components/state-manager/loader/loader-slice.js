@@ -1,46 +1,76 @@
 /* eslint-disable no-param-reassign */
-/* eslint-disable import/no-default-export */
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
-import axios from "axios"
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-import { getProductCategories } from "../../../api/api"
+import axios from 'axios';
 
-export const categoryProductsAction = createAsyncThunk(
-    'categories',
-    async (data, thunkApi) => {
-        const result = await axios.get('https://strapi.cleverland.by/api/categories')
-        
-        // if (result.ok && result.data) thunkApi.dispatch(setCategories(result.data))
-        
-        return result.data
+import { getProductCategories } from '../../../api/api';
+
+export const categoryProductsAction = createAsyncThunk('categories', async (data, thunkApi) => {
+    const result = await axios.get('https://strapi.cleverland.by/api/categories')
+
+    if (result.status === 200 && result.data) {
+        // eslint-disable-next-line
+        thunkApi.dispatch(setCategories(result.data))
+    } else {
+        // eslint-disable-next-line
+        thunkApi.dispatch(toggleToastMessage(true))
     }
-)
 
-export const productsAction = createAsyncThunk(
-    'products',
-    async (data, thunkApi) => {
-        const result = await axios.get('https://strapi.cleverland.by/api/books')
-        
-        return result.data
+    return result.data
+})
+
+export const productsAction = createAsyncThunk('products', async (data, thunkApi) => {
+    const result = await axios.get('https://strapi.cleverland.by/api/books')
+
+    if (result.status === 200 && result.data) {
+        // eslint-disable-next-line
+        thunkApi.dispatch(setProducts(result.data))
+
+    } else {
+        // eslint-disable-next-line
+        thunkApi.dispatch(toggleToastMessage(true))
     }
-)
+
+    return result.data
+})
+
+export const getSelectedProduct = createAsyncThunk('product', async (id, thunkApi) => {
+    const result = await axios.get(`https://strapi.cleverland.by/api/books/${id}`)
+        .then(res => res)
+        .catch(err => err.response)
+
+    if (result.status === 200) {
+        // eslint-disable-next-line
+        thunkApi.dispatch(setProduct(result.data))
+
+    } else {
+        // eslint-disable-next-line
+        thunkApi.dispatch(toggleToastMessage(true))
+    }
+
+    return result.data
+})
 
 const initialState = {
-    loading: false,
+    loadingCategories: false,
+    loadingProducts: false,
     toastMessage: false,
     categories: [],
-    products: []
+    products: [],
+    selectedProduct: {}
 }
 
-const loadingSlice = createSlice({
+export const loadingSlice = createSlice({
     name: 'loading',
     initialState,
     reducers: {
         // loading
         toggleLoading: (state, { payload }) => ({
             ...state,
-            loading: payload,
+            loadingCategories: payload,
+            loadingProducts: payload
         }),
+        // toast
         toggleToastMessage: (state, { payload }) => ({
             ...state,
             toastMessage: payload,
@@ -54,46 +84,53 @@ const loadingSlice = createSlice({
         setProducts: (state, { payload }) => ({
             ...state,
             products: payload,
+        }),
+        // selected product
+        setProduct: (state, { payload }) => ({
+            ...state,
+            selectedProduct: payload,
+        }),
+    },
+    extraReducers: (builder) => {
+        builder
+        // categories
+        .addCase(categoryProductsAction.pending, (state) => {
+            state.loadingCategories = true
+        })
+        .addCase(categoryProductsAction.fulfilled, (state) => {
+            state.loadingCategories = false
+        })
+        .addCase(categoryProductsAction.rejected, (state) => {
+            state.loadingCategories = false
+        })
+        // products
+        .addCase(productsAction.pending, (state) => {
+            state.loadingProducts = true
+        })
+        .addCase(productsAction.fulfilled, (state) => {
+            state.loadingProducts = false
+        })
+        .addCase(productsAction.rejected, (state) => {
+            state.loadingProducts = false
+        })
+        // selected product
+        .addCase(getSelectedProduct.pending, (state) => {
+            state.loadingProducts = true
+        })
+        .addCase(getSelectedProduct.fulfilled, (state) => {
+            state.loadingProducts = false
+        })
+        .addCase(getSelectedProduct.rejected, (state) => {
+            state.loadingProducts = false
         })
     },
-    extraReducers: builder => {
-        builder
-            // categories
-            .addCase(categoryProductsAction.pending, state => {
-                state.loading = true
-                state.toastMessage = false
-            })
-            .addCase(categoryProductsAction.fulfilled, (state, actions) => {
-                state.loading = false
-                state.toastMessage = false
-
-                state.categories = actions.payload
-            })
-            .addCase(categoryProductsAction.rejected, state => {
-                state.loading = false
-                state.toastMessage = true
-            })
-            // product
-            .addCase(productsAction.pending, state => {
-                state.loading = true
-                state.toastMessage = false
-            })
-            .addCase(productsAction.fulfilled, (state, actions) => {
-                state.loading = false
-                state.toastMessage = false
-
-                state.products = actions.payload
-            })
-            .addCase(productsAction.rejected, state => {
-                state.loading = false
-                state.toastMessage = true
-            })
-    }
 })
 
-export const { toggleLoading, toggleToastMessage, setCategories, setProducts } = loadingSlice.actions
+export const { toggleLoading, toggleToastMessage, setCategories, setProducts, setProduct } = loadingSlice.actions
 
-export const selectLoading = (state) => state.loading.loading
+export const selectLoadingCategories = (state) => state.loading.loadingCategories
+
+export const selectLoadingProducts = (state) => state.loading.loadingProducts
 
 export const selectToastMessage = (state) => state.loading.toastMessage
 
@@ -101,4 +138,4 @@ export const selectCategories = (state) => state.loading.categories
 
 export const selectProducts = (state) => state.loading.products
 
-export default loadingSlice.reducer
+export const selectProduct = (state) => state.loading.selectedProduct

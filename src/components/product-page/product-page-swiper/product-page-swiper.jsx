@@ -37,12 +37,12 @@ export const ProductPageSwiper = ({ product }) => {
                 data-test-id='slide-big'
             >
                 {
-                    product?.image && 
-                        Array.isArray(product.image) &&
-                            product.image.map((item, i) => 
+                    product?.images && 
+                        Array.isArray(product.images) &&
+                            product.images.map((item, i) => 
                                 <SwiperSlide key={`Image-${i}`}>
                                     <img 
-                                        src={item} 
+                                        src={`https://strapi.cleverland.by${item.url}`} 
                                         alt='Основная картинка товара' 
                                         onError={(e) => { e.target.src = previewImageErrorProduct } }
                                     />
@@ -51,7 +51,7 @@ export const ProductPageSwiper = ({ product }) => {
             </Swiper>
             
             {
-                product?.image?.length > 1 &&
+                product?.images?.length > 1 &&
                     <Swiper
                         onSwiper={setThumbsSwiper}
                         spaceBetween={30}
@@ -63,12 +63,12 @@ export const ProductPageSwiper = ({ product }) => {
                         className="container-page-product-img-preview"
                     >
                         {
-                            product?.image && 
-                                Array.isArray(product.image) &&
-                                    product.image.map((item, i) => 
+                            product?.images && 
+                                Array.isArray(product.images) &&
+                                    product.images.map((item, i) => 
                                         <SwiperSlide key={`Preview-Image-${i}`}  data-test-id='slide-mini'>
                                             <img 
-                                                src={item} 
+                                                src={`https://strapi.cleverland.by${item.url}`}  
                                                 alt='Превью товара'
                                                 onError={(e) => { e.target.src = previewImageErrorProduct } }
                                             />

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useMemo } from 'react'
 import { useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
@@ -8,8 +9,6 @@ import { CardProductHardly } from '../card-product/card-product-hardly/card-prod
 import { CardProductColumn } from '../card-product/card-product-column/card-product-column'
 
 import './product-content.css'
-
-// import typeProducts from '../../db/books.json'
 
 export const ProductContent = ({ groupCardProducts }) => {
     const dispatch = useDispatch()
@@ -23,8 +22,11 @@ export const ProductContent = ({ groupCardProducts }) => {
     const CardProduct = groupCardProducts === 'hardly' ? CardProductHardly : CardProductColumn
 
     useEffect(() => {
-        dispatch(productsAction())
-    
+        if (!products.length) {
+            dispatch(productsAction())
+            console.log('123')
+        }
+        
     }, [dispatch])
 
     return (

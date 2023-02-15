@@ -8,7 +8,7 @@ export const ToastMessage = ({ readiness, changes }) => {
     const ready = readiness
 
     return (
-        <div className={`container-modal-toast-message ${ready ? 'complete' : 'error'}`}>
+        <div className={`container-modal-toast-message ${ready ? 'complete' : 'error'}`} data-test-id='error'>
             <div className='wrapper-modal-toast-message'>
                 <img className='modal-toast-message-icon-circle-state' src={ readiness ? IconCircleComplete : IconCircleError } alt='' />
 

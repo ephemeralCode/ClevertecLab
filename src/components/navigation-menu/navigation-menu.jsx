@@ -22,8 +22,8 @@ export const NavigaionMenu = ({ dataTestId }) => {
     const [isActivePage, setIsActivePage] = useState(path.split('/')[2])
 
     useEffect(() => {
-        dispatch(categoryProductsAction())
-    
+        if (categories) dispatch(categoryProductsAction())
+        
     }, [dispatch])
 
     useEffect(() => {
