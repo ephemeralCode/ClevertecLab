@@ -1,9 +1,9 @@
 /* eslint-disable no-param-reassign */
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
-import axios from 'axios';
+import axios from 'axios'
 
-import { getProductCategories } from '../../../api/api';
+import { getProductCategories } from '../../../api/api'
 
 export const categoryProductsAction = createAsyncThunk('categories', async (data, thunkApi) => {
     const result = await axios.get('https://strapi.cleverland.by/api/categories')

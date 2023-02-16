@@ -14,9 +14,11 @@ export const Layout = () => {
     const loadingProducts = useSelector(selectLoadingProducts)
     const readyToastMessage = useSelector(selectToastMessage)
 
+    const loading = loadingCategoies || loadingProducts
+
     return (
         <>
-            { (loadingCategoies === true || loadingProducts === true) && <Loader /> }
+            { loading && <Loader /> }
             { readyToastMessage && <ToastMessage /> }
 
             <Header />

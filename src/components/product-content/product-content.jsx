@@ -14,17 +14,17 @@ export const ProductContent = ({ groupCardProducts }) => {
     const dispatch = useDispatch()
     const products = useSelector(selectProducts)
 
-    // const allProducts = useMemo(() => Object.values(typeProducts).flat(), [])
-    const { pathname } = useLocation()
-    const path = pathname.split('/')[2]
-    // const type = path === 'all' ? allProducts : typeProducts[path]
+    // const { pathname } = useLocation()
+    // const path = pathname.split('/')[2]
+
+    // const productsMemo = useMemo(() => products, [])
+    // const type = path === 'all' ? productsMemo : productsMemo[path]
 
     const CardProduct = groupCardProducts === 'hardly' ? CardProductHardly : CardProductColumn
 
     useEffect(() => {
         if (!products.length) {
             dispatch(productsAction())
-            console.log('123')
         }
         
     }, [dispatch])

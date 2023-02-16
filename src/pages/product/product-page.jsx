@@ -23,7 +23,7 @@ export const ProductPage = () => {
     const [isOpenReview, setIsOpenReview] = useState(false)
 
     useEffect(() => {
-        if (id) {
+        if (product?.id !== Number(id)) {
             dispatch(getSelectedProduct(id))
         }
     
