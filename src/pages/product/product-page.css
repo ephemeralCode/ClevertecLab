@@ -1,0 +1,53 @@
+.product-page {
+    flex-grow: 1;
+    margin: 42px 0 0;
+}
+
+.container-page-product {
+    display: flex;
+    justify-content: center;
+    
+    margin: 42px 64px 0;
+}
+
+.wrapper-page-product {
+    max-width: 1110px;
+    width: 100%;
+}
+
+.page-product-description-title {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 28px;
+    letter-spacing: 0.1px;
+    color: #363636;
+}
+
+.page-product-description-text {
+    margin: 32px 0 0;
+
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.1px;
+    color: #363636;
+}
+
+.container-page-product-further-info {
+    margin: 42px 0 0;
+}
+
+.container-page-product-star-rating {
+    margin: 16px 0 0;
+}
+
+.container-page-product-detailed-info {
+    margin: 62px 0 0;
+}
+
+.page-product-btn-add-review-user {
+    padding: 14px 99px;
+    margin: 42px 0 0 0;
+}

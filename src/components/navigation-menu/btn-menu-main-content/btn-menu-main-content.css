@@ -1,0 +1,45 @@
+.btn-sidebar-menu {
+    display: flex;
+    justify-content: space-between;
+
+    text-align: start;
+
+    width: 255px;
+
+    border: 0;
+    background: none;
+
+    font-family: 'Montserrat', Helvetica;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 28px;
+    letter-spacing: 0.1px;
+    color: #363636;
+
+    cursor: pointer;
+}
+
+.icon-menu-btn-sidebar-menu {
+    margin: 2px 12px 0 0;
+
+    transform: rotate(0deg);
+}
+
+.icon-menu-btn-sidebar-menu.active {
+    transform: rotate(180deg);
+}
+
+.btn-sidebar-menu + .btn-sidebar-menu {
+    margin: 42px 0 0 0;
+}
+
+.btn-sidebar-menu.active {
+    padding: 0 0 8px 0;
+    border-bottom: 1px solid #F83600;
+    color: #F83600;
+}
+
+.container-legal-agreements {
+    margin: 42px 0 0 0;
+}

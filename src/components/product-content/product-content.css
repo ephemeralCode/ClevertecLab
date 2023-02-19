@@ -1,0 +1,15 @@
+.container-products.hardly {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 24px 21.5px;
+    margin: 32px 0 0 0;
+}
+
+.container-products.column {
+    display: flex;
+    flex-direction: column;
+
+    gap: 24px 21.5px;
+    margin: 32px 0 0 0;
+}
