@@ -20,15 +20,6 @@ export const NavigaionMenu = ({ dataTestId }) => {
     const [isOpenTypeProduct, setIsOpenTypeProduct] = useState(true)
     const [isActivePage, setIsActivePage] = useState(path.split('/')[2])
 
-    // TODO fix
-    // useEffect(() => {
-    //     if(!path.includes('books')) {
-    //         setIsOpenTypeProduct(false)
-    //         setIsActivePage('all')
-    //     }
-
-    // }, [path])
-
     return (
         <aside className='wrapper-sidebar'>
             <div className='wrapper-sidebar-menu'>

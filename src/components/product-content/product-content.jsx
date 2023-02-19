@@ -13,11 +13,7 @@ export const ProductContent = ({ groupCardProducts }) => {
     const products = useSelector(selectProducts)
 
     const { pathname } = useLocation()
-    
     const path = pathname.split('/')[2]
-
-    // const productsMemo = useMemo(() => products, [])
-    // const type = path === 'all' ? path : categories[path]
 
     const CardProduct = groupCardProducts === 'hardly' ? CardProductHardly : CardProductColumn
 

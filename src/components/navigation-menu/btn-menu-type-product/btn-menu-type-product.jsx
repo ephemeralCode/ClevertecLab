@@ -12,8 +12,6 @@ export const BtnMenuTypeProduct = ({ dataTestId, categories, setIsActivePage }) 
             onClick={() => setIsActivePage(categories.path)}
         >
             { categories.name }
-
-            {/* <span className='quantity-type-product'>{`${products.typeProduct !== 'all' ? categories[products.typeProduct].length : ''}`}</span> */}
         </NavLink>
     </li>
 )
