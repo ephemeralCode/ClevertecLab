@@ -4,7 +4,7 @@ import { Provider } from 'react-redux'
 
 import { HashRouter, Route, Routes, Navigate } from 'react-router-dom'
 
-import { store } from './components/state-manager/loader'
+import { store } from './store/loader'
 
 import { MainPage } from './pages/main'
 import { ProductPage } from './pages/product'
@@ -26,13 +26,13 @@ root.render(
                 <Routes>
                     <Route path='/' element={<Layout />}>
                         <Route element={<LayoutMainContent />}>
-                            <Route index={true} element={<Navigate to='/product/all' />} replace={true} />
-                            <Route path='/product/:type' element={<MainPage />} />
+                            <Route index={true} element={<Navigate to='/books/all' />} replace={true} />
+                            <Route path='/books/:type' element={<MainPage />} />
                             <Route path='/terms-use' element={<LinkLegalTerms title='Правила пользования' />} />
                             <Route path='/offer-agreement' element={<LinkLegalTerms title='Договор оферты' />} />
                         </Route>
 
-                        <Route path='/product/:type/:id' element={<ProductPage />} replace={true} />
+                        <Route path='/books/:type/:id' element={<ProductPage />} replace={true} />
                     </Route>
                 </Routes>
             </HashRouter>

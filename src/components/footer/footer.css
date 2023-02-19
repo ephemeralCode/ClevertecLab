@@ -1,8 +1,9 @@
 .container-footer {
     display: flex;
     justify-content: center;
+    flex-shrink: 0;
 
-    margin: 62px 64px 0 ;
+    margin: 62px 64px 0;  
 }
 
 .wrapper-footer {

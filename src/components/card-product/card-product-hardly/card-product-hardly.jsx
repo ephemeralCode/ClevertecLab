@@ -6,16 +6,16 @@ import { CardProductBtn } from '../card-product-btn/card-product-btn'
 import './card-product-hardly.css'
 import { StarRating } from '../../product-general/star-rating/star-rating'
 
-export const CardProductHardly = ({ general, groupCardProducts }) => (
+export const CardProductHardly = ({ general, path, groupCardProducts }) => (
     <Link 
-        to={`/product/${general.categories}/${general.id}`} 
+        to={`/books/${path}/${general.id}`} 
         className='container-product-hardly'
         
         data-test-id='card'
     >
         <div className='container-info-product-hardly'>
             <CardProductImage 
-                image={general.image?.url}
+                image={general.image}
                 groupCardProducts={groupCardProducts}
             />
 

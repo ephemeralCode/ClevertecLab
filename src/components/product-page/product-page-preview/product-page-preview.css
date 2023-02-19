@@ -1,0 +1,44 @@
+.container-page-product-info {
+    display: flex;
+}
+
+.container-page-product-description {
+    margin: 0 0 0 30px;
+}
+
+.page-product-title {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 40px;
+    letter-spacing: 0.1px;
+    color: #363636;
+}
+
+.page-product-author {
+    margin: 24px 0 0 0;
+
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 28px;
+    letter-spacing: 0.1px;
+    color: #A7A7A7;
+}
+
+.page-product-btn {
+    margin: 32px 0 0 0;
+    padding: 14px 95px;
+}
+
+.wrapper-page-product-description-desktop {
+    margin: 62px 0 0 0;
+}
+
+.wrapper-page-product-description-mobile {
+    display: none;
+
+    margin: 48px 0 0 0;
+}

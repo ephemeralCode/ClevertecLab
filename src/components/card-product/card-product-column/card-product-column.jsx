@@ -6,15 +6,15 @@ import { CardProductBtn } from '../card-product-btn/card-product-btn.jsx'
 import './card-product-column.css'
 import { StarRating } from '../../product-general/star-rating/star-rating'
 
-export const CardProductColumn = ({ general, groupCardProducts }) => (
+export const CardProductColumn = ({ general, path, groupCardProducts }) => (
     <Link 
-        to={`/product/${general.category}/${general.id}`} 
+        to={`/books/${path}/${general.id}`} 
         className='container-product-column'
 
         data-test-id='card'
     >
         <CardProductImage 
-            image={general.image[0]}
+            image={general.image?.url}
             groupCardProducts={groupCardProducts}
         />
 
@@ -22,19 +22,18 @@ export const CardProductColumn = ({ general, groupCardProducts }) => (
             <div className='wrapper-info-product-column'>
                 <h3 className='title-product-column'>{general.title}</h3>
 
-                <p className='author-product-column'>{`${general.author}, ${general.year}`}</p>
+                <p className='author-product-column'>{`${general.authors}, ${general.issueYear}`}</p>
             </div>
 
             <div className='container-feedback-product-column'>
                 <div>
                     <StarRating 
-                        general={general}
+                        amount={general?.rating}
                     />
                 </div>
 
                 <CardProductBtn 
-                    isBooked={general.isBooked}
-                    bookedTill={general.bookedTill}
+                    isBooked={general?.booking}
                     groupCardProducts={groupCardProducts}
                 />
             </div>

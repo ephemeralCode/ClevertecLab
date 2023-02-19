@@ -1,0 +1,16 @@
+.container-page-product-further-info-title {
+    width: 350px;
+
+    border-bottom: 1px solid #EBEBEB;
+}
+
+.page-product-further-info-title {
+    padding: 0 0 16px 0;
+
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 28px;
+    letter-spacing: 0.1px;
+    color: #363636;
+}

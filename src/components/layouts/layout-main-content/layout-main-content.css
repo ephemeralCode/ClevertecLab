@@ -2,7 +2,9 @@
     display: flex;
     justify-content: center;
 
-    margin: 46px 64px 0;
+    flex-grow: 1;
+
+    margin: 62px 64px 0;
 }
 
 .wrapper-main-content {

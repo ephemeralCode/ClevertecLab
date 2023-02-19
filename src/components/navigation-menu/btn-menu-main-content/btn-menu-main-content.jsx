@@ -1,9 +1,9 @@
-import { Link, NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import './btn-menu-main-content.css'
 
 export const BtnMenuMainContent = ({ content, textContent, icon, path, isActivePage, onToggle, dataTestId }) => (
-    <NavLink 
+    <Link 
         to={`/${content}/${isActivePage ? isActivePage : ''}`}
         className={`btn-sidebar-menu ${content === path ? 'active' : ''}`}
         type='button'
@@ -13,5 +13,5 @@ export const BtnMenuMainContent = ({ content, textContent, icon, path, isActiveP
     >
         { textContent }
         { icon }
-    </NavLink>
+    </Link>
 )

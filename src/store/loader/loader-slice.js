@@ -3,49 +3,46 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
 import axios from 'axios'
 
-import { getProductCategories } from '../../../api/api'
+const site = 'https://strapi.cleverland.by'
 
-export const categoryProductsAction = createAsyncThunk('categories', async (data, thunkApi) => {
-    const result = await axios.get('https://strapi.cleverland.by/api/categories')
+export const categoryProductsAction = createAsyncThunk('categories', async (_, thunkApi) => {
+    const result = await axios.get(`${site}/api/categories`)
+        .then(res => res)
+        // eslint-disable-next-line
+        .catch((_) => thunkApi.dispatch(toggleToastMessage(true)))
 
     if (result.status === 200 && result.data) {
+        const arr = [{name: 'Все книги', path: 'all', id: 0}].concat(result.data)
         // eslint-disable-next-line
-        thunkApi.dispatch(setCategories(result.data))
-    } else {
-        // eslint-disable-next-line
-        thunkApi.dispatch(toggleToastMessage(true))
+        thunkApi.dispatch(setCategories(arr))
     }
 
     return result.data
 })
 
-export const productsAction = createAsyncThunk('products', async (data, thunkApi) => {
-    const result = await axios.get('https://strapi.cleverland.by/api/books')
+export const productsAction = createAsyncThunk('products', async (_, thunkApi) => {
+    const result = await axios.get(`${site}/api/books`)
+        .then(res => res)
+        // eslint-disable-next-line
+        .catch((_) => thunkApi.dispatch(toggleToastMessage(true)))
 
     if (result.status === 200 && result.data) {
         // eslint-disable-next-line
         thunkApi.dispatch(setProducts(result.data))
-
-    } else {
-        // eslint-disable-next-line
-        thunkApi.dispatch(toggleToastMessage(true))
     }
 
     return result.data
 })
 
 export const getSelectedProduct = createAsyncThunk('product', async (id, thunkApi) => {
-    const result = await axios.get(`https://strapi.cleverland.by/api/books/${id}`)
+    const result = await axios.get(`${site}/api/books/${id}`)
         .then(res => res)
-        .catch(err => err.response)
+        // eslint-disable-next-line
+        .catch((_) => thunkApi.dispatch(toggleToastMessage(true)))
 
     if (result.status === 200) {
         // eslint-disable-next-line
         thunkApi.dispatch(setProduct(result.data))
-
-    } else {
-        // eslint-disable-next-line
-        thunkApi.dispatch(toggleToastMessage(true))
     }
 
     return result.data

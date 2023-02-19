@@ -15,7 +15,7 @@ export const Header = () => {
     return (
         <header className='container-header'>
             <div className='wrapper-header'>
-                <Link className='container-logo-site' to='/product/all'>
+                <Link to='/books/all' className='container-logo-site'>
                     <img className='logo-site' src={logo} alt="Cleverland" />
                 </Link>
 

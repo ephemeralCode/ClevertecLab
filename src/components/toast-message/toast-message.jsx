@@ -1,3 +1,7 @@
+import { useDispatch } from 'react-redux'
+
+import { toggleToastMessage } from '../../store/loader/loader-slice'
+
 import IconCircleComplete from '../../assets/icons/general/icon-circle-complete.svg'
 import IconCircleError from '../../assets/icons/general/icon-circle-error.svg'
 import IconClose from '../../assets/icons/general/icon-menu-close.svg'
@@ -5,6 +9,9 @@ import IconClose from '../../assets/icons/general/icon-menu-close.svg'
 import './toast-message.css'
 
 export const ToastMessage = ({ readiness, changes }) => {
+    const dispatch = useDispatch()
+
+    // TODO complete toast
     const ready = readiness
 
     return (
@@ -15,7 +22,11 @@ export const ToastMessage = ({ readiness, changes }) => {
                 <p className='modal-toast-message-text'>{`${ changes ? 'Изменения успешно сохранены!' : 'Что-то пошло не так. Обновите страницу через некоторое время.' }`}</p>
             </div>
 
-            <button className='container-modal-toast-message-icon-close' type='button'>
+            <button 
+                className='container-modal-toast-message-icon-close' 
+                type='button'
+                onClick={() => dispatch(toggleToastMessage(false))}
+            >
                 <img className='modal-toast-message-icon-close' src={IconClose} alt='' />
             </button>
         </div>
