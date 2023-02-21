@@ -49,6 +49,7 @@ export const ProductPage = () => {
     return (
         <section className='product-page'>
             <ProductPageBreadcrumbs 
+                path={type}
                 category={categories[isCategory]?.name}
                 title={product?.title}
             />

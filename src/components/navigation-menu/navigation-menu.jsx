@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useLocation } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
-import { selectCategories } from '../../store/loader/loader-slice'
+import { selectCategories, selectOpenTypeProduct, selectSortedProducts, toggleOpenTypeProduct } from '../../store/loader/loader-slice'
 
 import { ReactComponent as IconMenuArrow } from '../../assets/icons/general/icon-menu-arrow.svg'
 
@@ -13,12 +13,20 @@ import { BtnMenuMainContent } from './btn-menu-main-content/btn-menu-main-conten
 import './navigation-menu.css'
 
 export const NavigaionMenu = ({ dataTestId }) => {
+    const dispatch = useDispatch()
+
     const categories = useSelector(selectCategories)
+    const isOpenTypeProduct = useSelector(selectOpenTypeProduct)
+    const sortedProducts = useSelector(selectSortedProducts)
 
     const { pathname: path } = useLocation()
     
-    const [isOpenTypeProduct, setIsOpenTypeProduct] = useState(true)
     const [isActivePage, setIsActivePage] = useState(path.split('/')[2])
+
+    const isPageChanged = () => {
+        dispatch(toggleOpenTypeProduct(false))
+        setIsActivePage('all')
+    }
 
     return (
         <aside className='wrapper-sidebar'>
@@ -27,13 +35,13 @@ export const NavigaionMenu = ({ dataTestId }) => {
                     textContent='Витрина книг'
                     content='books'
                     path={path.split('/')[1]}
-                    onToggle={() => setIsOpenTypeProduct(!isOpenTypeProduct)}
+                    isMenuCategory={() => dispatch(toggleOpenTypeProduct(!isOpenTypeProduct))}
                     isActivePage={isActivePage}
                     icon={
                         !!categories.length &&
                             <IconMenuArrow 
                                 className={`icon-menu-btn-sidebar-menu ${isOpenTypeProduct ? 'active' : ''}`} 
-                                fill={path.split('/')[1] === 'books' ? '#F83600' : ''} 
+                                fill={path.includes('books') ? '#F83600' : ''} 
                             />
                     }
 
@@ -43,11 +51,12 @@ export const NavigaionMenu = ({ dataTestId }) => {
                 <div className={`container-btns-menu ${isOpenTypeProduct ? 'active' : ''}`}>
                     <ul>
                         {
-                            categories.map(item => 
+                            categories.map((item, i) => 
                                 <BtnMenuTypeProduct
                                     key={item.path}
                                     categories={item}
                                     setIsActivePage={setIsActivePage}
+                                    sortedProducts={sortedProducts}
 
                                     dataTestId={dataTestId[1]}
                                 />
@@ -61,6 +70,7 @@ export const NavigaionMenu = ({ dataTestId }) => {
                 <BtnMenuMainContent 
                     textContent='Правила пользования'
                     content='terms-use'
+                    isMenuCategory={isPageChanged}
                     path={path.split('/')[1]}
                     
                     dataTestId={dataTestId[2]}
@@ -69,6 +79,7 @@ export const NavigaionMenu = ({ dataTestId }) => {
                 <BtnMenuMainContent 
                     textContent='Договор оферты'
                     content='offer-agreement'
+                    isMenuCategory={isPageChanged}
                     path={path.split('/')[1]}
 
                     dataTestId={dataTestId[3]}

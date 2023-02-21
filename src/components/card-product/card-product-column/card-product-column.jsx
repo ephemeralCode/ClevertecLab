@@ -14,7 +14,7 @@ export const CardProductColumn = ({ general, path, groupCardProducts }) => (
         data-test-id='card'
     >
         <CardProductImage 
-            image={general.image?.url}
+            image={general.image}
             groupCardProducts={groupCardProducts}
         />
 
