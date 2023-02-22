@@ -1,14 +1,15 @@
 import { useState } from 'react'
 
-import iconBtnSort from '../../assets/icons/btn/icon-btn-sort.svg'
 import iconBtnSearch from '../../assets/icons/btn/icon-input-sort.svg'
 import { ReactComponent as IconMenuClose } from '../../assets/icons/general/icon-menu-close.svg'
 import { ReactComponent as IconGroupHardly } from '../../assets/icons/btn/icon-group-hardly.svg'
 import { ReactComponent as IconGroupColumn } from '../../assets/icons/btn/icon-group-column.svg'
 
 import { BtnGroup } from './btn-group/btn-group'
+import { BtnSortRatingProducts } from './btn-sort-rating-products/btn-sort-rating-products'
 
 import './navbar.css'
+
 
 export const Navbar = ({ groupCardProducts, setGroupCardProducts }) => {
     const [isOpenMobileSearch, setIsOpenMobileSearch] = useState(false);
@@ -51,11 +52,7 @@ export const Navbar = ({ groupCardProducts, setGroupCardProducts }) => {
 
                 {
                     !isOpenMobileSearch &&
-                        <button className='btn-search' type='button'>
-                            <img className='icon-btn-sort' src={iconBtnSort} alt='' />
-
-                            <p className='text-btn-sort'>По рейтингу</p>
-                        </button>
+                        <BtnSortRatingProducts />
                 }
             </div>
             

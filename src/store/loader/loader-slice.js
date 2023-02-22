@@ -52,6 +52,7 @@ const initialState = {
     loadingCategories: false,
     loadingProducts: false,
     toastMessage: false,
+    sortRating: true,
     isOpenTypeProduct: true,
     categories: [],
     products: [],
@@ -78,6 +79,10 @@ export const loadingSlice = createSlice({
         toggleOpenTypeProduct: (state, { payload }) => ({
             ...state,
             isOpenTypeProduct: payload,
+        }),
+        toggleSortRating: (state, { payload }) => ({
+            ...state,
+            sortRating: payload,
         }),
         // categories
         setCategories: (state, { payload }) => ({
@@ -134,7 +139,7 @@ export const loadingSlice = createSlice({
     },
 })
 
-export const { toggleLoading, toggleToastMessage, toggleOpenTypeProduct, setCategories, setProducts, setSortedProducts, setProduct } = loadingSlice.actions
+export const { toggleLoading, toggleToastMessage, toggleOpenTypeProduct, toggleSortRating, setCategories, setProducts, setSortedProducts, setProduct } = loadingSlice.actions
 
 export const selectLoadingCategories = (state) => state.loading.loadingCategories
 
@@ -143,6 +148,8 @@ export const selectLoadingProducts = (state) => state.loading.loadingProducts
 export const selectToastMessage = (state) => state.loading.toastMessage
 
 export const selectOpenTypeProduct = (state) => state.loading.isOpenTypeProduct
+
+export const selectSortRating = (state) => state.loading.sortRating
 
 export const selectCategories = (state) => state.loading.categories
 
