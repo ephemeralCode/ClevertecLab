@@ -182,6 +182,10 @@
         background-image: none;
         background-position: 8px;
     }
+
+    .input-search:focus {
+        background-image: none;
+    }
     
     .wrapper-input-search {
         display: none;

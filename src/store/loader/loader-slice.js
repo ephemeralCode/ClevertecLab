@@ -54,6 +54,7 @@ const initialState = {
     toastMessage: false,
     sortRating: true,
     isOpenTypeProduct: true,
+    searchValue: '',
     categories: [],
     products: [],
     sortedProducts: [],
@@ -80,9 +81,15 @@ export const loadingSlice = createSlice({
             ...state,
             isOpenTypeProduct: payload,
         }),
+        // sort rating
         toggleSortRating: (state, { payload }) => ({
             ...state,
             sortRating: payload,
+        }),
+        // search input
+        setSearchValue: (state, { payload }) => ({
+            ...state,
+            searchValue: payload,
         }),
         // categories
         setCategories: (state, { payload }) => ({
@@ -139,7 +146,7 @@ export const loadingSlice = createSlice({
     },
 })
 
-export const { toggleLoading, toggleToastMessage, toggleOpenTypeProduct, toggleSortRating, setCategories, setProducts, setSortedProducts, setProduct } = loadingSlice.actions
+export const { toggleLoading, toggleToastMessage, toggleOpenTypeProduct, toggleSortRating, setSearchValue, setCategories, setProducts, setSortedProducts, setProduct } = loadingSlice.actions
 
 export const selectLoadingCategories = (state) => state.loading.loadingCategories
 
@@ -150,6 +157,8 @@ export const selectToastMessage = (state) => state.loading.toastMessage
 export const selectOpenTypeProduct = (state) => state.loading.isOpenTypeProduct
 
 export const selectSortRating = (state) => state.loading.sortRating
+
+export const selectSearchValue = (state) => state.loading.searchValue
 
 export const selectCategories = (state) => state.loading.categories
 

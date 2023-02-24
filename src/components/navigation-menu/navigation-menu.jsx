@@ -12,7 +12,7 @@ import { BtnMenuMainContent } from './btn-menu-main-content/btn-menu-main-conten
 
 import './navigation-menu.css'
 
-export const NavigaionMenu = ({ dataTestId }) => {
+export const NavigaionMenu = ({ dataTestId, onCloseBurger }) => {
     const dispatch = useDispatch()
 
     const categories = useSelector(selectCategories)
@@ -57,6 +57,7 @@ export const NavigaionMenu = ({ dataTestId }) => {
                                     categories={item}
                                     setIsActivePage={setIsActivePage}
                                     sortedProducts={sortedProducts}
+                                    onCloseBurger={onCloseBurger}
 
                                     dataTestId={dataTestId[1]}
                                 />

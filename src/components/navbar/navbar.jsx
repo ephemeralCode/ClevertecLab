@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
 import iconBtnSearch from '../../assets/icons/btn/icon-input-sort.svg'
 import { ReactComponent as IconMenuClose } from '../../assets/icons/general/icon-menu-close.svg'
@@ -8,12 +9,16 @@ import { ReactComponent as IconGroupColumn } from '../../assets/icons/btn/icon-g
 import { BtnGroup } from './btn-group/btn-group'
 import { BtnSortRatingProducts } from './btn-sort-rating-products/btn-sort-rating-products'
 
+import { selectSearchValue, setSearchValue } from '../../store/loader/loader-slice'
+
 import './navbar.css'
 
-
 export const Navbar = ({ groupCardProducts, setGroupCardProducts }) => {
-    const [isOpenMobileSearch, setIsOpenMobileSearch] = useState(false);
-    
+    const dispatch = useDispatch()
+    const searchValue = useSelector(selectSearchValue)
+
+    const [isOpenMobileSearch, setIsOpenMobileSearch] = useState(false)
+
     return (
         <nav className='container-navbar'>
             <div className='container-search'>
@@ -31,9 +36,12 @@ export const Navbar = ({ groupCardProducts, setGroupCardProducts }) => {
 
                 <label className={`wrapper-input-search ${isOpenMobileSearch ? 'active' : ''}`}>
                     <input 
-                        type='text' 
-                        placeholder='Поиск книги или автора...' 
                         className='input-search'
+                        type='text' 
+                        placeholder='Поиск книги или автора…' 
+                        value={searchValue}
+                        onChange={e => dispatch(setSearchValue(e.target.value))}
+                        
                         data-test-id='input-search' 
                     />
 
