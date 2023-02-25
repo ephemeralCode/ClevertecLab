@@ -11,13 +11,11 @@ export const MainPage = () => {
     const dispatch = useDispatch()
     const categories = useSelector(selectCategories)
     const products = useSelector(selectProducts)
-
     const sortedProducts = useSelector(selectSortedProducts)
 
     const [groupCardProducts, setGroupCardProducts] = useState('hardly')
 
     const notEmptyContent = categories.length && products.length
-    const newObj = {}
 
     useEffect(() => {
         if (!categories.length) {
@@ -27,7 +25,6 @@ export const MainPage = () => {
     }, [dispatch])
 
     useEffect(() => {
-        // todo delete this for tests 
         if (!products.length) {
             dispatch(productsAction())
         }
@@ -36,24 +33,20 @@ export const MainPage = () => {
 
     useEffect(() => {
         if (products.length && !sortedProducts?.all?.length) {
+            const obj = {}
 
-            const sorted = [...categories].map(item => ({...item, books: []}))
-            const arr = [...products]
+            categories.forEach(item => { obj[item.path] = [] })
             
-            arr.sort((x, y) => (x.rating || 0) > (y.rating || 0) ? -1 : 1)
-            arr.forEach(book => {
-                sorted.forEach(item => book.categories.includes(item.name) && item.books.push(book))
+            obj.all = [...products]
+            products.forEach(book => {
+                categories.find(elem => book?.categories.includes(elem.name) && obj[elem.path].push(book))
             })
-            sorted.forEach((item, i) => {
-                newObj[item.path] = sorted[i].books
-            })
-            newObj.all = arr
 
-            dispatch(setSortedProducts(newObj))
+            dispatch(setSortedProducts(obj))
         }
         
     }, [products])
-
+    
     return (
         <section className='container-content'>
             {

@@ -19,7 +19,7 @@
 .container-feedback-product-hardly {
     display: flex;
 
-    margin: 16px 0 0 0;
+    margin: 16px 0 0;
 }
 
 .wrapper-info-product-hardly {
@@ -29,7 +29,7 @@
 
     height: 89px;
 
-    margin: 22px 0 0 0;
+    margin: 22px 0 0;
 }
 
 .text-feedback-product-hardly {
@@ -45,15 +45,18 @@
 .title-product-hardly {
     display: -webkit-box;
     max-width: 400px;
+
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
+.hightlight {
+    color: #FF5253;
+}
+
 .author-product-hardly {
-    font-family: 'Montserrat';
-    font-style: normal;
     font-weight: 400;
     font-size: 14px;
     line-height: 18px;

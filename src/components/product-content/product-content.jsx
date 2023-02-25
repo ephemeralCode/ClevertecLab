@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useMemo } from 'react'
 import { useLocation } from 'react-router-dom'
@@ -19,7 +20,7 @@ export const ProductContent = ({ groupCardProducts }) => {
     const { pathname } = useLocation()
     const path = pathname.split('/')[2]
 
-    const sorted = useMemo(() => {
+    const sortedRatingProducts = useMemo(() => {
         if (sortedProducts?.all?.length) {
             const obj = {...sortedProducts}
             const sortType = sortRating ? 1 : -1
@@ -27,7 +28,7 @@ export const ProductContent = ({ groupCardProducts }) => {
             Object.keys(obj).forEach(key => {
                 obj[key] = [...sortedProducts[key]].sort((x, y) => (x.rating || 0) > (y.rating || 0) ? -1*sortType : 1*sortType)
             })
-
+            
             return obj[path]
         }
 
@@ -35,13 +36,12 @@ export const ProductContent = ({ groupCardProducts }) => {
 
     }, [sortedProducts, sortRating, path])
 
-    // eslint-disable-next-line consistent-return
     const sortedAndfilteredProducts = useMemo(() => {
         if (sortedProducts?.all?.length) {
-            return sorted.filter((book) => book.title.toLowerCase().includes(searchValue.toLowerCase()))
+            return sortedRatingProducts.filter((book) => book.title.toLowerCase().includes(searchValue.toLowerCase()))
         }
 
-    }, [searchValue, sorted])
+    }, [searchValue, sortedRatingProducts])
 
     const CardProduct = groupCardProducts === 'hardly' ? CardProductHardly : CardProductColumn
     const type = !searchValue.length ? sortedProducts[path] : sortedAndfilteredProducts
