@@ -9,7 +9,7 @@ export const LayoutMainContent = () => (
         <div className='wrapper-main-content'>
             <div className='container-sidebar'>
                 <NavigaionMenu 
-                    dataTestId={['navigation-showcase', 'navigation-books', 'navigation-terms', 'navigation-contract']}
+                    dataTestId={['navigation-showcase', 'navigation', 'navigation-terms', 'navigation-contract']}
                 />
             </div>
 

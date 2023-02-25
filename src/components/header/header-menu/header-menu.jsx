@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useRef } from 'react'
-import { useLocation } from 'react-router-dom'
 
 import iconMenu from '../../../assets/icons/header/icon-menu.svg'
 import { ReactComponent as IconMenuClose } from '../../../assets/icons/general/icon-menu-close.svg'
@@ -9,14 +8,13 @@ import { NavigaionMenu } from '../../navigation-menu/navigation-menu'
 
 import './header-menu.css'
 
-export const HeaderMenu = ({ isMenuOpen, setIsMenuOpen, onClose }) => {
+export const HeaderMenu = ({ isMenuOpen, setIsMenuOpen, onCloseBurger }) => {
     const modalContainer = useRef()
-    const { pathname: path } = useLocation()
 
     useEffect(() => {
         const onClickOutside = (e) => {
             if (modalContainer.current && !modalContainer.current.contains(e.target)) {
-                onClose()
+                onCloseBurger()
             }
         }
         document.addEventListener('mousedown', onClickOutside)
@@ -25,12 +23,7 @@ export const HeaderMenu = ({ isMenuOpen, setIsMenuOpen, onClose }) => {
             document.removeEventListener('mousedown', onClickOutside)
         }
         
-    }, [onClose])
-
-    useEffect(() => {
-        onClose()
-        
-    }, [path])
+    }, [onCloseBurger])
 
     return (
         <>
@@ -58,7 +51,8 @@ export const HeaderMenu = ({ isMenuOpen, setIsMenuOpen, onClose }) => {
                     >
                         <div className='wrapper-header-sidebar'>
                             <NavigaionMenu 
-                                dataTestId={['burger-showcase', 'burger-books','burger-contract', 'burger-terms']}
+                                onCloseBurger={onCloseBurger}
+                                dataTestId={['burger-showcase', 'burger','burger-contract', 'burger-terms']}
                             />
                         </div>
 

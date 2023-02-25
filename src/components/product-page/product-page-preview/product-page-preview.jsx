@@ -12,7 +12,7 @@ export const ProductPagePreview = ({ product }) => (
             </div>
 
             <div className="container-page-product-description">
-                <h2 className="page-product-title">{product?.title}</h2>
+                <h2 className="page-product-title" data-test-id='book-title'>{product?.title}</h2>
 
                 <p className="page-product-author">{product?.authors}, {product?.issueYear}</p>
 

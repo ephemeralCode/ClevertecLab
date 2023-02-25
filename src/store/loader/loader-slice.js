@@ -52,8 +52,12 @@ const initialState = {
     loadingCategories: false,
     loadingProducts: false,
     toastMessage: false,
+    sortRating: true,
+    isOpenTypeProduct: true,
+    searchValue: '',
     categories: [],
     products: [],
+    sortedProducts: [],
     selectedProduct: {}
 }
 
@@ -72,6 +76,21 @@ export const loadingSlice = createSlice({
             ...state,
             toastMessage: payload,
         }),
+        // nav menu
+        toggleOpenTypeProduct: (state, { payload }) => ({
+            ...state,
+            isOpenTypeProduct: payload,
+        }),
+        // sort rating
+        toggleSortRating: (state, { payload }) => ({
+            ...state,
+            sortRating: payload,
+        }),
+        // search input
+        setSearchValue: (state, { payload }) => ({
+            ...state,
+            searchValue: payload,
+        }),
         // categories
         setCategories: (state, { payload }) => ({
             ...state,
@@ -81,6 +100,10 @@ export const loadingSlice = createSlice({
         setProducts: (state, { payload }) => ({
             ...state,
             products: payload,
+        }),
+        setSortedProducts: (state, { payload }) => ({
+            ...state,
+            sortedProducts: payload,
         }),
         // selected product
         setProduct: (state, { payload }) => ({
@@ -123,7 +146,7 @@ export const loadingSlice = createSlice({
     },
 })
 
-export const { toggleLoading, toggleToastMessage, setCategories, setProducts, setProduct } = loadingSlice.actions
+export const { toggleLoading, toggleToastMessage, toggleOpenTypeProduct, toggleSortRating, setSearchValue, setCategories, setProducts, setSortedProducts, setProduct } = loadingSlice.actions
 
 export const selectLoadingCategories = (state) => state.loading.loadingCategories
 
@@ -131,8 +154,16 @@ export const selectLoadingProducts = (state) => state.loading.loadingProducts
 
 export const selectToastMessage = (state) => state.loading.toastMessage
 
+export const selectOpenTypeProduct = (state) => state.loading.isOpenTypeProduct
+
+export const selectSortRating = (state) => state.loading.sortRating
+
+export const selectSearchValue = (state) => state.loading.searchValue
+
 export const selectCategories = (state) => state.loading.categories
 
 export const selectProducts = (state) => state.loading.products
+
+export const selectSortedProducts = (state) => state.loading.sortedProducts
 
 export const selectProduct = (state) => state.loading.selectedProduct

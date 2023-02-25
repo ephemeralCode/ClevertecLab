@@ -24,7 +24,7 @@ export const Header = () => {
                         isMenuOpen={isMenuOpen}
                         setIsMenuOpen={setIsMenuOpen}
 
-                        onClose={() => setIsMenuOpen(false)}
+                        onCloseBurger={() => setIsMenuOpen(false)}
                     />
                 </div>
 
