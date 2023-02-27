@@ -36,7 +36,7 @@ export const ProductContent = ({ groupCardProducts }) => {
 
     }, [sortedProducts, sortRating, path])
 
-    const sortedAndfilteredProducts = useMemo(() => {
+    const sortedAndFilteredProducts = useMemo(() => {
         if (sortedProducts?.all?.length) {
             return sortedRatingProducts.filter((book) => book.title.toLowerCase().includes(searchValue.toLowerCase()))
         }
@@ -44,13 +44,13 @@ export const ProductContent = ({ groupCardProducts }) => {
     }, [searchValue, sortedRatingProducts])
 
     const CardProduct = groupCardProducts === 'hardly' ? CardProductHardly : CardProductColumn
-    const type = !searchValue.length ? sortedProducts[path] : sortedAndfilteredProducts
+    const type = !searchValue.length ? sortedProducts[path] : sortedAndFilteredProducts
 
     return (
         <div className={`container-products ${groupCardProducts}`}>
             {
                 type?.length ?
-                    sortedAndfilteredProducts?.map(item => 
+                    sortedAndFilteredProducts?.map(item => 
                         <CardProduct
                             key={item.id}
                             general={item}

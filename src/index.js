@@ -8,9 +8,11 @@ import { store } from './store/loader'
 
 import { MainPage } from './pages/main'
 import { ProductPage } from './pages/product'
+import { Authorization } from './pages/authorization/authorization'
 
 import { Layout } from './components/layouts/layout/layout'
 import { LayoutMainContent } from './components/layouts/layout-main-content/layout-main-content'
+import { LayoutPersonalCabinet } from './components/layouts/layout-personal-cabinet/layout-personal-cabinet'
 import { LinkLegalTerms } from './components/link-legal-terms/link-legal-terms'
 
 import './css/index.css'
@@ -18,12 +20,20 @@ import './css/fonts.css'
 import './css/atoms.css'
 import './css/adaptive.css'
 
+
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
     <React.StrictMode>
         <Provider store={store}>
             <HashRouter>
                 <Routes>
+                    <Route path='/' element={<LayoutPersonalCabinet />}>
+                        <Route index={true} element={<Navigate to='/auth' />} replace={true} />
+                        <Route path='/auth' element={<Authorization />} />
+                        {/* <Route path='/registration' element={} />
+                        <Route path='/forgot-pass' element={} /> */}
+                    </Route>
+
                     <Route path='/' element={<Layout />}>
                         <Route element={<LayoutMainContent />}>
                             <Route index={true} element={<Navigate to='/books/all' />} replace={true} />
