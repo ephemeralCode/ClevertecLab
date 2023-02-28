@@ -1,23 +1,120 @@
 .container-personal-cabinet {
-    position: absolute;
-    top: 50%;
-    left: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
 
-    max-width: 528px;
-    width: 100%;
-    
-    padding: 48px 56px;
+  max-width: 528px;
+  width: 100%;
 
-    border-radius: 16px;
-    background: #fff;
+  padding: 48px 56px;
 
-    transform: translate(-50%, -50%);
+  border-radius: 16px;
+  background: #fff;
+
+  transform: translate(-50%, -50%);
 }
 
-.personal-cabinet-title{
-    font-weight: 700;
-    font-size: 24px;
-    line-height: 30px;
-    letter-spacing: 0.1px;
-    color: #363636;
+.personal-cabinet-title {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 30px;
+  letter-spacing: 0.1px;
+  color: #363636;
+}
+
+.container-personal-cabinet-info {
+  margin: 32px 0 20px;
+}
+
+.container-personal-cabinet-input {
+  position: relative;
+}
+
+.personal-cabinet-input {
+  width: 100%;
+  height: 56px;
+
+  padding: 0 0 0 12px;
+
+  background: #f9f9fa;
+  border-radius: 4px 4px 0 0;
+  border: none;
+  outline: none;
+}
+
+.container-personal-cabinet-input + .container-personal-cabinet-input .personal-cabinet-input {
+  margin: 36px 0 0;
+}
+
+.personal-cabinet-link-reset-password {
+  margin: 0 0 0 12px;
+
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.2px;
+  color: #a7a7a7;
+}
+
+.personal-cabinet-btn-log-in {
+  width: 100%;
+
+  padding: 14px 0;
+  margin: 32px 0 0;
+
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: 0.2px;
+  text-transform: uppercase;
+}
+
+.container-personal-cabinet-link-registration {
+  display: flex;
+  align-items: center;
+
+  margin: 16px 0 0;
+}
+
+.personal-cabinet-link-registration-text {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.1px;
+  color: #727272;
+}
+
+.wrapper-personal-cabinet-link-registration {
+  display: flex;
+  align-items: center;
+
+  margin: 0 0 0 16px;
+}
+
+.personal-cabinet-link-registration-text {
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing: 0.2px;
+  text-transform: uppercase;
+  color: #363636;
+}
+
+.personal-cabinet-link-registration-icon {
+  width: 24px;
+  height: 24px;
+
+  margin: 0 0 0 12px;
+}
+
+.personal-cabinet-input-error {
+  position: absolute;
+  top: 40px;
+  left: 12px;
+
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.2px;
+  color: #f42c4f;
 }

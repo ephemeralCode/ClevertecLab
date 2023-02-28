@@ -1,96 +1,97 @@
 .container-page-product-review {
-    margin: 62px 0 0 0;
+  margin: 62px 0 0;
 }
 
 .btn-page-product-review {
-    display: flex;
+  display: flex;
 
-    width: 100%;
+  width: 100%;
 
-    background: none;
-    border: none;
+  background: none;
+  border: none;
 
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .btn-page-product-review .page-product-review-title {
-    padding: 0 24px 16px 0;
+  padding: 0 24px 16px 0;
 }
 
 .page-product-review-amount {
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 24px;
-    letter-spacing: 0.1px;
-    color: #A7A7A7;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0.1px;
+  color: #a7a7a7;
 }
 
 .page-product-review-title-arrow {
-    margin: 3px 0 0 0;
+  margin: 3px 0 0;
 
-    transform: rotate(180deg);
+  transform: rotate(180deg);
 }
 
 .page-product-review-title-arrow.active {
-    transform: rotate(0deg);
+  transform: rotate(0deg);
 }
 
 .wrapper-page-product-reviews {
-    display: none;
+  display: none;
 
-    margin: 16px 0 0 0;
+  margin: 16px 0 0;
 }
 
 .wrapper-page-product-reviews.active {
-    display: block;
+  display: block;
 }
 
 .wrapper-page-product-review + .wrapper-page-product-review {
-    margin: 42px 0 0 0;
+  margin: 42px 0 0;
 }
 
 .container-page-product-review-user-info {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .page-product-review-user-img {
-    width: 32px;
-    height: 32px;
+  width: 32px;
+  height: 32px;
 }
 
 .wrapper-page-product-review-user {
-    display: flex;
+  display: flex;
 }
 
-.page-product-review-user-name, .page-product-review-date {
-    margin: 0 0 0 24px;
+.page-product-review-user-name,
+.page-product-review-date {
+  margin: 0 0 0 24px;
 
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 24px;
-    letter-spacing: 0.1px;
-    color: #727272;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.1px;
+  color: #727272;
 }
 
 .page-product-review-star-rate {
-    display: flex;
+  display: flex;
 
-    margin: 16px 0 0 0;
+  margin: 16px 0 0;
 }
 
 .page-product-review-comment {
-    margin: 16px 0 0 0;
+  margin: 16px 0 0;
 
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 24px;
-    letter-spacing: 0.1px;
-    color: #363636;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.1px;
+  color: #363636;
 }
