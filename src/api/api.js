@@ -1,14 +1,8 @@
 export const urlAPI = 'https://strapi.cleverland.by';
 
-export const config = {
-  headers: {
-    // Authorization: `Bearer ${token}`,
-    Accept: 'application/json, text/plain, */*',
-  },
-};
-
-export const authRequestInterceptor = () => {
+export const authRequestInterceptor = (axiosConfig) => {
   const token = sessionStorage.getItem('authorization');
+  const config = { ...axiosConfig };
 
   if (config.headers === undefined) {
     config.headers = {};
@@ -16,7 +10,7 @@ export const authRequestInterceptor = () => {
   if (token) {
     config.headers.authorization = `Bearer ${token}`;
   }
-  config.headers.Accept = 'application/json';
+  config.headers.Accept = 'application/json, text/plain, */*';
 
   return config;
 };

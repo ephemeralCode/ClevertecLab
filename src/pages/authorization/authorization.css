@@ -69,14 +69,14 @@
   text-transform: uppercase;
 }
 
-.container-personal-cabinet-link-registration {
+.container-personal-cabinet-registration {
   display: flex;
   align-items: center;
 
   margin: 16px 0 0;
 }
 
-.personal-cabinet-link-registration-text {
+.personal-cabinet-registration-text {
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;

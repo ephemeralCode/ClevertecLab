@@ -22,32 +22,29 @@ export const App = () => {
 
   useEffect(() => {
     const token = sessionStorage.getItem('authorization');
+    console.log('token', token);
 
-    if (token) {
-      navigate('/books/all');
-    } else {
-      if (path === '/auth' || path === '/registration' || path === '/forgot-pass') return;
-
+    if (!token && (path !== '/auth' || path !== '/forgot-pass')) {
       navigate('/auth');
     }
   }, [path]);
 
   return (
     <Routes>
-      <Route path='/' element={<Layout />}>
+      <Route path="/" element={<Layout />}>
         <Route element={<LayoutMainContent />}>
-          <Route index={true} element={<Navigate to='/books/all' />} replace={true} />
-          <Route path='/books/:type' element={<MainPage />} />
-          <Route path='/terms-use' element={<LinkLegalTerms title='Правила пользования' />} />
-          <Route path='/offer-agreement' element={<LinkLegalTerms title='Договор оферты' />} />
+          <Route index={true} element={<Navigate to="/books/all" />} replace={true} />
+          <Route path="/books/:type" element={<MainPage />} />
+          <Route path="/terms-use" element={<LinkLegalTerms title="Правила пользования" />} />
+          <Route path="/offer-agreement" element={<LinkLegalTerms title="Договор оферты" />} />
         </Route>
 
-        <Route path='/books/:type/:id' element={<ProductPage />} replace={true} />
+        <Route path="/books/:type/:id" element={<ProductPage />} replace={true} />
       </Route>
 
       <Route element={<LayoutPersonalCabinet />}>
         {/* <Route index={true} element={<Navigate to='/auth' />} replace={true} /> */}
-        <Route path='/auth' element={<Authorization />} />
+        <Route path="/auth" element={<Authorization />} />
         {/* <Route path='/registration' element={} />
         <Route path='/forgot-pass' element={} /> */}
       </Route>

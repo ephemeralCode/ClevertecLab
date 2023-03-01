@@ -5,6 +5,18 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { urlAPI } from '../../api/api';
 
+// export const authorizationUserAction = createAsyncThunk('authorizationUser', async (_, thunkApi) => {
+//     const result = await axios.post(`${urlAPI}/api/auth/local`)
+//     .then((res) => {
+//         console.log(res);
+//       })
+//     .catch((err) => {
+//         console.log(err);
+//     });
+  
+//     return result;
+//   });
+
 export const categoryProductsAction = createAsyncThunk('categories', async (_, thunkApi) => {
   const result = await axios.get(`${urlAPI}/api/categories`).catch(() => {
     thunkApi.dispatch(toggleToastMessage(true));
