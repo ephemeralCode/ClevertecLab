@@ -2,7 +2,8 @@ import React, { useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { selectSearchValue } from '../../../store/loader/loader-slice';
+import { selectSearchValue } from '../../../store/slices/sort-slice';
+
 import { StarRating } from '../../product-general/star-rating/star-rating';
 import { CardProductBtn } from '../card-product-btn/card-product-btn';
 import { CardProductImage } from '../card-product-image/card-product-image';

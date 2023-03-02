@@ -5,12 +5,9 @@ import { HashRouter } from 'react-router-dom';
 
 import { App } from './components/app/app';
 
-import { store } from './store/loader';
+import { store } from './store';
 
 import './css/index.css';
-import './css/fonts.css';
-import './css/atoms.css';
-import './css/adaptive.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 

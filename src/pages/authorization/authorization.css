@@ -46,14 +46,15 @@
   margin: 36px 0 0;
 }
 
-.personal-cabinet-link-reset-password {
+.container-personal-cabinet-link-reset-password {
   margin: 0 0 0 12px;
+}
 
+.personal-cabinet-link-reset-password {
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;
   letter-spacing: 0.2px;
-  color: #a7a7a7;
 }
 
 .personal-cabinet-btn-log-in {
@@ -112,6 +113,14 @@
   top: 40px;
   left: 12px;
 
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.2px;
+  color: #f42c4f;
+}
+
+.personal-cabinet-authorization-error {
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;

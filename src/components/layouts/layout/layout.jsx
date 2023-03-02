@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { Outlet } from 'react-router-dom';
 
-import { selectLoadingCategories, selectLoadingProducts, selectToastMessage } from '../../../store/loader/loader-slice';
+import { selectLoadingCategories, selectLoadingProducts, selectToastMessage } from '../../../store/slices/loader-slice';
 import { Footer } from '../../footer/footer';
 import { Header } from '../../header/header';
 import { Loader } from '../../loader/loader';

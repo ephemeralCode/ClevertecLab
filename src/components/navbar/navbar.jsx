@@ -5,7 +5,7 @@ import { ReactComponent as IconGroupColumn } from '../../assets/icons/btn/icon-g
 import { ReactComponent as IconGroupHardly } from '../../assets/icons/btn/icon-group-hardly.svg';
 import iconBtnSearch from '../../assets/icons/btn/icon-input-sort.svg';
 import { ReactComponent as IconMenuClose } from '../../assets/icons/general/icon-menu-close.svg';
-import { selectSearchValue, setSearchValue } from '../../store/loader/loader-slice';
+import { selectSearchValue, setSearchValue } from '../../store/slices/sort-slice';
 
 import { BtnGroup } from './btn-group/btn-group';
 import { BtnSortRatingProducts } from './btn-sort-rating-products/btn-sort-rating-products';

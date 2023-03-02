@@ -3,12 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
 import { ReactComponent as IconMenuArrow } from '../../assets/icons/general/icon-menu-arrow.svg';
-import {
-  selectCategories,
-  selectOpenTypeProduct,
-  selectSortedProducts,
-  toggleOpenTypeProduct,
-} from '../../store/loader/loader-slice';
+import { selectCategories, selectSortedProducts } from '../../store/slices/loader-slice';
+import { selectOpenTypeProduct, toggleOpenTypeProduct } from '../../store/slices/navigation-slice';
 
 import { BtnMenuMainContent } from './btn-menu-main-content/btn-menu-main-content';
 import { BtnMenuTypeProduct } from './btn-menu-type-product/btn-menu-type-product';

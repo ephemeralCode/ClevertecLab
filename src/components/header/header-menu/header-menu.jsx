@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { ReactComponent as IconMenuClose } from '../../../assets/icons/general/icon-menu-close.svg';
 import iconMenu from '../../../assets/icons/header/icon-menu.svg';
@@ -9,6 +10,7 @@ import './header-menu.css';
 
 export const HeaderMenu = ({ isMenuOpen, setIsMenuOpen, onCloseBurger }) => {
   const modalContainer = useRef();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const onClickOutside = (e) => {
@@ -53,7 +55,14 @@ export const HeaderMenu = ({ isMenuOpen, setIsMenuOpen, onCloseBurger }) => {
               Профиль
             </button>
 
-            <button className="btn-user-account-exit" type="button">
+            <button
+              onClick={() => {
+                sessionStorage.clear();
+                navigate('/auth');
+              }}
+              className="btn-user-account-exit"
+              type="button"
+            >
               Выход
             </button>
           </div>

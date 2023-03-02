@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import IconCircleComplete from '../../assets/icons/general/icon-circle-complete.svg';
 import IconCircleError from '../../assets/icons/general/icon-circle-error.svg';
 import IconClose from '../../assets/icons/general/icon-menu-close.svg';
-import { toggleToastMessage } from '../../store/loader/loader-slice';
+import { toggleToastMessage } from '../../store/slices/loader-slice';
 
 import './toast-message.css';
 

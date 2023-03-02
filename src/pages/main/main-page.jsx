@@ -10,7 +10,7 @@ import {
   selectProducts,
   selectSortedProducts,
   setSortedProducts,
-} from '../../store/loader/loader-slice';
+} from '../../store/slices/loader-slice';
 
 import './main-page.css';
 
@@ -23,15 +23,16 @@ export const MainPage = () => {
   const [groupCardProducts, setGroupCardProducts] = useState('hardly');
 
   const notEmptyContent = categories.length && products.length;
+  const token = sessionStorage.getItem('authorization');
 
   useEffect(() => {
-    if (!categories.length) {
+    if (!categories.length && token) {
       dispatch(categoryProductsAction());
     }
   }, [dispatch]);
 
   useEffect(() => {
-    if (!products.length) {
+    if (!products.length && token) {
       dispatch(productsAction());
     }
   }, [dispatch]);
@@ -54,7 +55,7 @@ export const MainPage = () => {
   }, [products]);
 
   return (
-    <section className='container-content'>
+    <section className="container-content">
       {!!notEmptyContent && (
         <ProductSearch groupCardProducts={groupCardProducts} setGroupCardProducts={setGroupCardProducts} />
       )}

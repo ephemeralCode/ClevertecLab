@@ -2,7 +2,9 @@ import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
-import { selectSearchValue, selectSortedProducts, selectSortRating } from '../../store/loader/loader-slice';
+import { selectSortedProducts } from '../../store/slices/loader-slice';
+import { selectSearchValue, selectSortRating } from '../../store/slices/sort-slice';
+
 import { CardProductColumn } from '../card-product/card-product-column/card-product-column';
 import { CardProductHardly } from '../card-product/card-product-hardly/card-product-hardly';
 import { EmptySortResult } from '../empty-sort-result/empty-sort-result';

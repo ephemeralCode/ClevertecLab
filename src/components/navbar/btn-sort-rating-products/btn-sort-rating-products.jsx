@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 
 import iconBtnSort from '../../../assets/icons/btn/icon-btn-sort.svg';
-import { selectSortRating, toggleSortRating } from '../../../store/loader/loader-slice';
+import { selectSortRating, toggleSortRating } from '../../../store/slices/sort-slice';
 
 import './btn-sort-rating-products.css';
 

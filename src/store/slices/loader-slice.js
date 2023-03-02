@@ -1,21 +1,36 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-
 import axios from 'axios';
+
 import { urlAPI } from '../../api/api';
 
-// export const authorizationUserAction = createAsyncThunk('authorizationUser', async (_, thunkApi) => {
-//     const result = await axios.post(`${urlAPI}/api/auth/local`)
-//     .then((res) => {
-//         console.log(res);
-//       })
-//     .catch((err) => {
-//         console.log(err);
-//     });
-  
-//     return result;
-//   });
+export const authorizationUserAction = createAsyncThunk(
+  'authorizationUser',
+  async ({ identifier, password }, thunkApi) => {
+    const result = await axios
+      .post(`${urlAPI}/api/auth/local`, {
+        identifier,
+        password,
+      })
+      .catch((err) => {
+        if (err.response.status === 400 || err?.response?.error?.name === 'ValidationError') {
+          thunkApi.dispatch(toggleValidationErrorMessage(true));
+        } else {
+          thunkApi.dispatch(toggleNetworkErrorMessage(true));
+        }
+      });
+
+    if (result.status === 200 && result.data.jwt) {
+      sessionStorage.setItem('authorization', result.data.jwt);
+      const arr = result.data.user;
+
+      thunkApi.dispatch(setUserData(arr));
+    }
+
+    return result.data;
+  }
+);
 
 export const categoryProductsAction = createAsyncThunk('categories', async (_, thunkApi) => {
   const result = await axios.get(`${urlAPI}/api/categories`).catch(() => {
@@ -56,12 +71,13 @@ export const getSelectedProduct = createAsyncThunk('product', async (id, thunkAp
 });
 
 const initialState = {
+  loadingAuthToken: false,
   loadingCategories: false,
   loadingProducts: false,
   toastMessage: false,
-  sortRating: true,
-  isOpenTypeProduct: true,
-  searchValue: '',
+  validationErrorMessage: false,
+  networkErrorMessage: false,
+  userData: {},
   categories: [],
   products: [],
   sortedProducts: [],
@@ -75,6 +91,7 @@ export const loadingSlice = createSlice({
     // loading
     toggleLoading: (state, { payload }) => ({
       ...state,
+      loadingAuthToken: payload,
       loadingCategories: payload,
       loadingProducts: payload,
     }),
@@ -83,20 +100,19 @@ export const loadingSlice = createSlice({
       ...state,
       toastMessage: payload,
     }),
-    // nav menu
-    toggleOpenTypeProduct: (state, { payload }) => ({
+    // user authorization
+    toggleValidationErrorMessage: (state, { payload }) => ({
       ...state,
-      isOpenTypeProduct: payload,
+      validationErrorMessage: payload,
     }),
-    // sort rating
-    toggleSortRating: (state, { payload }) => ({
+    toggleNetworkErrorMessage: (state, { payload }) => ({
       ...state,
-      sortRating: payload,
+      networkErrorMessage: payload,
     }),
-    // search input
-    setSearchValue: (state, { payload }) => ({
+    // user data
+    setUserData: (state, { payload }) => ({
       ...state,
-      searchValue: payload,
+      userData: payload,
     }),
     // categories
     setCategories: (state, { payload }) => ({
@@ -149,6 +165,16 @@ export const loadingSlice = createSlice({
       })
       .addCase(getSelectedProduct.rejected, (state) => {
         state.loadingProducts = false;
+      })
+      // authorization user
+      .addCase(authorizationUserAction.pending, (state) => {
+        state.loadingAuthToken = true;
+      })
+      .addCase(authorizationUserAction.fulfilled, (state) => {
+        state.loadingAuthToken = false;
+      })
+      .addCase(authorizationUserAction.rejected, (state) => {
+        state.loadingAuthToken = false;
       });
   },
 });
@@ -156,14 +182,16 @@ export const loadingSlice = createSlice({
 export const {
   toggleLoading,
   toggleToastMessage,
-  toggleOpenTypeProduct,
-  toggleSortRating,
-  setSearchValue,
+  toggleValidationErrorMessage,
+  toggleNetworkErrorMessage,
+  setUserData,
   setCategories,
   setProducts,
   setSortedProducts,
   setProduct,
 } = loadingSlice.actions;
+
+export const selectLoadingLoadingAuthToken = (state) => state.loading.loadingAuthToken;
 
 export const selectLoadingCategories = (state) => state.loading.loadingCategories;
 
@@ -171,11 +199,11 @@ export const selectLoadingProducts = (state) => state.loading.loadingProducts;
 
 export const selectToastMessage = (state) => state.loading.toastMessage;
 
-export const selectOpenTypeProduct = (state) => state.loading.isOpenTypeProduct;
+export const selectValidationErrorMessage = (state) => state.loading.validationErrorMessage;
 
-export const selectSortRating = (state) => state.loading.sortRating;
+export const selectNetworkErrorMessage = (state) => state.loading.networkErrorMessage;
 
-export const selectSearchValue = (state) => state.loading.searchValue;
+export const selectUserData = (state) => state.loading.userData;
 
 export const selectCategories = (state) => state.loading.categories;
 

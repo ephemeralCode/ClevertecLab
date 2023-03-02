@@ -14,7 +14,7 @@ import {
   getSelectedProduct,
   selectCategories,
   selectProduct,
-} from '../../store/loader/loader-slice';
+} from '../../store/slices/loader-slice';
 
 import './product-page.css';
 
@@ -28,14 +28,16 @@ export const ProductPage = () => {
   const [isOpenReview, setIsOpenReview] = useState(false);
   const [isCategory, setIsCategory] = useState(null);
 
+  const token = sessionStorage.getItem('authorization');
+
   useEffect(() => {
-    if (!categories.length) {
+    if (!categories.length && token) {
       dispatch(categoryProductsAction());
     }
   }, [dispatch]);
 
   useEffect(() => {
-    if (product?.id !== Number(id)) {
+    if (product?.id !== Number(id) && token) {
       dispatch(getSelectedProduct(id));
     }
   }, [dispatch, id]);
@@ -47,27 +49,27 @@ export const ProductPage = () => {
   }, [categories]);
 
   return (
-    <section className='product-page'>
+    <section className="product-page">
       <ProductPageBreadcrumbs path={type} category={categories[isCategory]?.name} title={product?.title} />
 
-      <main className='container-page-product'>
+      <main className="container-page-product">
         {!!Object.keys(product).length && (
-          <div className='wrapper-page-product'>
-            <div className='container-page-product-preview'>
+          <div className="wrapper-page-product">
+            <div className="container-page-product-preview">
               <ProductPagePreview product={product} />
             </div>
 
-            <div className='container-page-product-further-info'>
-              <div className='container-page-product-rating'>
-                <ProductPageInfoTitle title='Рейтинг' />
+            <div className="container-page-product-further-info">
+              <div className="container-page-product-rating">
+                <ProductPageInfoTitle title="Рейтинг" />
 
-                <div className='container-page-product-star-rating'>
+                <div className="container-page-product-star-rating">
                   <StarRating amount={product?.rating} showRatingNumber={true} />
                 </div>
               </div>
 
-              <div className='container-page-product-detailed-info'>
-                <ProductPageInfoTitle title='Подробная информация' />
+              <div className="container-page-product-detailed-info">
+                <ProductPageInfoTitle title="Подробная информация" />
 
                 <ProductPageDetailedInfo product={product} />
               </div>
@@ -75,7 +77,7 @@ export const ProductPage = () => {
               <ProductPageReview isOpenReview={isOpenReview} onToggleReview={() => setIsOpenReview(!isOpenReview)} />
             </div>
 
-            <button className='page-product-btn-add-review-user primary' type='button' data-test-id='button-rating'>
+            <button className="page-product-btn-add-review-user primary" type="button" data-test-id="button-rating">
               Оценить книгу
             </button>
           </div>

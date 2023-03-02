@@ -1,39 +1,32 @@
-import axios from 'axios';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
-import { urlAPI } from '../../api/api';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 
 import IconLinkArrow from '../../assets/icons/btn/icon-link-arrow.svg';
+
+import { authorizationUserAction, selectValidationErrorMessage } from '../../store/slices/loader-slice';
 
 import './authorization.css';
 
 export const Authorization = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const validationErrorMessage = useSelector(selectValidationErrorMessage);
+
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { errors },
   } = useForm({
     mode: 'onBlur',
-    // resolver: yupResolver(FormSchema),
   });
 
-  const onSubmit = ({ identifier, password }) => {
-    sessionStorage.setItem('authorization', '');
+  const onSubmit = async ({ identifier, password }) => {
+    const resultAction = await dispatch(authorizationUserAction({ identifier, password }));
 
-    axios
-      .post(`${urlAPI}/api/auth/local`, {
-        identifier: 'pihoozzz',
-        password: '5123260',
-      })
-      .then((res) => {
-        console.log(res);
-
-        if (res.data.jwt) sessionStorage.setItem('authorization', res.data.jwt);
-        // TODO res.data.user - данные пользователя записать в редакс
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    if (authorizationUserAction.fulfilled.match(resultAction)) {
+      navigate('/books/all');
+    }
   };
 
   return (
@@ -45,7 +38,9 @@ export const Authorization = () => {
           <label className="container-personal-cabinet-input">
             {/* Логин: */}
             <input
-              style={{ borderBottom: `1px solid ${errors?.identifier ? '#F42C4F' : '#bfc4c9'}` }}
+              style={{
+                borderBottom: `1px solid ${errors?.identifier || validationErrorMessage ? '#F42C4F' : '#bfc4c9'}`,
+              }}
               className="personal-cabinet-input"
               placeholder="Логин"
               {...register('identifier', {
@@ -61,7 +56,9 @@ export const Authorization = () => {
           <label className="container-personal-cabinet-input">
             {/* Пароль: */}
             <input
-              style={{ borderBottom: `1px solid ${errors?.password ? '#F42C4F' : '#bfc4c9'}` }}
+              style={{
+                borderBottom: `1px solid ${errors?.password || validationErrorMessage ? '#F42C4F' : '#bfc4c9'}`,
+              }}
               className="personal-cabinet-input"
               placeholder="Пароль"
               {...register('password', {
@@ -76,16 +73,20 @@ export const Authorization = () => {
           </label>
         </div>
 
-        <Link to="/" className="personal-cabinet-link-reset-password">
-          Забыли логин или пароль?
-        </Link>
-        {/* <div>{errors && <p>Неверный логин или пароль</p>}</div> */}
+        <div className="container-personal-cabinet-link-reset-password">
+          <p className="personal-cabinet-authorization-error">
+            {validationErrorMessage && 'Неверный логин или пароль'}
+          </p>
+          <Link
+            to="/"
+            style={{ color: `${validationErrorMessage ? '#363636' : '#a7a7a7'}` }}
+            className="personal-cabinet-link-reset-password"
+          >
+            {validationErrorMessage ? 'Восстановить?' : 'Забыли логин или пароль?'}
+          </Link>
+        </div>
 
-        <button
-          className="personal-cabinet-btn-log-in primary"
-          // disabled={!isValid}
-          type="submit"
-        >
+        <button className="personal-cabinet-btn-log-in primary" type="submit">
           Вход
         </button>
       </form>

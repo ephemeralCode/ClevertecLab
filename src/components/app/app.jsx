@@ -12,7 +12,7 @@ import { LayoutMainContent } from '../layouts/layout-main-content/layout-main-co
 import { LayoutPersonalCabinet } from '../layouts/layout-personal-cabinet/layout-personal-cabinet';
 import { LinkLegalTerms } from '../link-legal-terms/link-legal-terms';
 
-import { authRequestInterceptor } from '../../api/api';
+import { authRequestInterceptor } from '../../api/axios';
 
 export const App = () => {
   const navigate = useNavigate();
@@ -22,7 +22,6 @@ export const App = () => {
 
   useEffect(() => {
     const token = sessionStorage.getItem('authorization');
-    console.log('token', token);
 
     if (!token && (path !== '/auth' || path !== '/forgot-pass')) {
       navigate('/auth');
