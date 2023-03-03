@@ -1,10 +1,14 @@
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 
-import IconLinkArrow from '../../assets/icons/btn/icon-link-arrow.svg';
+import IconEyeClosed from '../../assets/icons/btn/icon-eye-closed.svg';
+import IconEyeOpen from '../../assets/icons/btn/icon-eye-open.svg';
 
 import { authorizationUserAction, selectValidationErrorMessage } from '../../store/slices/loader-slice';
+
+import { LinkAnotherAction } from '../../components/personal-cabinet/link-another-action/link-another-action';
 
 import './authorization.css';
 
@@ -16,12 +20,16 @@ export const Authorization = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, dirtyFields },
   } = useForm({
     mode: 'onBlur',
+    defaultValues: { password: '' },
   });
 
+  const [isOpenEye, setIsOpenEye] = useState(false);
+
   const onSubmit = async ({ identifier, password }) => {
+    // TODO
     const resultAction = await dispatch(authorizationUserAction({ identifier, password }));
 
     if (authorizationUserAction.fulfilled.match(resultAction)) {
@@ -30,75 +38,83 @@ export const Authorization = () => {
   };
 
   return (
-    <div className="container-personal-cabinet">
-      <form className="wrapper-personal-cabinet" onSubmit={handleSubmit(onSubmit)}>
-        <p className="personal-cabinet-title">Вход в личный кабинет</p>
+    <div className="container-authorization" data-test-id="auth">
+      <p className="authorization-title">Вход в личный кабинет</p>
 
-        <div className="container-personal-cabinet-info">
-          <label className="container-personal-cabinet-input">
-            {/* Логин: */}
+      <form className="wrapper-authorization" onSubmit={handleSubmit(onSubmit)} data-test-id="auth-form">
+        <div className="container-authorization-info">
+          <label className="container-authorization-input">
             <input
               style={{
                 borderBottom: `1px solid ${errors?.identifier || validationErrorMessage ? '#F42C4F' : '#bfc4c9'}`,
               }}
-              className="personal-cabinet-input"
+              className="authorization-input"
               placeholder="Логин"
               {...register('identifier', {
                 required: 'Поле не может быть пустым',
               })}
               autoComplete="identifier"
             />
-            <div className="personal-cabinet-input-error">
-              {errors?.identifier?.message && <p>Поле не может быть пустым</p>}
+
+            <div className="authorization-input-error">
+              {errors?.identifier?.message && <p data-test-id="hint">Поле не может быть пустым</p>}
             </div>
           </label>
 
-          <label className="container-personal-cabinet-input">
-            {/* Пароль: */}
+          <label className="container-authorization-input">
             <input
               style={{
                 borderBottom: `1px solid ${errors?.password || validationErrorMessage ? '#F42C4F' : '#bfc4c9'}`,
               }}
-              className="personal-cabinet-input"
+              className="authorization-input"
               placeholder="Пароль"
               {...register('password', {
                 required: 'Поле не может быть пустым',
               })}
-              type="password"
+              type={isOpenEye ? 'text' : 'password'}
               autoComplete="current-password"
             />
-            <div className="personal-cabinet-input-error">
-              {errors?.password?.message && <p>Поле не может быть пустым</p>}
+
+            <div className="authorization-input-error">
+              {errors?.password?.message && <p data-test-id="hint">Поле не может быть пустым</p>}
             </div>
+
+            {dirtyFields?.password && (
+              <button
+                className="authorization-btn-visible-password"
+                onClick={() => setIsOpenEye(!isOpenEye)}
+                type="button"
+              >
+                <img
+                  data-test-id={isOpenEye ? 'eye-opened' : 'eye-closed'}
+                  src={isOpenEye ? IconEyeOpen : IconEyeClosed}
+                  alt=""
+                />
+              </button>
+            )}
           </label>
         </div>
 
-        <div className="container-personal-cabinet-link-reset-password">
-          <p className="personal-cabinet-authorization-error">
+        <div className="container-authorization-link-reset-password">
+          <p className="authorization-authorization-error" data-test-id="hint">
             {validationErrorMessage && 'Неверный логин или пароль'}
           </p>
           <Link
-            to="/"
+            to="/forgot-pass"
             style={{ color: `${validationErrorMessage ? '#363636' : '#a7a7a7'}` }}
-            className="personal-cabinet-link-reset-password"
+            className="authorization-link-reset-password"
           >
             {validationErrorMessage ? 'Восстановить?' : 'Забыли логин или пароль?'}
           </Link>
         </div>
 
-        <button className="personal-cabinet-btn-log-in primary" type="submit">
+        <button className="authorization-btn-log-in primary" type="submit">
           Вход
         </button>
       </form>
 
-      <div className="container-personal-cabinet-registration">
-        <p className="personal-cabinet-registration-text">Нет учётной записи?</p>
-
-        <Link to="/" className="wrapper-personal-cabinet-link-registration">
-          <p className="personal-cabinet-link-registration-text">Регистрация</p>
-
-          <img className="personal-cabinet-link-registration-icon" src={IconLinkArrow} alt="" />
-        </Link>
+      <div className="container-authorization-action">
+        <LinkAnotherAction textContent="Нет учётной записи?" action="/registration" linkText="Регистрация" />
       </div>
     </div>
   );

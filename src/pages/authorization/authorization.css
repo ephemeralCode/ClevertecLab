@@ -1,4 +1,4 @@
-.container-personal-cabinet {
+.container-authorization {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -14,7 +14,7 @@
   transform: translate(-50%, -50%);
 }
 
-.personal-cabinet-title {
+.authorization-title {
   font-weight: 700;
   font-size: 24px;
   line-height: 30px;
@@ -22,15 +22,25 @@
   color: #363636;
 }
 
-.container-personal-cabinet-info {
+.registration-steps {
+  margin: 8px 0 0;
+
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: 0.1px;
+  color: #363636;
+}
+
+.container-authorization-info {
   margin: 32px 0 20px;
 }
 
-.container-personal-cabinet-input {
+.container-authorization-input {
   position: relative;
 }
 
-.personal-cabinet-input {
+.authorization-input {
   width: 100%;
   height: 56px;
 
@@ -42,22 +52,33 @@
   outline: none;
 }
 
-.container-personal-cabinet-input + .container-personal-cabinet-input .personal-cabinet-input {
+.authorization-btn-visible-password {
+  position: absolute;
+  right: 16px;
+  top: -3px;
+
+  background: none;
+  border: none;
+
+  cursor: pointer;
+}
+
+.container-authorization-input + .container-authorization-input .authorization-input {
   margin: 36px 0 0;
 }
 
-.container-personal-cabinet-link-reset-password {
+.container-authorization-link-reset-password {
   margin: 0 0 0 12px;
 }
 
-.personal-cabinet-link-reset-password {
+.authorization-link-reset-password {
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;
   letter-spacing: 0.2px;
 }
 
-.personal-cabinet-btn-log-in {
+.authorization-btn-log-in {
   width: 100%;
 
   padding: 14px 0;
@@ -70,45 +91,14 @@
   text-transform: uppercase;
 }
 
-.container-personal-cabinet-registration {
+.container-authorization-action {
   display: flex;
   align-items: center;
 
   margin: 16px 0 0;
 }
 
-.personal-cabinet-registration-text {
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
-  letter-spacing: 0.1px;
-  color: #727272;
-}
-
-.wrapper-personal-cabinet-link-registration {
-  display: flex;
-  align-items: center;
-
-  margin: 0 0 0 16px;
-}
-
-.personal-cabinet-link-registration-text {
-  font-weight: 600;
-  font-size: 12px;
-  line-height: 18px;
-  letter-spacing: 0.2px;
-  text-transform: uppercase;
-  color: #363636;
-}
-
-.personal-cabinet-link-registration-icon {
-  width: 24px;
-  height: 24px;
-
-  margin: 0 0 0 12px;
-}
-
-.personal-cabinet-input-error {
+.authorization-input-error {
   position: absolute;
   top: 40px;
   left: 12px;
@@ -120,7 +110,7 @@
   color: #f42c4f;
 }
 
-.personal-cabinet-authorization-error {
+.authorization-authorization-error {
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;

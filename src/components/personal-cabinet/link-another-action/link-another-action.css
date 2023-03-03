@@ -1,0 +1,30 @@
+.another-action-text {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.1px;
+  color: #727272;
+}
+
+.wrapper-another-action-link {
+  display: flex;
+  align-items: center;
+
+  margin: 0 0 0 16px;
+}
+
+.another-action-link-text {
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing: 0.2px;
+  text-transform: uppercase;
+  color: #363636;
+}
+
+.another-action-link-icon {
+  width: 24px;
+  height: 24px;
+
+  margin: 0 0 0 12px;
+}

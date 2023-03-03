@@ -56,12 +56,13 @@ export const HeaderMenu = ({ isMenuOpen, setIsMenuOpen, onCloseBurger }) => {
             </button>
 
             <button
+              className="btn-user-account-exit"
+              type="button"
               onClick={() => {
                 sessionStorage.clear();
                 navigate('/auth');
               }}
-              className="btn-user-account-exit"
-              type="button"
+              data-test-id="exit-button"
             >
               Выход
             </button>

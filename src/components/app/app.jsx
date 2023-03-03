@@ -13,6 +13,8 @@ import { LayoutPersonalCabinet } from '../layouts/layout-personal-cabinet/layout
 import { LinkLegalTerms } from '../link-legal-terms/link-legal-terms';
 
 import { authRequestInterceptor } from '../../api/axios';
+import { Registration } from '../../pages/registration/registration';
+import { ForgotPass } from '../../pages/forgot-pass/forgot-pass';
 
 export const App = () => {
   const navigate = useNavigate();
@@ -23,7 +25,11 @@ export const App = () => {
   useEffect(() => {
     const token = sessionStorage.getItem('authorization');
 
-    if (!token && (path !== '/auth' || path !== '/forgot-pass')) {
+    // if (!token && (path !== '/auth' || path !== '/forgot-pass')) {
+    //   navigate('/auth');
+    // }
+    if (path === '/auth' || path === '/registration' || path === '/forgot-pass') return;
+    if (!token) {
       navigate('/auth');
     }
   }, [path]);
@@ -42,10 +48,9 @@ export const App = () => {
       </Route>
 
       <Route element={<LayoutPersonalCabinet />}>
-        {/* <Route index={true} element={<Navigate to='/auth' />} replace={true} /> */}
         <Route path="/auth" element={<Authorization />} />
-        {/* <Route path='/registration' element={} />
-        <Route path='/forgot-pass' element={} /> */}
+        <Route path="/registration" element={<Registration />} />
+        <Route path="/forgot-pass" element={<ForgotPass />} />
       </Route>
     </Routes>
   );
