@@ -18,4 +18,4 @@ export const navigationSlice = createSlice({
 
 export const { toggleOpenTypeProduct } = navigationSlice.actions;
 
-export const selectOpenTypeProduct = (state) => state.loading.isOpenTypeProduct;
+export const selectOpenTypeProduct = (state) => state.navigation.isOpenTypeProduct;

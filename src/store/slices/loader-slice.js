@@ -17,7 +17,13 @@ export const authorizationUserAction = createAsyncThunk(
         if (err.response.status === 400 || err?.response?.error?.name === 'ValidationError') {
           thunkApi.dispatch(toggleValidationErrorMessage(true));
         } else {
-          thunkApi.dispatch(toggleNetworkErrorMessage(true));
+          thunkApi.dispatch(
+            setValidationResult({
+              title: 'Вход не выполнен',
+              text: 'Что-то пошло не так. Попробуйте ещё раз',
+              textBtn: 'Повторить',
+            })
+          );
         }
       });
 
@@ -26,6 +32,55 @@ export const authorizationUserAction = createAsyncThunk(
       const arr = result.data.user;
 
       thunkApi.dispatch(setUserData(arr));
+    }
+
+    return result.data;
+  }
+);
+
+export const registrationUserAction = createAsyncThunk(
+  'registrationUser',
+  async ({ username, password, firstName, lastName, email, phone }, thunkApi) => {
+    const result = await axios
+      .post(`${urlAPI}/api/auth/local/register`, {
+        username,
+        password,
+        firstName,
+        lastName,
+        email,
+        phone,
+      })
+      .catch((err) => {
+        console.log(err);
+
+        if (err.response.status === 400 || err?.response?.error?.name === 'ValidationError') {
+          thunkApi.dispatch(
+            setValidationResult({
+              title: 'Данные не сохранились',
+              text: 'Такой логин или e-mail уже записан в системе. Попробуйте зарегистрироваться по другому логину или e-mail',
+              textBtn: 'Назад к регистрации',
+            })
+          );
+        } else {
+          thunkApi.dispatch(
+            setValidationResult({
+              title: 'Данные не сохранились',
+              text: 'Что-то пошло не так и ваша регистрация не завершилась. Попробуйте ещё раз',
+              textBtn: 'Повторить',
+            })
+          );
+        }
+      });
+
+    if (result.status === 200 && result.data.jwt) {
+      thunkApi.dispatch(
+        setValidationResult({
+          title: 'Регистрация успешна',
+          text: 'Регистрация прошла успешно. Зайдите в личный кабинет, используя свои логин и пароль',
+          textBtn: 'Вход',
+          action: '/auth',
+        })
+      );
     }
 
     return result.data;
@@ -76,7 +131,7 @@ const initialState = {
   loadingProducts: false,
   toastMessage: false,
   validationErrorMessage: false,
-  networkErrorMessage: false,
+  validationResult: {},
   userData: {},
   categories: [],
   products: [],
@@ -105,9 +160,9 @@ export const loadingSlice = createSlice({
       ...state,
       validationErrorMessage: payload,
     }),
-    toggleNetworkErrorMessage: (state, { payload }) => ({
+    setValidationResult: (state, { payload }) => ({
       ...state,
-      networkErrorMessage: payload,
+      validationResult: payload,
     }),
     // user data
     setUserData: (state, { payload }) => ({
@@ -175,6 +230,16 @@ export const loadingSlice = createSlice({
       })
       .addCase(authorizationUserAction.rejected, (state) => {
         state.loadingAuthToken = false;
+      })
+      // registration user
+      .addCase(registrationUserAction.pending, (state) => {
+        state.loadingAuthToken = true;
+      })
+      .addCase(registrationUserAction.fulfilled, (state) => {
+        state.loadingAuthToken = false;
+      })
+      .addCase(registrationUserAction.rejected, (state) => {
+        state.loadingAuthToken = false;
       });
   },
 });
@@ -183,7 +248,7 @@ export const {
   toggleLoading,
   toggleToastMessage,
   toggleValidationErrorMessage,
-  toggleNetworkErrorMessage,
+  setValidationResult,
   setUserData,
   setCategories,
   setProducts,
@@ -201,7 +266,7 @@ export const selectToastMessage = (state) => state.loading.toastMessage;
 
 export const selectValidationErrorMessage = (state) => state.loading.validationErrorMessage;
 
-export const selectNetworkErrorMessage = (state) => state.loading.networkErrorMessage;
+export const selectValidationResult = (state) => state.loading.validationResult;
 
 export const selectUserData = (state) => state.loading.userData;
 

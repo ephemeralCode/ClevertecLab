@@ -28,8 +28,13 @@ export const App = () => {
     // if (!token && (path !== '/auth' || path !== '/forgot-pass')) {
     //   navigate('/auth');
     // }
-    if (path === '/auth' || path === '/registration' || path === '/forgot-pass') return;
-    if (!token) {
+
+    if (token) {
+      if (path === '/auth' || path === '/registration' || path === '/forgot-pass') {
+        navigate('/books/all');
+      }
+    } else {
+      if (path === '/auth' || path === '/registration' || path === '/forgot-pass') return;
       navigate('/auth');
     }
   }, [path]);

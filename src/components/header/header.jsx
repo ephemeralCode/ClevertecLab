@@ -1,18 +1,25 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 
 import logo from '../../assets/icons/logo.svg';
 import avatar from '../../assets/images/user/avatar.png';
+import { selectUserData } from '../../store/slices/loader-slice';
 
 import { HeaderMenu } from './header-menu/header-menu';
 
 import './header.css';
 
 export const Header = () => {
+  const userData = useSelector(selectUserData);
+
+  const navigate = useNavigate();
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
 
   return (
-    <header className="container-header">
+    <header className={`container-header ${isUserMenuOpen ? 'active' : ''}`}>
       <div className="wrapper-header">
         <Link to="/books/all" className="container-logo-site">
           <img className="logo-site" src={logo} alt="Cleverland" />
@@ -30,9 +37,29 @@ export const Header = () => {
           <h1 className="title-header">Библиотека</h1>
 
           <div className="container-user">
-            <p className="name-user">Привет, Иван!</p>
+            <button className="wrapper-user" type="button" onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}>
+              <p className="name-user">Привет, Иван!</p>
 
-            <img className="avatar-user" src={avatar} alt="user avatar" />
+              <img className="avatar-user" src={avatar} alt="user avatar" />
+            </button>
+
+            <div className={`container-user-account ${isUserMenuOpen ? '' : 'active'}`}>
+              <button className="btn-user-account-profile" type="button">
+                Профиль
+              </button>
+
+              <button
+                className="btn-user-account-exit"
+                type="button"
+                onClick={() => {
+                  sessionStorage.clear();
+                  navigate('/auth');
+                }}
+                data-test-id="exit-button"
+              >
+                Выход
+              </button>
+            </div>
           </div>
         </div>
       </div>

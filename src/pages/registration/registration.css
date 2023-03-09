@@ -42,6 +42,26 @@
   outline: none;
 }
 
+.registration-btn-visible-password {
+  position: absolute;
+  right: 16px;
+  top: -3px;
+
+  display: flex;
+
+  background: none;
+  border: none;
+
+  cursor: pointer;
+}
+
+.icon-checked {
+  margin: 0 4px 0 0;
+
+  width: 24px;
+  height: 24px;
+}
+
 .container-registration-input + .container-registration-input .registration-input {
   margin: 36px 0 0;
 }

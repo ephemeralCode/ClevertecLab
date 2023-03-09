@@ -7,8 +7,8 @@ import { sortSlice } from './slices/sort-slice';
 export const store = configureStore({
   reducer: {
     loading: loadingSlice.reducer,
-    sort: sortSlice.reducer,
-    navifation: navigationSlice.reducer,
+    navigation: navigationSlice.reducer,
+    sortProducts: sortSlice.reducer,
   },
   devTools: process.env.NODE_ENV !== 'production',
 });

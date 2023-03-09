@@ -23,7 +23,6 @@ export const Authorization = () => {
     formState: { errors, dirtyFields },
   } = useForm({
     mode: 'onBlur',
-    defaultValues: { password: '' },
   });
 
   const [isOpenEye, setIsOpenEye] = useState(false);

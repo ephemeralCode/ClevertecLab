@@ -1,35 +1,49 @@
 import { useState } from 'react';
-import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
-import { yupResolver } from '@hookform/resolvers/yup';
 
 import { LinkAnotherAction } from '../../components/personal-cabinet/link-another-action/link-another-action';
 import * as validation from '../../commons/validations';
 
-import { ValidationInput } from '../../components/personal-cabinet/validation-input/validation-input';
+import { RegistrationForm } from '../../components/personal-cabinet/registration-form/registration-form';
 
 import './registration.css';
 
 export const Registration = () => {
   const [stepRegistration, setStepRegistration] = useState(1);
-  const [isOpenEye, setIsOpenEye] = useState(false);
+  const [userDataForm, setUserDataForm] = useState({
+    username: '',
+    password: '',
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+  });
 
-  const FormSchema = yup
+  console.log(userDataForm);
+
+  const FormSchemaStepOne = yup
     .object()
     .shape({
-      email: validation.emailValidation,
+      username: validation.usernameValidation,
       password: validation.passwordValidation,
     })
     .required();
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors, isValid, dirtyFields },
-  } = useForm({
-    mode: 'onBlur',
-    resolver: yupResolver(FormSchema),
-  });
+  const FormSchemaStepTwo = yup
+    .object()
+    .shape({
+      firstName: validation.firstnameValidation,
+      lastName: validation.lastnameValidation,
+    })
+    .required();
+
+  const FormSchemaStepThree = yup
+    .object()
+    .shape({
+      phone: validation.phoneValidation,
+      email: validation.emailValidation,
+    })
+    .required();
 
   return (
     <div className="container-registration">
@@ -39,64 +53,51 @@ export const Registration = () => {
         <p className="registration-steps">{`${stepRegistration} шаг из 3`}</p>
       </div>
 
-      <form className="wrapper-registration" onSubmit={handleSubmit()}>
-        <div>
-          <label className="container-registration-input">
-            <input
-              style={{
-                borderBottom: `1px solid ${errors?.identifier ? '#F42C4F' : '#bfc4c9'}`,
-              }}
-              className="registration-input"
-              placeholder="Придумайте логин для входа"
-              {...register('identifier', {
-                required: 'Поле не может быть пустым',
-              })}
-              autoComplete="identifier"
-            />
-            <div className="registration-input-error">
-              {errors?.identifier?.message ? (
-                <p>Поле не может быть пустым</p>
-              ) : (
-                <p>Используйте для логина латинский алфавит и цифры</p>
-              )}
-            </div>
-          </label>
+      {stepRegistration === 1 && (
+        <RegistrationForm
+          formSchema={FormSchemaStepOne}
+          inputs={['username', 'password']}
+          placeholders={['Придумайте логин для входа', 'Пароль']}
+          descriptions={[
+            'Используйте для логина латинский алфавит и цифры',
+            'Пароль не менее 8 символов, с заглавной буквой и цифрой',
+          ]}
+          stepRegistration={stepRegistration}
+          setStepRegistration={setStepRegistration}
+          userDataForm={userDataForm}
+          setUserDataForm={setUserDataForm}
+        />
+      )}
 
-          <label className="container-registration-input">
-            <input
-              style={{
-                borderBottom: `1px solid ${errors?.identifier ? '#F42C4F' : '#bfc4c9'}`,
-              }}
-              className="registration-input"
-              placeholder="Пароль"
-              {...register('identifier', {
-                required: 'Поле не может быть пустым',
-              })}
-              type="password"
-              autoComplete="identifier"
-            />
-            <div className="registration-input-error">
-              {errors?.identifier?.message ? (
-                <p>Поле не может быть пустым</p>
-              ) : (
-                <p>Пароль не менее 8 символов, с заглавной буквой и цифрой</p>
-              )}
-            </div>
-          </label>
-        </div>
+      {stepRegistration === 2 && (
+        <RegistrationForm
+          formSchema={FormSchemaStepTwo}
+          inputs={['firstName', 'lastName']}
+          placeholders={['Имя', 'Фамилия']}
+          descriptions={['', '']}
+          stepRegistration={stepRegistration}
+          setStepRegistration={setStepRegistration}
+          userDataForm={userDataForm}
+          setUserDataForm={setUserDataForm}
+        />
+      )}
 
-        <button
-          className="registration-btn primary"
-          type="button"
-          onClick={() => setStepRegistration(stepRegistration + 1)}
-          disabled={isValid}
-        >
-          Следующий шаг
-        </button>
-      </form>
+      {stepRegistration === 3 && (
+        <RegistrationForm
+          formSchema={FormSchemaStepThree}
+          inputs={['phone', 'email']}
+          placeholders={['Номер телефона', 'E-mail']}
+          descriptions={['В формате +375 (xx) xxx-xx-xx', '']}
+          stepRegistration={stepRegistration}
+          setStepRegistration={setStepRegistration}
+          userDataForm={userDataForm}
+          setUserDataForm={setUserDataForm}
+          maskPhone={validation.maskPhone}
+        />
+      )}
 
       <div className="container-authorization-action">
-        <LinkAnotherAction textContent="Есть учётной записи?" action="/auth" linkText="Войти" />
+        <LinkAnotherAction textContent="Есть учётной запись?" action="/auth" linkText="Войти" />
       </div>
     </div>
   );

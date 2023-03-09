@@ -6,7 +6,7 @@ const initialState = {
 };
 
 export const sortSlice = createSlice({
-  name: 'sort',
+  name: 'sortProducts',
   initialState,
   reducers: {
     // sort rating
@@ -24,6 +24,6 @@ export const sortSlice = createSlice({
 
 export const { toggleSortRating, setSearchValue } = sortSlice.actions;
 
-export const selectSortRating = (state) => state.loading.sortRating;
+export const selectSortRating = (state) => state.sortProducts.sortRating;
 
-export const selectSearchValue = (state) => state.loading.searchValue;
+export const selectSearchValue = (state) => state.sortProducts.searchValue;

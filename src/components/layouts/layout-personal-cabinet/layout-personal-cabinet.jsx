@@ -3,22 +3,22 @@ import { Outlet } from 'react-router-dom';
 
 import {
   selectLoadingLoadingAuthToken,
-  selectNetworkErrorMessage,
-  toggleNetworkErrorMessage,
+  selectValidationResult,
+  setValidationResult,
 } from '../../../store/slices/loader-slice';
 
 import { Loader } from '../../loader/loader';
-import { ErrorMessage } from '../../personal-cabinet/error-message/error-message';
+import { ValidatonResultMessage } from '../../personal-cabinet/error-message/validaton-result-message';
 
 import './layout-personal-cabinet.css';
 
 export const LayoutPersonalCabinet = () => {
   const dispatch = useDispatch();
   const loadingAuthUser = useSelector(selectLoadingLoadingAuthToken);
-  const networkErrorMessage = useSelector(selectNetworkErrorMessage);
+  const validatonResult = useSelector(selectValidationResult);
 
   const reauthenticate = () => {
-    dispatch(toggleNetworkErrorMessage(false));
+    dispatch(setValidationResult({}));
   };
 
   return (
@@ -26,7 +26,11 @@ export const LayoutPersonalCabinet = () => {
       <p className="layout-personal-cabinet-text">Cleverland</p>
       {loadingAuthUser && <Loader />}
 
-      {!networkErrorMessage ? <Outlet /> : <ErrorMessage reauthenticate={reauthenticate} />}
+      {Object.keys(validatonResult).length ? (
+        <ValidatonResultMessage validatonResult={validatonResult} reauthenticate={reauthenticate} />
+      ) : (
+        <Outlet />
+      )}
     </div>
   );
 };

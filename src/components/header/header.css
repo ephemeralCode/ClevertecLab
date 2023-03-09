@@ -1,72 +1,107 @@
 .container-header {
-    position: relative;
+  position: relative;
 
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 
-    margin: 32px 64px 0;
+  /* margin: 0 64px; */
+  padding: 32px 64px 15px;
+}
+
+.container-header.active {
+  box-shadow: 4px 4px 4px rgba(54, 54, 54, 0.05), -4px 4px 4px rgba(54, 54, 54, 0.05);
 }
 
 .wrapper-header {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 
-    max-width: 1110px;
-    width: 100%;
-    max-height: 58px;
+  max-width: 1110px;
+  width: 100%;
+  max-height: 58px;
 }
 
 .logo-site {
-    max-width: 165px;
-    width: 165px;
-    height: 40px;
+  max-width: 165px;
+  width: 165px;
+  height: 40px;
 }
 
 .container-header-menu {
-    display: none;
+  display: none;
 }
 
-.container-header-info{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.container-header-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-    width: 100%;
+  width: 100%;
 
-    margin: 0 0 0 120px;
+  margin: 0 0 0 120px;
 }
 
 .title-header {
-    font-family: 'Montserrat', Helvetica;
-    font-style: normal;
-    font-weight: 700;
-    font-size: 32px;
-    line-height: 40px;
-    letter-spacing: 0.1px;
-    color: #363636;
+  font-family: 'Montserrat', Helvetica;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 40px;
+  letter-spacing: 0.1px;
+  color: #363636;
+}
+.container-user {
+  position: relative;
 }
 
-.container-user {
-    display: flex;
+.wrapper-user {
+  display: flex;
 
-    align-items: center;
+  align-items: center;
 
-    cursor: pointer;
+  background: none;
+  border: none;
+
+  cursor: pointer;
 }
 
 .name-user {
-    font-family: 'Montserrat', Helvetica;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 18px;
-    letter-spacing: 0.1px;
-    color: #363636;
+  font-family: 'Montserrat', Helvetica;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: 0.1px;
+  color: #363636;
 }
 
 .avatar-user {
-    width: 58px;
-    height: 58px;
+  width: 58px;
+  height: 58px;
 
-    margin: 0 0 0 16px;
+  margin: 0 0 0 16px;
+}
+
+.container-user-account {
+  position: absolute;
+  top: 72px;
+  right: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+
+  width: 270px;
+
+  padding: 32px 24px;
+
+  background: #fff;
+  box-shadow: 4px 4px 4px rgba(54, 54, 54, 0.05), -4px 4px 4px rgba(54, 54, 54, 0.05);
+  border-radius: 0px 0px 10px 10px;
+
+  z-index: 10;
+}
+
+.container-user-account.active {
+  display: none;
 }
