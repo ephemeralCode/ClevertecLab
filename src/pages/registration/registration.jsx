@@ -73,6 +73,7 @@ export const Registration = () => {
           formSchema={FormSchemaStepTwo}
           inputs={['firstName', 'lastName']}
           placeholders={['Имя', 'Фамилия']}
+          descriptions={['', '']}
           additionalHint={false}
           stepRegistration={stepRegistration}
           setStepRegistration={setStepRegistration}

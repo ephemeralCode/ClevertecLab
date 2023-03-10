@@ -49,11 +49,11 @@ export const ForgotPass = () => {
   });
 
   const onSubmitForgotPassword = async (email) => {
-    dispatch(forgotPasswordUserAction(email));
+    await dispatch(forgotPasswordUserAction(email));
   };
 
   const onSubmitResetPassword = async ({ password, passwordConfirmation }) => {
-    dispatch(resetPasswordUserAction({ password, passwordConfirmation, code }));
+    await dispatch(resetPasswordUserAction({ password, passwordConfirmation, code }));
   };
 
   return (

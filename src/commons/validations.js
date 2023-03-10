@@ -8,8 +8,8 @@ const isEmpty = 'Поле не может быть пустым';
 export const usernameValidation = yup
   .string()
   .required(isEmpty)
-  .matches(/^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]+$/, 'латинский алфавит')
-  .matches(/(?=.*[0-9])/, 'цифры');
+  .matches(/^[a-zA-Z]+$/, 'латинский алфавит')
+  .matches(/(?=.*[0-9])/g, 'цифры');
 
 export const passwordValidation = yup
   .string()

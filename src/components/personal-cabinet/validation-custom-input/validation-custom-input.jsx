@@ -39,6 +39,7 @@ export const ValidationCustomInput = ({
           />
         ) : (
           <input
+            name={input}
             className={`validation-input ${errors[input] ? 'error' : ''}`}
             onFocus={() => {
               setIsFocused(false);

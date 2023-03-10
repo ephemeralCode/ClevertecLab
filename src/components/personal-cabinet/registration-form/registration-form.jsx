@@ -42,7 +42,7 @@ export const RegistrationForm = ({
     setUserDataForm({ ...userDataForm, [firstInput]: data[firstInput], [secondInput]: data[secondInput] });
 
     if (stepRegistration > 2) {
-      dispatch(
+      await dispatch(
         registrationUserAction({ ...userDataForm, [firstInput]: data[firstInput], [secondInput]: data[secondInput] })
       );
     }
