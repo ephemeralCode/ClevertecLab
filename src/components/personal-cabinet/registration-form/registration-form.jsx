@@ -1,7 +1,6 @@
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useDispatch } from 'react-redux';
-import MaskedInput from 'react-text-mask';
 
 import { ValidationCustomInput } from '../validation-custom-input/validation-custom-input';
 import { registrationUserAction } from '../../../store/slices/loader-slice';
@@ -11,6 +10,7 @@ export const RegistrationForm = ({
   inputs,
   placeholders,
   descriptions,
+  additionalHint,
   setStepRegistration,
   stepRegistration,
   userDataForm,
@@ -29,7 +29,7 @@ export const RegistrationForm = ({
   const {
     control,
     handleSubmit,
-    formState: { errors, dirtyFields },
+    formState: { errors },
   } = useForm({
     criteriaMode: 'all',
     shouldFocusError: true,
@@ -42,55 +42,34 @@ export const RegistrationForm = ({
     setUserDataForm({ ...userDataForm, [firstInput]: data[firstInput], [secondInput]: data[secondInput] });
 
     if (stepRegistration > 2) {
-      await dispatch(
+      dispatch(
         registrationUserAction({ ...userDataForm, [firstInput]: data[firstInput], [secondInput]: data[secondInput] })
       );
     }
   };
 
   return (
-    <form className="wrapper-registration" data-test-id="register-form" onSubmit={handleSubmit(onSubmit)}>
-      <div>
+    <form
+      className="wrapper-registration container-personal-cabinet-form"
+      data-test-id="register-form"
+      onSubmit={handleSubmit(onSubmit)}
+      noValidate="novalidate"
+    >
+      <div className="container-registration-inputs container-personal-cabinet-inputs">
         <Controller
           name={firstInput}
           control={control}
-          render={({ field }) =>
-            firstInput === 'phone' ? (
-              <label className="container-registration-input">
-                <MaskedInput
-                  style={{
-                    borderBottom: `1px solid ${errors[firstInput] ? '#F42C4F' : '#bfc4c9'}`,
-                  }}
-                  name="phone"
-                  mask={maskPhone}
-                  placeholderChar="x"
-                  className="registration-input"
-                  type="tel"
-                  placeholder={firstPlaceholder}
-                  guide={true}
-                  onChange={field.onChange}
-                  onBlur={field.onBlur}
-                />
-
-                <div className="registration-input-error">
-                  {errors[firstInput]?.message ? (
-                    <span style={{ color: 'red' }}>{errors[firstInput]?.message}</span>
-                  ) : (
-                    <p>{firstDescription}</p>
-                  )}
-                </div>
-              </label>
-            ) : (
-              <ValidationCustomInput
-                field={field}
-                errors={errors}
-                dirtyFields={dirtyFields}
-                input={firstInput}
-                placeholder={firstPlaceholder}
-                description={firstInput === 'username' ? usernameDescription : firstDescription}
-              />
-            )
-          }
+          render={({ field }) => (
+            <ValidationCustomInput
+              field={field}
+              errors={errors}
+              input={firstInput}
+              placeholder={firstPlaceholder}
+              description={firstInput === 'username' ? usernameDescription : firstDescription}
+              additionalHint={additionalHint}
+              maskPhone={maskPhone}
+            />
+          )}
         />
 
         <Controller
@@ -100,17 +79,17 @@ export const RegistrationForm = ({
             <ValidationCustomInput
               field={field}
               errors={errors}
-              dirtyFields={dirtyFields}
               input={secondInput}
               placeholder={secondPlaceholder}
               description={secondInput === 'password' ? passDescription : secondDescription}
+              additionalHint={additionalHint}
             />
           )}
         />
       </div>
 
-      <button className="registration-btn primary" type="submit">
-        Следующий шаг
+      <button className="registration-btn personal-cabinet-form-btn primary" type="submit">
+        {stepRegistration > 2 ? 'Зарегистрироваться' : 'Следующий шаг'}
       </button>
     </form>
   );

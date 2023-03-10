@@ -8,7 +8,7 @@ export const ValidatonResultMessage = ({ validatonResult, reauthenticate }) => (
 
     <p className="validation-result-message-text">{validatonResult.text}</p>
 
-    {validatonResult?.action ? (
+    {validatonResult?.action && validatonResult?.havBtn && (
       <Link
         to={validatonResult.action}
         className="validation-result-message-btn primary"
@@ -17,7 +17,9 @@ export const ValidatonResultMessage = ({ validatonResult, reauthenticate }) => (
       >
         {validatonResult.textBtn}
       </Link>
-    ) : (
+    )}
+
+    {validatonResult?.textBtn && validatonResult?.haveBtn && (
       <button className="validation-result-message-btn primary" type="button" onClick={reauthenticate}>
         {validatonResult.textBtn}
       </button>

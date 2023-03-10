@@ -19,8 +19,6 @@ export const Registration = () => {
     phone: '',
   });
 
-  console.log(userDataForm);
-
   const FormSchemaStepOne = yup
     .object()
     .shape({
@@ -46,9 +44,9 @@ export const Registration = () => {
     .required();
 
   return (
-    <div className="container-registration">
+    <div className="container-registration wrapper-personal-cabinet">
       <div className="container-registration-title">
-        <p className="registration-title">Регистрация</p>
+        <p className="registration-title personal-cabinet-title">Регистрация</p>
 
         <p className="registration-steps">{`${stepRegistration} шаг из 3`}</p>
       </div>
@@ -62,6 +60,7 @@ export const Registration = () => {
             'Используйте для логина латинский алфавит и цифры',
             'Пароль не менее 8 символов, с заглавной буквой и цифрой',
           ]}
+          additionalHint={true}
           stepRegistration={stepRegistration}
           setStepRegistration={setStepRegistration}
           userDataForm={userDataForm}
@@ -74,7 +73,7 @@ export const Registration = () => {
           formSchema={FormSchemaStepTwo}
           inputs={['firstName', 'lastName']}
           placeholders={['Имя', 'Фамилия']}
-          descriptions={['', '']}
+          additionalHint={false}
           stepRegistration={stepRegistration}
           setStepRegistration={setStepRegistration}
           userDataForm={userDataForm}
@@ -88,11 +87,12 @@ export const Registration = () => {
           inputs={['phone', 'email']}
           placeholders={['Номер телефона', 'E-mail']}
           descriptions={['В формате +375 (xx) xxx-xx-xx', '']}
+          additionalHint={false}
+          maskPhone={validation.maskPhone}
           stepRegistration={stepRegistration}
           setStepRegistration={setStepRegistration}
           userDataForm={userDataForm}
           setUserDataForm={setUserDataForm}
-          maskPhone={validation.maskPhone}
         />
       )}
 

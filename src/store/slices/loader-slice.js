@@ -21,6 +21,7 @@ export const authorizationUserAction = createAsyncThunk(
             setValidationResult({
               title: 'Вход не выполнен',
               text: 'Что-то пошло не так. Попробуйте ещё раз',
+              haveBtn: true,
               textBtn: 'Повторить',
             })
           );
@@ -58,6 +59,7 @@ export const registrationUserAction = createAsyncThunk(
             setValidationResult({
               title: 'Данные не сохранились',
               text: 'Такой логин или e-mail уже записан в системе. Попробуйте зарегистрироваться по другому логину или e-mail',
+              haveBtn: true,
               textBtn: 'Назад к регистрации',
             })
           );
@@ -66,6 +68,7 @@ export const registrationUserAction = createAsyncThunk(
             setValidationResult({
               title: 'Данные не сохранились',
               text: 'Что-то пошло не так и ваша регистрация не завершилась. Попробуйте ещё раз',
+              haveBtn: true,
               textBtn: 'Повторить',
             })
           );
@@ -77,6 +80,62 @@ export const registrationUserAction = createAsyncThunk(
         setValidationResult({
           title: 'Регистрация успешна',
           text: 'Регистрация прошла успешно. Зайдите в личный кабинет, используя свои логин и пароль',
+          haveBtn: true,
+          textBtn: 'Вход',
+          action: '/auth',
+        })
+      );
+    }
+
+    return result.data;
+  }
+);
+
+export const forgotPasswordUserAction = createAsyncThunk('forgotPasswordUser', async ({ email }, thunkApi) => {
+  const result = await axios.post(`${urlAPI}/api/auth/forgot-password`, {
+    email,
+  });
+
+  if (result.status === 200) {
+    thunkApi.dispatch(
+      setValidationResult({
+        title: 'Письмо выслано',
+        text: 'Перейдите в вашу почту, чтобы воспользоваться подсказками по восстановлению пароля',
+      })
+    );
+  }
+
+  return result.data;
+});
+
+export const resetPasswordUserAction = createAsyncThunk(
+  'resetPasswordUser',
+  async ({ password, passwordConfirmation, code }, thunkApi) => {
+    const result = await axios
+      .post(`${urlAPI}/api/auth/reset-password`, {
+        password,
+        passwordConfirmation,
+        code,
+      })
+      .catch((err) => {
+        console.log(err);
+
+        thunkApi.dispatch(
+          setValidationResult({
+            title: 'Данные не сохранились',
+            text: 'Что-то пошло не так. Попробуйте ещё раз',
+            haveBtn: true,
+            textBtn: 'Повторить',
+          })
+        );
+      });
+
+    if (result.status === 200 && result.data.jwt) {
+      thunkApi.dispatch(
+        setValidationResult({
+          title: 'Новые данные сохранены',
+          text: 'Зайдите в личный кабинет, используя свои логин и новый пароль',
+          haveBtn: true,
           textBtn: 'Вход',
           action: '/auth',
         })
@@ -239,6 +298,26 @@ export const loadingSlice = createSlice({
         state.loadingAuthToken = false;
       })
       .addCase(registrationUserAction.rejected, (state) => {
+        state.loadingAuthToken = false;
+      })
+      // forget password user
+      .addCase(forgotPasswordUserAction.pending, (state) => {
+        state.loadingAuthToken = true;
+      })
+      .addCase(forgotPasswordUserAction.fulfilled, (state) => {
+        state.loadingAuthToken = false;
+      })
+      .addCase(forgotPasswordUserAction.rejected, (state) => {
+        state.loadingAuthToken = false;
+      })
+      // reset password user
+      .addCase(resetPasswordUserAction.pending, (state) => {
+        state.loadingAuthToken = true;
+      })
+      .addCase(resetPasswordUserAction.fulfilled, (state) => {
+        state.loadingAuthToken = false;
+      })
+      .addCase(resetPasswordUserAction.rejected, (state) => {
         state.loadingAuthToken = false;
       });
   },

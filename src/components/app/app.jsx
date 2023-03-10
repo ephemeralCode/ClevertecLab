@@ -34,6 +34,7 @@ export const App = () => {
         navigate('/books/all');
       }
     } else {
+      // TODO include =?code
       if (path === '/auth' || path === '/registration' || path === '/forgot-pass') return;
       navigate('/auth');
     }

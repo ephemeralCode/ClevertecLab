@@ -8,7 +8,7 @@ const isEmpty = 'Поле не может быть пустым';
 export const usernameValidation = yup
   .string()
   .required(isEmpty)
-  .matches(/^[a-zA-Z0-9]+$/, 'латинский алфавит')
+  .matches(/^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]+$/, 'латинский алфавит')
   .matches(/(?=.*[0-9])/, 'цифры');
 
 export const passwordValidation = yup
@@ -18,12 +18,9 @@ export const passwordValidation = yup
   .matches(/(?=.*[А-ЯA-Z])/, 'с заглавной буквой')
   .matches(/(?=.*[0-9])/, 'цифрой');
 
-export const confirmPasswordValidation = yup
+export const passwordConfirmationValidation = yup
   .string()
   .required(isEmpty)
-  .matches(/^.*(?=.{8,})/, 'не менее 8 символов')
-  .matches(/(?=.*[A-Z])/, 'с заглавной буквой')
-  .matches(/(?=.*[0-9])/, 'цифрой')
   .oneOf([yup.ref('password'), null], 'Пароли не совпадают');
 
 export const phoneValidation = yup
@@ -31,6 +28,10 @@ export const phoneValidation = yup
   .required(isEmpty)
   .matches(/^\+375\s*\(?(29|33|25|44){1}\)?/g, 'Проверьте код оператора')
   .matches(/^\+375\s*\(\d{2}\)\s*[-]?\s*\d{3}\s*[-]?\s*\d{2}\s*[-]?\s*\d{2}$/g, 'В формате +375 (xx) xxx-xx-xx');
+
+export const authUsernameValidation = yup.string().required(isEmpty);
+
+export const authPasswordValidation = yup.string().required(isEmpty);
 
 export const firstnameValidation = yup.string().required(isEmpty);
 

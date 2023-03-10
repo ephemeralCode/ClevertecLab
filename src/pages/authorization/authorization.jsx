@@ -1,14 +1,15 @@
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
 
-import IconEyeClosed from '../../assets/icons/btn/icon-eye-closed.svg';
-import IconEyeOpen from '../../assets/icons/btn/icon-eye-open.svg';
+import * as validation from '../../commons/validations';
 
 import { authorizationUserAction, selectValidationErrorMessage } from '../../store/slices/loader-slice';
 
 import { LinkAnotherAction } from '../../components/personal-cabinet/link-another-action/link-another-action';
+import { ValidationCustomInput } from '../../components/personal-cabinet/validation-custom-input/validation-custom-input';
 
 import './authorization.css';
 
@@ -17,19 +18,28 @@ export const Authorization = () => {
   const navigate = useNavigate();
   const validationErrorMessage = useSelector(selectValidationErrorMessage);
 
+  const FormSchema = yup
+    .object()
+    .shape({
+      identifier: validation.authUsernameValidation,
+      password: validation.authPasswordValidation,
+    })
+    .required();
+
   const {
-    register,
+    control,
     handleSubmit,
-    formState: { errors, dirtyFields },
+    formState: { errors },
   } = useForm({
-    mode: 'onBlur',
+    criteriaMode: 'all',
+    shouldFocusError: true,
+    mode: 'all',
+    resolver: yupResolver(FormSchema),
   });
 
-  const [isOpenEye, setIsOpenEye] = useState(false);
-
   const onSubmit = async ({ identifier, password }) => {
-    // TODO
-    const resultAction = await dispatch(authorizationUserAction({ identifier, password }));
+    // TODO useEffect
+    const resultAction = dispatch(authorizationUserAction({ identifier, password }));
 
     if (authorizationUserAction.fulfilled.match(resultAction)) {
       navigate('/books/all');
@@ -37,77 +47,61 @@ export const Authorization = () => {
   };
 
   return (
-    <div className="container-authorization" data-test-id="auth">
-      <p className="authorization-title">Вход в личный кабинет</p>
+    <div className="container-authorization wrapper-personal-cabinet" data-test-id="auth">
+      <p className="authorization-title personal-cabinet-title">Вход в личный кабинет</p>
 
-      <form className="wrapper-authorization" onSubmit={handleSubmit(onSubmit)} data-test-id="auth-form">
-        <div className="container-authorization-info">
-          <label className="container-authorization-input">
-            <input
-              style={{
-                borderBottom: `1px solid ${errors?.identifier || validationErrorMessage ? '#F42C4F' : '#bfc4c9'}`,
-              }}
-              className="authorization-input"
-              placeholder="Логин"
-              {...register('identifier', {
-                required: 'Поле не может быть пустым',
-              })}
-              autoComplete="identifier"
-            />
-
-            <div className="authorization-input-error">
-              {errors?.identifier?.message && <p data-test-id="hint">Поле не может быть пустым</p>}
-            </div>
-          </label>
-
-          <label className="container-authorization-input">
-            <input
-              style={{
-                borderBottom: `1px solid ${errors?.password || validationErrorMessage ? '#F42C4F' : '#bfc4c9'}`,
-              }}
-              className="authorization-input"
-              placeholder="Пароль"
-              {...register('password', {
-                required: 'Поле не может быть пустым',
-              })}
-              type={isOpenEye ? 'text' : 'password'}
-              autoComplete="current-password"
-            />
-
-            <div className="authorization-input-error">
-              {errors?.password?.message && <p data-test-id="hint">Поле не может быть пустым</p>}
-            </div>
-
-            {dirtyFields?.password && (
-              <button
-                className="authorization-btn-visible-password"
-                onClick={() => setIsOpenEye(!isOpenEye)}
-                type="button"
-              >
-                <img
-                  data-test-id={isOpenEye ? 'eye-opened' : 'eye-closed'}
-                  src={isOpenEye ? IconEyeOpen : IconEyeClosed}
-                  alt=""
-                />
-              </button>
+      <form
+        className="wrapper-authorization container-personal-cabinet-form"
+        onSubmit={handleSubmit(onSubmit)}
+        noValidate="novalidate"
+        data-test-id="auth-form"
+      >
+        <div className="container-authorization-inputs container-personal-cabinet-inputs">
+          <Controller
+            name="identifier"
+            control={control}
+            additionalHint={false}
+            render={({ field }) => (
+              <ValidationCustomInput
+                field={field}
+                errors={errors}
+                input="identifier"
+                placeholder="Логин"
+                additionalHint={false}
+              />
             )}
-          </label>
+          />
+
+          <Controller
+            name="password"
+            control={control}
+            additionalHint={false}
+            render={({ field }) => (
+              <ValidationCustomInput
+                field={field}
+                errors={errors}
+                input="password"
+                placeholder="Пароль"
+                additionalHint={false}
+              />
+            )}
+          />
         </div>
 
         <div className="container-authorization-link-reset-password">
-          <p className="authorization-authorization-error" data-test-id="hint">
-            {validationErrorMessage && 'Неверный логин или пароль'}
+          <p className="authorization-text-error" data-test-id="hint">
+            {validationErrorMessage && 'Неверный логин или пароль!'}
           </p>
+
           <Link
             to="/forgot-pass"
-            style={{ color: `${validationErrorMessage ? '#363636' : '#a7a7a7'}` }}
-            className="authorization-link-reset-password"
+            className={`authorization-link-reset-password ${validationErrorMessage ? 'active' : ''}`}
           >
             {validationErrorMessage ? 'Восстановить?' : 'Забыли логин или пароль?'}
           </Link>
         </div>
 
-        <button className="authorization-btn-log-in primary" type="submit">
+        <button className="authorization-btn-log-in personal-cabinet-form-btn primary" type="submit">
           Вход
         </button>
       </form>
