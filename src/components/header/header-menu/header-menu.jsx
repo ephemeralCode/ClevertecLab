@@ -59,7 +59,7 @@ export const HeaderMenu = ({ isMenuOpen, setIsMenuOpen, onCloseBurger }) => {
               className="btn-user-account-exit"
               type="button"
               onClick={() => {
-                sessionStorage.clear();
+                localStorage.removeItem('authorization');
                 navigate('/auth');
               }}
               data-test-id="exit-button"

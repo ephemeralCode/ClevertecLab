@@ -23,7 +23,7 @@ export const MainPage = () => {
   const [groupCardProducts, setGroupCardProducts] = useState('hardly');
 
   const notEmptyContent = categories.length && products.length;
-  const token = sessionStorage.getItem('authorization');
+  const token = localStorage.getItem('authorization');
 
   useEffect(() => {
     if (!categories.length && token) {

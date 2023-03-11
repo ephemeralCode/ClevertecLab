@@ -1,5 +1,5 @@
 export const authRequestInterceptor = (axiosConfig) => {
-  const token = sessionStorage.getItem('authorization');
+  const token = localStorage.getItem('authorization');
   const config = { ...axiosConfig };
 
   if (config.headers === undefined) {

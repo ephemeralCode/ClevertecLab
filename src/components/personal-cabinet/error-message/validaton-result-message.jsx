@@ -1,28 +1,32 @@
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 import './validaton-result-message.css';
 
-export const ValidatonResultMessage = ({ validatonResult, reauthenticate }) => (
-  <div className="container-validation-result-message" data-test-id="status-block">
-    <p className="validation-result-message-title">{validatonResult.title}</p>
+export const ValidatonResultMessage = ({ validatonResult, reauthenticate }) => {
+  const linkBtn = validatonResult?.action;
+  const generalBtn = validatonResult?.action ? false : true;
 
-    <p className="validation-result-message-text">{validatonResult.text}</p>
+  console.log(linkBtn, generalBtn);
 
-    {validatonResult?.action && validatonResult?.haveBtn && (
-      <Link
-        to={validatonResult.action}
-        className="validation-result-message-btn primary"
-        type="button"
-        onClick={reauthenticate}
-      >
-        {validatonResult.textBtn}
-      </Link>
-    )}
+  return (
+    <div className="container-validation-result-message" data-test-id="status-block">
+      <p className="validation-result-message-title">{validatonResult.title}</p>
 
-    {validatonResult?.textBtn && validatonResult?.haveBtn && (
-      <button className="validation-result-message-btn primary" type="button" onClick={reauthenticate}>
-        {validatonResult.textBtn}
-      </button>
-    )}
-  </div>
-);
+      <p className="validation-result-message-text">{validatonResult.text}</p>
+
+      {linkBtn && (
+        <NavLink to={validatonResult.action} type="button" onClick={reauthenticate}>
+          <button className="validation-result-message-btn primary" type="button">
+            {validatonResult.textBtn}
+          </button>
+        </NavLink>
+      )}
+
+      {generalBtn && (
+        <button className="validation-result-message-btn primary" type="button" onClick={reauthenticate}>
+          {validatonResult.textBtn}
+        </button>
+      )}
+    </div>
+  );
+};

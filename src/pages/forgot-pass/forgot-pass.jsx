@@ -72,8 +72,9 @@ export const ForgotPass = () => {
         {code ? (
           <form
             className="container-personal-cabinet-form"
-            data-test-id="auth-form"
             onSubmit={handleSubmit(onSubmitResetPassword)}
+            noValidate={true}
+            data-test-id="reset-password-form"
           >
             <div className="container-personal-cabinet-inputs">
               <Controller
@@ -107,14 +108,15 @@ export const ForgotPass = () => {
             </div>
 
             <button className="personal-cabinet-form-btn primary" type="submit">
-              Восстановить
+              Сохранить изменения
             </button>
           </form>
         ) : (
           <form
             className="container-personal-cabinet-form"
-            data-test-id="auth-form"
             onSubmit={handleSubmit(onSubmitForgotPassword)}
+            noValidate={true}
+            data-test-id="send-email-form"
           >
             <div className="container-personal-cabinet-inputs">
               <Controller

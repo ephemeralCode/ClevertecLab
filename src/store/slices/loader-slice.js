@@ -23,13 +23,14 @@ export const authorizationUserAction = createAsyncThunk(
               text: 'Что-то пошло не так. Попробуйте ещё раз',
               haveBtn: true,
               textBtn: 'Повторить',
+              actionName: 'auth',
             })
           );
         }
       });
 
     if (result.status === 200 && result.data.jwt) {
-      sessionStorage.setItem('authorization', result.data.jwt);
+      localStorage.setItem('authorization', result.data.jwt);
       const arr = result.data.user;
 
       thunkApi.dispatch(setUserData(arr));
@@ -52,8 +53,6 @@ export const registrationUserAction = createAsyncThunk(
         phone,
       })
       .catch((err) => {
-        console.log(err);
-
         if (err.response.status === 400 || err?.response?.error?.name === 'ValidationError') {
           thunkApi.dispatch(
             setValidationResult({
@@ -61,6 +60,7 @@ export const registrationUserAction = createAsyncThunk(
               text: 'Такой логин или e-mail уже записан в системе. Попробуйте зарегистрироваться по другому логину или e-mail',
               haveBtn: true,
               textBtn: 'Назад к регистрации',
+              actionName: 'auth',
             })
           );
         } else {
@@ -70,6 +70,7 @@ export const registrationUserAction = createAsyncThunk(
               text: 'Что-то пошло не так и ваша регистрация не завершилась. Попробуйте ещё раз',
               haveBtn: true,
               textBtn: 'Повторить',
+              actionName: 'auth',
             })
           );
         }
@@ -83,6 +84,7 @@ export const registrationUserAction = createAsyncThunk(
           haveBtn: true,
           textBtn: 'Вход',
           action: '/auth',
+          actionName: 'auth',
         })
       );
     }
@@ -101,8 +103,12 @@ export const forgotPasswordUserAction = createAsyncThunk('forgotPasswordUser', a
       setValidationResult({
         title: 'Письмо выслано',
         text: 'Перейдите в вашу почту, чтобы воспользоваться подсказками по восстановлению пароля',
+        actionName: 'auth',
       })
     );
+    // else {
+    // state for 'error'
+    // }
   }
 
   return result.data;
@@ -118,19 +124,18 @@ export const resetPasswordUserAction = createAsyncThunk(
         code,
       })
       .catch((err) => {
-        console.log(err);
-
         thunkApi.dispatch(
           setValidationResult({
             title: 'Данные не сохранились',
             text: 'Что-то пошло не так. Попробуйте ещё раз',
             haveBtn: true,
             textBtn: 'Повторить',
+            actionName: 'auth',
           })
         );
       });
 
-    if (result.status === 200 && result.data.jwt) {
+    if (result.status === 200) {
       thunkApi.dispatch(
         setValidationResult({
           title: 'Новые данные сохранены',
@@ -138,6 +143,7 @@ export const resetPasswordUserAction = createAsyncThunk(
           haveBtn: true,
           textBtn: 'Вход',
           action: '/auth',
+          actionName: 'auth',
         })
       );
     }

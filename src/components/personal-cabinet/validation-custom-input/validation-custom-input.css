@@ -67,11 +67,13 @@
   font-size: 12px;
   line-height: 16px;
   letter-spacing: 0.2px;
+}
 
+.container-validation-input-description {
   color: #a7a7a7;
 }
 
-.validation-input-error {
+.container-validation-input-error {
   color: #f42c4f;
 }
 

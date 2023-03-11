@@ -41,8 +41,9 @@ export const ValidationCustomInput = ({
           <input
             name={input}
             className={`validation-input ${errors[input] ? 'error' : ''}`}
-            onFocus={() => {
+            onFocus={(e) => {
               setIsFocused(false);
+              field.onBlur(e);
             }}
             onChange={(e) => {
               field.onChange(e);
@@ -76,7 +77,11 @@ export const ValidationCustomInput = ({
       </div>
 
       <div className="container-validation-input-description">
-        {!errors[input]?.message && <p className="validation-input-description">{description}</p>}
+        {!errors[input]?.message && (
+          <p className="validation-input-description" data-test-id="hint">
+            {description}
+          </p>
+        )}
       </div>
 
       <div className="container-validation-input-error">
@@ -98,22 +103,26 @@ export const ValidationCustomInput = ({
           </span>
         )}
 
-        {additionalHint && field.value && errors[input]?.types?.matches?.length && !isFocused && (
-          <p>
-            {description.map((item, i) =>
-              errors[input]?.types?.matches?.includes(item) ? (
-                // eslint-disable-next-line react/no-array-index-key
-                <span className="validation-input-error" data-test-id="hint" key={i}>
-                  {item}
-                </span>
-              ) : (
-                item
-              )
-            )}
-          </p>
-        )}
+        {additionalHint &&
+          field.value &&
+          errors[input]?.types?.matches?.length &&
+          !isFocused &&
+          description.map((item, i) =>
+            errors[input]?.types?.matches?.includes(item) ? (
+              // eslint-disable-next-line react/no-array-index-key
+              <span className="validation-input-error" data-test-id="hint" key={i}>
+                {item}
+              </span>
+            ) : (
+              item
+            )
+          )}
 
-        {isFocused && field.value && <span style={{ color: 'red' }}>{description}</span>}
+        {isFocused && field.value && (
+          <span className="validation-input-error" data-test-id="hint">
+            {description}
+          </span>
+        )}
       </div>
     </div>
   );

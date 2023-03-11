@@ -15,6 +15,7 @@ export const RegistrationForm = ({
   stepRegistration,
   userDataForm,
   setUserDataForm,
+  textBtn,
   maskPhone,
 }) => {
   const dispatch = useDispatch();
@@ -29,7 +30,7 @@ export const RegistrationForm = ({
   const {
     control,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm({
     criteriaMode: 'all',
     shouldFocusError: true,
@@ -51,9 +52,10 @@ export const RegistrationForm = ({
   return (
     <form
       className="wrapper-registration container-personal-cabinet-form"
-      data-test-id="register-form"
+      //   onSubmit={handleSubmit((data) => console.log(data))}
       onSubmit={handleSubmit(onSubmit)}
       noValidate="novalidate"
+      data-test-id="register-form"
     >
       <div className="container-registration-inputs container-personal-cabinet-inputs">
         <Controller
@@ -88,8 +90,12 @@ export const RegistrationForm = ({
         />
       </div>
 
-      <button className="registration-btn personal-cabinet-form-btn primary" type="submit">
-        {stepRegistration > 2 ? 'Зарегистрироваться' : 'Следующий шаг'}
+      <button
+        className={`registration-btn personal-cabinet-form-btn ${isValid ? 'primary' : 'disabled'}`}
+        type="submit"
+        disabled={!isValid}
+      >
+        {textBtn}
       </button>
     </form>
   );

@@ -23,18 +23,13 @@ export const App = () => {
   axios.interceptors.request.use(authRequestInterceptor);
 
   useEffect(() => {
-    const token = sessionStorage.getItem('authorization');
-
-    // if (!token && (path !== '/auth' || path !== '/forgot-pass')) {
-    //   navigate('/auth');
-    // }
+    const token = localStorage.getItem('authorization');
 
     if (token) {
       if (path === '/auth' || path === '/registration' || path === '/forgot-pass') {
         navigate('/books/all');
       }
     } else {
-      // TODO include =?code
       if (path === '/auth' || path === '/registration' || path === '/forgot-pass') return;
       navigate('/auth');
     }

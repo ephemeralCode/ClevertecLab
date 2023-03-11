@@ -28,7 +28,7 @@ export const ProductPage = () => {
   const [isOpenReview, setIsOpenReview] = useState(false);
   const [isCategory, setIsCategory] = useState(null);
 
-  const token = sessionStorage.getItem('authorization');
+  const token = localStorage.getItem('authorization');
 
   useEffect(() => {
     if (!categories.length && token) {

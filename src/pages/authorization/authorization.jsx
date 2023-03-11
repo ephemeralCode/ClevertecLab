@@ -47,7 +47,7 @@ export const Authorization = () => {
   };
 
   return (
-    <div className="container-authorization wrapper-personal-cabinet" data-test-id="auth">
+    <div className="container-authorization wrapper-personal-cabinet">
       <p className="authorization-title personal-cabinet-title">Вход в личный кабинет</p>
 
       <form

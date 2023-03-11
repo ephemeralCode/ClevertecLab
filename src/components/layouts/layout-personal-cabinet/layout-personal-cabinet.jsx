@@ -22,7 +22,7 @@ export const LayoutPersonalCabinet = () => {
   };
 
   return (
-    <div className="container-layout-personal-cabinet">
+    <div className="container-layout-personal-cabinet" data-test-id="auth">
       <p className="layout-personal-cabinet-logo">Cleverland</p>
       {loadingAuthUser && <Loader />}
 

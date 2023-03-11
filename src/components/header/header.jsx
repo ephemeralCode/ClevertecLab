@@ -43,23 +43,25 @@ export const Header = () => {
               <img className="avatar-user" src={avatar} alt="user avatar" />
             </button>
 
-            <div className={`container-user-account ${isUserMenuOpen ? '' : 'active'}`}>
-              <button className="btn-user-account-profile" type="button">
-                Профиль
-              </button>
+            {isUserMenuOpen && (
+              <div className="container-user-account">
+                <button className="btn-user-account-profile" type="button">
+                  Профиль
+                </button>
 
-              <button
-                className="btn-user-account-exit"
-                type="button"
-                onClick={() => {
-                  sessionStorage.clear();
-                  navigate('/auth');
-                }}
-                data-test-id="exit-button"
-              >
-                Выход
-              </button>
-            </div>
+                <button
+                  className="btn-user-account-exit"
+                  type="button"
+                  onClick={() => {
+                    localStorage.removeItem('authorization');
+                    navigate('/auth');
+                  }}
+                  data-test-id="exit-button"
+                >
+                  Выход
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>

@@ -65,6 +65,7 @@ export const Registration = () => {
           setStepRegistration={setStepRegistration}
           userDataForm={userDataForm}
           setUserDataForm={setUserDataForm}
+          textBtn="Следующий шаг"
         />
       )}
 
@@ -79,6 +80,7 @@ export const Registration = () => {
           setStepRegistration={setStepRegistration}
           userDataForm={userDataForm}
           setUserDataForm={setUserDataForm}
+          textBtn="Последний шаг"
         />
       )}
 
@@ -94,6 +96,7 @@ export const Registration = () => {
           setStepRegistration={setStepRegistration}
           userDataForm={userDataForm}
           setUserDataForm={setUserDataForm}
+          textBtn="Зарегистрироваться"
         />
       )}
 
