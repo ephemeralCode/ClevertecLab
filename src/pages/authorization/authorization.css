@@ -1,0 +1,65 @@
+.container-authorization-info {
+  margin: 32px 0 20px;
+}
+
+.container-authorization-input {
+  position: relative;
+}
+
+.authorization-input {
+  width: 100%;
+  height: 56px;
+
+  padding: 0 0 0 12px;
+
+  background: #f9f9fa;
+  border-radius: 4px 4px 0 0;
+  border: none;
+  outline: none;
+}
+
+.authorization-btn-visible-password {
+  position: absolute;
+  right: 16px;
+  top: -3px;
+
+  background: none;
+  border: none;
+
+  cursor: pointer;
+}
+
+.container-authorization-input + .container-authorization-input .authorization-input {
+  margin: 36px 0 0;
+}
+
+.container-authorization-link-reset-password {
+  margin: 0 0 0 12px;
+}
+
+.authorization-link-reset-password {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.2px;
+  color: #a7a7a7;
+}
+
+.authorization-link-reset-password.active {
+  color: #363636;
+}
+
+.container-authorization-action {
+  display: flex;
+  align-items: center;
+
+  margin: 16px 0 0;
+}
+
+.authorization-text-error {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.2px;
+  color: #f42c4f;
+}

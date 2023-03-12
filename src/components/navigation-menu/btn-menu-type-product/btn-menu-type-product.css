@@ -1,47 +1,47 @@
 .container-btn-menu + .container-btn-menu {
-    margin: 16px 0 0;
+  margin: 16px 0 0;
 }
 
 .btn-menu {
-    text-align: start;
+  text-align: start;
 
-    border: none;
-    background: none;
+  border: none;
+  background: none;
 
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 24px;
-    letter-spacing: 0.1px;
-    color: #363636;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.1px;
+  color: #363636;
 
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .btn-menu:not(.active):hover {
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 24px;
-    color: #FF5253;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #ff5253;
 }
 
-.active {
-    font-style: normal;
-    font-weight: 700;
-    font-size: 18px;
-    line-height: 28px;
-    letter-spacing: 0.1px;
-    color: #F83600;
+.btn-menu.active {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 28px;
+  letter-spacing: 0.1px;
+  color: #f83600;
 }
 
 .quantity-type-product {
-    margin: 0 0 0 6px;
+  margin: 0 0 0 6px;
 
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 24px;
-    letter-spacing: 0.1px;
-    color: #A7A7A7;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0.1px;
+  color: #a7a7a7;
 }

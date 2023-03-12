@@ -1,15 +1,12 @@
-import { Navbar } from '../navbar/navbar'
-import { ProductContent } from '../product-content/product-content'
+import React from 'react';
+
+import { Navbar } from '../navbar/navbar';
+import { ProductContent } from '../product-content/product-content';
 
 export const ProductSearch = ({ groupCardProducts, setGroupCardProducts }) => (
-    <>
-        <Navbar 
-            groupCardProducts={groupCardProducts}
-            setGroupCardProducts={setGroupCardProducts}
-        />
+  <React.Fragment>
+    <Navbar groupCardProducts={groupCardProducts} setGroupCardProducts={setGroupCardProducts} />
 
-        <ProductContent 
-            groupCardProducts={groupCardProducts}
-        />
-    </>
-)
+    <ProductContent groupCardProducts={groupCardProducts} />
+  </React.Fragment>
+);

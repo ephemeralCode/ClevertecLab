@@ -1,0 +1,63 @@
+.container-layout-personal-cabinet {
+  width: 100%;
+  height: 100vh;
+
+  background: linear-gradient(231.58deg, #f83600 -53.35%, #f9d423 297.76%);
+}
+
+.layout-personal-cabinet-logo {
+  position: absolute;
+  top: -20%;
+  left: 50%;
+
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 40px;
+  letter-spacing: 0.1px;
+  color: #fff;
+
+  transform: translateX(-50%);
+}
+
+.container-personal-cabinet {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  max-width: 528px;
+  width: 100%;
+
+  border-radius: 16px;
+  background: #fff;
+
+  transform: translate(-50%, -50%);
+}
+
+.wrapper-personal-cabinet {
+  padding: 48px 56px;
+}
+
+.personal-cabinet-title {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 30px;
+  letter-spacing: 0.1px;
+  color: #363636;
+}
+
+.container-personal-cabinet-form {
+  margin: 32px 0 0;
+}
+
+.personal-cabinet-form-btn {
+  width: 100%;
+
+  padding: 14px 0;
+  margin: 32px 0 0;
+
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: 0.2px;
+  text-transform: uppercase;
+}
