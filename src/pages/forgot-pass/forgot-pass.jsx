@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -18,6 +18,8 @@ export const ForgotPass = () => {
   const navigate = useNavigate();
 
   const { search } = useLocation();
+
+  const [isBlured, setIsBlured] = useState(false);
 
   const code = search ? search.replace('?code=', '') : false;
   const passDescription = ['Пароль ', 'не менее 8 символов', ', ', 'с заглавной буквой', ' и ', 'цифрой'];
@@ -40,7 +42,7 @@ export const ForgotPass = () => {
   const {
     control,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, dirtyFields, isValid },
   } = useForm({
     criteriaMode: 'all',
     shouldFocusError: true,
@@ -80,14 +82,20 @@ export const ForgotPass = () => {
               <Controller
                 name="password"
                 control={control}
-                render={({ field }) => (
+                render={({ field: { onChange, onBlur, value, ref } }) => (
                   <ValidationCustomInput
-                    field={field}
+                    value={value}
+                    onChange={onChange}
+                    onBlur={onBlur}
+                    inputRef={ref}
                     errors={errors}
                     input="password"
                     placeholder="Новый пароль"
                     description={passDescription}
                     additionalHint={true}
+                    dirtyFields={dirtyFields}
+                    isBlured={isBlured}
+                    setIsBlured={setIsBlured}
                   />
                 )}
               />
@@ -95,19 +103,32 @@ export const ForgotPass = () => {
               <Controller
                 name="passwordConfirmation"
                 control={control}
-                render={({ field }) => (
+                render={({ field: { onChange, onBlur, value, ref } }) => (
                   <ValidationCustomInput
-                    field={field}
+                    value={value}
+                    onChange={onChange}
+                    onBlur={onBlur}
+                    inputRef={ref}
                     errors={errors}
                     input="passwordConfirmation"
                     placeholder="Повторите пароль"
                     additionalHint={false}
+                    dirtyFields={dirtyFields}
+                    isBlured={isBlured}
+                    setIsBlured={setIsBlured}
                   />
                 )}
               />
             </div>
 
-            <button className="personal-cabinet-form-btn primary" type="submit">
+            <button
+              className={`personal-cabinet-form-btn personal-cabinet-form-btn ${isBlured ? 'primary' : 'disabled'}`}
+              type="submit"
+              disabled={!isBlured}
+              onClick={() => {
+                setIsBlured(false);
+              }}
+            >
               Сохранить изменения
             </button>
           </form>
@@ -122,13 +143,19 @@ export const ForgotPass = () => {
               <Controller
                 name="email"
                 control={control}
-                render={({ field }) => (
+                render={({ field: { onChange, onBlur, value, ref } }) => (
                   <ValidationCustomInput
-                    field={field}
+                    value={value}
+                    onChange={onChange}
+                    onBlur={onBlur}
+                    inputRef={ref}
                     errors={errors}
                     input="email"
                     placeholder="E-mail"
                     description="На это email  будет отправлено письмо с инструкциями по восстановлению пароля"
+                    dirtyFields={dirtyFields}
+                    isBlured={isBlured}
+                    setIsBlured={setIsBlured}
                   />
                 )}
               />

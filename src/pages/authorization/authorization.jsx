@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
@@ -6,7 +7,11 @@ import { yupResolver } from '@hookform/resolvers/yup';
 
 import * as validation from '../../commons/validations';
 
-import { authorizationUserAction, selectValidationErrorMessage } from '../../store/slices/loader-slice';
+import {
+  authorizationUserAction,
+  selectValidationErrorMessage,
+  toggleValidationErrorMessage,
+} from '../../store/slices/loader-slice';
 
 import { LinkAnotherAction } from '../../components/personal-cabinet/link-another-action/link-another-action';
 import { ValidationCustomInput } from '../../components/personal-cabinet/validation-custom-input/validation-custom-input';
@@ -17,6 +22,8 @@ export const Authorization = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const validationErrorMessage = useSelector(selectValidationErrorMessage);
+
+  const [isBlured, setIsBlured] = useState(false);
 
   const FormSchema = yup
     .object()
@@ -29,11 +36,12 @@ export const Authorization = () => {
   const {
     control,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, dirtyFields },
   } = useForm({
     criteriaMode: 'all',
     shouldFocusError: true,
     mode: 'all',
+
     resolver: yupResolver(FormSchema),
   });
 
@@ -61,13 +69,19 @@ export const Authorization = () => {
             name="identifier"
             control={control}
             additionalHint={false}
-            render={({ field }) => (
+            render={({ field: { onChange, onBlur, value, ref } }) => (
               <ValidationCustomInput
-                field={field}
+                value={value}
+                onChange={onChange}
+                onBlur={onBlur}
+                inputRef={ref}
                 errors={errors}
                 input="identifier"
                 placeholder="Логин"
                 additionalHint={false}
+                dirtyFields={dirtyFields}
+                isBlured={isBlured}
+                setIsBlured={setIsBlured}
               />
             )}
           />
@@ -76,13 +90,19 @@ export const Authorization = () => {
             name="password"
             control={control}
             additionalHint={false}
-            render={({ field }) => (
+            render={({ field: { onChange, onBlur, value, ref } }) => (
               <ValidationCustomInput
-                field={field}
+                value={value}
+                onChange={onChange}
+                onBlur={onBlur}
+                inputRef={ref}
                 errors={errors}
                 input="password"
                 placeholder="Пароль"
                 additionalHint={false}
+                dirtyFields={dirtyFields}
+                isBlured={isBlured}
+                setIsBlured={setIsBlured}
               />
             )}
           />
@@ -96,6 +116,7 @@ export const Authorization = () => {
           <Link
             to="/forgot-pass"
             className={`authorization-link-reset-password ${validationErrorMessage ? 'active' : ''}`}
+            onClick={() => dispatch(toggleValidationErrorMessage(false))}
           >
             {validationErrorMessage ? 'Восстановить?' : 'Забыли логин или пароль?'}
           </Link>

@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useDispatch } from 'react-redux';
@@ -20,6 +21,8 @@ export const RegistrationForm = ({
 }) => {
   const dispatch = useDispatch();
 
+  const [isBlured, setIsBlured] = useState(false);
+
   const [firstInput, secondInput] = inputs;
   const [firstPlaceholder, secondPlaceholder] = placeholders;
   const [firstDescription, secondDescription] = descriptions;
@@ -30,7 +33,7 @@ export const RegistrationForm = ({
   const {
     control,
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { errors, isValid, dirtyFields },
   } = useForm({
     criteriaMode: 'all',
     shouldFocusError: true,
@@ -39,7 +42,7 @@ export const RegistrationForm = ({
   });
 
   const onSubmit = async (data) => {
-    setStepRegistration(stepRegistration + 1);
+    setStepRegistration(stepRegistration === 3 ? 1 : stepRegistration + 1);
     setUserDataForm({ ...userDataForm, [firstInput]: data[firstInput], [secondInput]: data[secondInput] });
 
     if (stepRegistration > 2) {
@@ -52,7 +55,6 @@ export const RegistrationForm = ({
   return (
     <form
       className="wrapper-registration container-personal-cabinet-form"
-      //   onSubmit={handleSubmit((data) => console.log(data))}
       onSubmit={handleSubmit(onSubmit)}
       noValidate="novalidate"
       data-test-id="register-form"
@@ -61,15 +63,21 @@ export const RegistrationForm = ({
         <Controller
           name={firstInput}
           control={control}
-          render={({ field }) => (
+          render={({ field: { onChange, onBlur, value, ref } }) => (
             <ValidationCustomInput
-              field={field}
+              value={value}
+              onChange={onChange}
+              onBlur={onBlur}
+              inputRef={ref}
               errors={errors}
               input={firstInput}
               placeholder={firstPlaceholder}
               description={firstInput === 'username' ? usernameDescription : firstDescription}
               additionalHint={additionalHint}
               maskPhone={maskPhone}
+              dirtyFields={dirtyFields}
+              isBlured={isBlured}
+              setIsBlured={setIsBlured}
             />
           )}
         />
@@ -77,14 +85,20 @@ export const RegistrationForm = ({
         <Controller
           name={secondInput}
           control={control}
-          render={({ field }) => (
+          render={({ field: { onChange, onBlur, value, ref } }) => (
             <ValidationCustomInput
-              field={field}
+              value={value}
+              onChange={onChange}
+              onBlur={onBlur}
+              inputRef={ref}
               errors={errors}
               input={secondInput}
               placeholder={secondPlaceholder}
               description={secondInput === 'password' ? passDescription : secondDescription}
               additionalHint={additionalHint}
+              dirtyFields={dirtyFields}
+              isBlured={isBlured}
+              setIsBlured={setIsBlured}
             />
           )}
         />

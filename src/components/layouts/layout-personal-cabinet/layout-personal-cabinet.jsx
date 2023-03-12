@@ -26,13 +26,13 @@ export const LayoutPersonalCabinet = () => {
       <p className="layout-personal-cabinet-logo">Cleverland</p>
       {loadingAuthUser && <Loader />}
 
-      <div className="container-personal-cabinet">
-        {Object.keys(validatonResult).length ? (
-          <ValidatonResultMessage validatonResult={validatonResult} reauthenticate={reauthenticate} />
-        ) : (
+      {Object.keys(validatonResult).length ? (
+        <ValidatonResultMessage validatonResult={validatonResult} reauthenticate={reauthenticate} />
+      ) : (
+        <div className="container-personal-cabinet">
           <Outlet />
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 };
