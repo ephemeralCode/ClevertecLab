@@ -4,6 +4,8 @@ import './validaton-result-message.css';
 
 export const ValidatonResultMessage = ({ validatonResult, reauthenticate }) => (
   <div className="container-validation-result-message" data-test-id="status-block">
+    <p className="validation-result-message-logo">Cleverland</p>
+
     <p className="validation-result-message-title">{validatonResult.title}</p>
 
     <p className="validation-result-message-text">{validatonResult.text}</p>

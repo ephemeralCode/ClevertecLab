@@ -43,7 +43,6 @@ export const CardProductHardly = ({ general, path, groupCardProducts }) => {
           </div>
 
           <div className="wrapper-info-product-hardly">
-            {/* <h3 className='title-product-hardly'>{light(general.title)}</h3> */}
             <h3 className="title-product-hardly">{getHighlightedText(general.title, searchValue)}</h3>
 
             <p className="author-product-hardly">{`${general.authors}, ${general.issueYear}`}</p>

@@ -15,6 +15,20 @@
   transform: translate(-50%, -50%);
 }
 
+.validation-result-message-logo {
+  position: absolute;
+  top: -30%;
+  left: 50%;
+
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 40px;
+  letter-spacing: 0.1px;
+  color: #fff;
+
+  transform: translateX(-50%);
+}
+
 .validation-result-message-title {
   font-weight: 700;
   font-size: 24px;

@@ -24,13 +24,14 @@ export const App = () => {
 
   useEffect(() => {
     const token = localStorage.getItem('authorization');
+    const haveToken = path === '/auth' || path === '/registration' || path === '/forgot-pass';
 
     if (token) {
-      if (path === '/auth' || path === '/registration' || path === '/forgot-pass') {
+      if (haveToken) {
         navigate('/books/all');
       }
     } else {
-      if (path === '/auth' || path === '/registration' || path === '/forgot-pass') return;
+      if (haveToken) return;
       navigate('/auth');
     }
   }, [path]);

@@ -456,7 +456,14 @@
   /* auth */
 
   .layout-personal-cabinet-logo {
-    top: 16px;
+    top: -15%;
+  }
+
+  .layout-personal-cabinet-logo,
+  .validation-result-message-logo {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 28px;
   }
 
   .container-personal-cabinet {
