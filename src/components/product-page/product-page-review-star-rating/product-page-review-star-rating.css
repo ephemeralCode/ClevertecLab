@@ -1,0 +1,15 @@
+.container-product-page-review-star-rating-icon {
+  border: none;
+  background: transparent;
+
+  cursor: pointer;
+}
+
+.container-product-page-review-star-rating-icon + .container-product-page-review-star-rating-icon {
+  margin: 0 0 0 12px;
+}
+
+.product-page-review-star-rating-icon {
+  width: 42px;
+  height: 42px;
+}

@@ -1,12 +1,13 @@
 /* product btn */
 
 .primary {
+  width: 100%;
+  height: 100%;
+
   background: linear-gradient(231.58deg, #f83600 -53.35%, #f9d423 297.76%);
   border-radius: 20px;
   border: none;
 
-  font-family: 'Montserrat', Helvetica;
-  font-style: normal;
   font-weight: 600;
   font-size: 12px;
   line-height: 18px;
@@ -18,13 +19,13 @@
 }
 
 .secondary {
-  background: #ffffff;
+  width: 100%;
+  height: 100%;
 
+  background: #ffffff;
   border: 1px solid #bfc4c9;
   border-radius: 20px;
 
-  font-family: 'Montserrat';
-  font-style: normal;
   font-weight: 600;
   font-size: 12px;
   line-height: 18px;
@@ -35,13 +36,14 @@
 }
 
 .disabled {
+  width: 100%;
+  height: 100%;
+
   background: #f9f9fa;
 
   border: 1px solid #bfc4c9;
   border-radius: 20px;
 
-  font-family: 'Montserrat';
-  font-style: normal;
   font-weight: 600;
   font-size: 12px;
   line-height: 18px;

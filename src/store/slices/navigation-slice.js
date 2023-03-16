@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   isOpenTypeProduct: true,
+  isOpenReviewProduct: false,
 };
 
 export const navigationSlice = createSlice({
@@ -13,9 +14,15 @@ export const navigationSlice = createSlice({
       ...state,
       isOpenTypeProduct: payload,
     }),
+    toggleOpenReviewProduct: (state, { payload }) => ({
+      ...state,
+      isOpenReviewProduct: payload,
+    }),
   },
 });
 
-export const { toggleOpenTypeProduct } = navigationSlice.actions;
+export const { toggleOpenTypeProduct, toggleOpenReviewProduct } = navigationSlice.actions;
 
 export const selectOpenTypeProduct = (state) => state.navigation.isOpenTypeProduct;
+
+export const selectOpenReviewProduct = (state) => state.navigation.isOpenReviewProduct;
