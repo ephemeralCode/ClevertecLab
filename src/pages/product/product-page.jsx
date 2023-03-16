@@ -82,11 +82,13 @@ export const ProductPage = () => {
                 <ProductPageDetailedInfo product={product} />
               </div>
 
-              <ProductPageContainerReview
-                product={product}
-                isOpenReview={isOpenReview}
-                onToggleReview={() => setIsOpenReview(!isOpenReview)}
-              />
+              {product?.comments !== null && (
+                <ProductPageContainerReview
+                  product={product}
+                  isOpenReview={isOpenReview}
+                  onToggleReview={() => setIsOpenReview(!isOpenReview)}
+                />
+              )}
             </div>
 
             <div className="container-page-product-btn-add-review-user">

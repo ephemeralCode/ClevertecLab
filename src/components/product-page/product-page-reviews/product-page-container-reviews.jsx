@@ -11,10 +11,8 @@ import './product-page-container-reviews.css';
 export const ProductPageContainerReview = ({ product, isOpenReview, onToggleReview }) => {
   const [sortedReview, setSortedReview] = useState([]);
 
-  //   console.log(!!Object.keys(product?.comments));
-
   useEffect(() => {
-    if (product?.comments === undefined) {
+    if (product?.comments !== null) {
       setSortedReview([...product?.comments].sort((a, b) => (a.createdAt > b.createdAt ? -1 : 1)));
     }
   }, [product.comments]);
@@ -37,7 +35,7 @@ export const ProductPageContainerReview = ({ product, isOpenReview, onToggleRevi
       </div>
 
       <div className={`wrapper-page-product-reviews ${isOpenReview ? 'active' : ''}`}>
-        {!!sortedReview.length && sortedReview.map((item) => <ProductPageReview comment={item} key={item.id} />)}
+        {sortedReview.length && sortedReview.map((item) => <ProductPageReview comment={item} key={item.id} />)}
       </div>
     </div>
   );
