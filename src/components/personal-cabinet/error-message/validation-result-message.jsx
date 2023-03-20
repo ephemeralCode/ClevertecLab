@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import './validaton-result-message.css';
+import './validation-result-message.css';
 
 export const ValidatonResultMessage = ({ validatonResult, reauthenticate }) => (
   <div className="container-validation-result-message" data-test-id="status-block">

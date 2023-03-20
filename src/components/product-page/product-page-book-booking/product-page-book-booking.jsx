@@ -142,6 +142,7 @@ export const ProductPageBookBooking = ({ newBooking }) => {
       } else {
         dispatch(productsAction());
       }
+
       dispatch(toggleOpenReviewProduct(false));
     } else {
       dispatch(toggleOpenReviewProduct(false));
@@ -184,6 +185,20 @@ export const ProductPageBookBooking = ({ newBooking }) => {
       dispatch(toggleOpenReviewProduct(false));
     } else {
       dispatch(toggleOpenReviewProduct(false));
+    }
+  };
+
+  const typeBookingHadler = () => {
+    if (newBooking) {
+      onSubmitBooking(true, selectedDay?.add(3, 'hour')?.toDate(), idBookingBook?.id, userId);
+    } else {
+      onSubmitRepeatBooking(
+        idBookingBook?.booking?.id,
+        true,
+        selectedDay?.add(3, 'hour')?.toDate(),
+        idBookingBook?.id,
+        userId
+      );
     }
   };
 
@@ -261,19 +276,7 @@ export const ProductPageBookBooking = ({ newBooking }) => {
           className={`product-page-book-booking-btn ${stateBtn ? 'disabled' : 'primary'}`}
           type="submit"
           disabled={stateBtn}
-          onClick={() => {
-            if (newBooking) {
-              onSubmitBooking(true, selectedDay?.add(3, 'hour')?.toDate(), idBookingBook?.id, userId);
-            } else {
-              onSubmitRepeatBooking(
-                idBookingBook?.booking?.id,
-                true,
-                selectedDay?.add(3, 'hour')?.toDate(),
-                idBookingBook?.id,
-                userId
-              );
-            }
-          }}
+          onClick={typeBookingHadler}
           data-test-id="booking-button"
         >
           Забронировать

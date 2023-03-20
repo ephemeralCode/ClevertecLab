@@ -5,7 +5,7 @@ import { ProductBtn } from '../../product-btn/product-btn';
 import './card-btn-type.css';
 
 export const CardBtnType = ({ product, groupCardProducts }) => (
-  <div className={`container-btn-book ${groupCardProducts}`} type="button">
+  <div className={`container-btn-book ${groupCardProducts}`}>
     <ProductBtn product={product} />
   </div>
 );
