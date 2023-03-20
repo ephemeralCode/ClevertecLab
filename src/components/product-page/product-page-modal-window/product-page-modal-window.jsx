@@ -1,11 +1,14 @@
-import { useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useEffect, useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { ProductPageReviewStarRating } from '../product-page-review-star-rating/product-page-review-star-rating';
+import { ProductPageCreateReview } from '../product-page-create-review/product-page-create-review';
+import { ProductPageBookBooking } from '../product-page-book-booking/product-page-book-booking';
 
-import { toggleOpenReviewProduct } from '../../../store/slices/navigation-slice';
-import { addNewReview, getSelectedProduct } from '../../../store/slices/loader-slice';
+import {
+  selectTypeModalWindowProduct,
+  setTypeModalWindowProduct,
+  toggleOpenReviewProduct,
+} from '../../../store/slices/navigation-slice';
 
 import { ReactComponent as IconMenuClose } from '../../../assets/icons/general/icon-menu-close.svg';
 
@@ -13,59 +16,44 @@ import './product-page-modal-window.css';
 
 export const ProductPageModalWindow = () => {
   const dispatch = useDispatch();
-  const { id } = useParams();
+  const typeModalWindow = useSelector(selectTypeModalWindowProduct);
 
-  const userId = JSON.parse(localStorage.getItem('USER_DATA')).id;
+  const modalContainer = useRef();
 
-  const [amountRating, setAmountRating] = useState(0);
-  const [textReview, setTextReview] = useState('');
+  useEffect(() => {
+    const onClickOutside = (e) => {
+      if (modalContainer.current && !modalContainer.current.contains(e.target)) {
+        dispatch(setTypeModalWindowProduct(''));
+        dispatch(toggleOpenReviewProduct(false));
+      }
+    };
 
-  const onSubmit = async (rating, text, book, user) => {
-    const resultAction = await dispatch(addNewReview({ rating, text, book, user }));
+    document.addEventListener('mousedown', onClickOutside);
 
-    if (addNewReview.fulfilled.match(resultAction)) {
-      dispatch(getSelectedProduct(id));
-    }
-  };
+    return () => {
+      document.removeEventListener('mousedown', onClickOutside);
+    };
+  }, [typeModalWindow, dispatch]);
 
   return (
-    <div className="container-product-page-modal-window">
-      <div className="wrapper-product-page-modal-window">
+    <div className="container-product-page-modal-window" data-test-id="modal-outer">
+      <div
+        className="wrapper-product-page-modal-window"
+        ref={modalContainer}
+        data-test-id={`${typeModalWindow === 'review' ? 'modal-rate-book' : 'booking-modal'}`}
+      >
         <button
           className="product-page-modal-window-btn-close-modal"
           type="button"
           onClick={() => dispatch(toggleOpenReviewProduct(false))}
+          data-test-id="modal-close-button"
         >
           <IconMenuClose className="product-page-modal-window-icon-close-modal" fill="#F83600" />
         </button>
 
-        <h3 className="product-page-modal-window-title">Оцените книгу</h3>
-
-        <div className="container-product-page-modal-window-star-rating">
-          <p className="product-page-modal-window-text">Ваша оценка</p>
-
-          <div className="wrapper-product-page-modal-window-star-rating">
-            <ProductPageReviewStarRating amountRating={amountRating} setAmountRating={setAmountRating} />
-          </div>
-
-          <textarea
-            className="product-page-modal-window-input-text-review"
-            placeholder="Оставить отзыв"
-            value={textReview}
-            onChange={(e) => setTextReview(e.target.value)}
-          />
-        </div>
-
-        <button
-          className="product-page-modal-window-btn-add-review primary"
-          type="submit"
-          onClick={() => {
-            onSubmit(amountRating, textReview, id, userId);
-            dispatch(toggleOpenReviewProduct(false));
-          }}
-        >
-          Оценить
-        </button>
+        {typeModalWindow === 'booking' && <ProductPageBookBooking newBooking={true} />}
+        {typeModalWindow === 'repeatBooking' && <ProductPageBookBooking newBooking={false} />}
+        {typeModalWindow === 'review' && <ProductPageCreateReview />}
       </div>
     </div>
   );

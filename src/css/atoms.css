@@ -5,7 +5,7 @@
   height: 100%;
 
   background: linear-gradient(231.58deg, #f83600 -53.35%, #f9d423 297.76%);
-  border-radius: 20px;
+  border-radius: 30px;
   border: none;
 
   font-weight: 600;
@@ -24,13 +24,14 @@
 
   background: #ffffff;
   border: 1px solid #bfc4c9;
-  border-radius: 20px;
+  border-radius: 30px;
 
   font-weight: 600;
   font-size: 12px;
   line-height: 18px;
   letter-spacing: 0.2px;
   text-transform: uppercase;
+  color: #363636;
 
   cursor: pointer;
 }
@@ -42,7 +43,7 @@
   background: #f9f9fa;
 
   border: 1px solid #bfc4c9;
-  border-radius: 20px;
+  border-radius: 30px;
 
   font-weight: 600;
   font-size: 12px;

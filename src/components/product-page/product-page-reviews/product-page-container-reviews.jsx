@@ -34,7 +34,7 @@ export const ProductPageContainerReview = ({ product, isOpenReview, onToggleRevi
         </button>
       </div>
 
-      <div className={`wrapper-page-product-reviews ${isOpenReview ? 'active' : ''}`}>
+      <div className={`wrapper-page-product-reviews ${isOpenReview ? 'active' : ''}`} data-test-id="reviews">
         {sortedReview.length && sortedReview.map((item) => <ProductPageReview comment={item} key={item.id} />)}
       </div>
     </div>

@@ -207,14 +207,86 @@ export const getSelectedProduct = createAsyncThunk('product', async (id, thunkAp
   return result.data;
 });
 
+export const bookingBookAction = createAsyncThunk('bookingBook', async (data, thunkApi) => {
+  const result = await axios
+    .post(`${urlAPI}/api/bookings`, {
+      data,
+    })
+    .catch(() => {
+      thunkApi.dispatch(
+        setToastMessage({
+          status: false,
+          text: 'Что-то пошло не так, книга не забронирована. Попробуйте позже!',
+        })
+      );
+    });
+
+  if (result.status === 200) {
+    thunkApi.dispatch(
+      setToastMessage({
+        status: true,
+        text: 'Книга забронирована. Подробности можно посмотреть на странице Профиль',
+      })
+    );
+  }
+
+  return result.data;
+});
+
+export const reBookingBook = createAsyncThunk('reBookingBook', async ({ bookingId, data }, thunkApi) => {
+  const result = await axios
+    .put(`${urlAPI}/api/bookings/${bookingId}`, {
+      data,
+    })
+    .catch(() => {
+      thunkApi.dispatch(
+        setToastMessage({
+          status: false,
+          text: 'Изменения не были сохранены. Попробуйте позже!',
+        })
+      );
+    });
+
+  if (result.status === 200) {
+    thunkApi.dispatch(
+      setToastMessage({
+        status: true,
+        text: 'Изменения успешно сохранены!',
+      })
+    );
+  }
+
+  return result.data;
+});
+
+export const deleteBookingBook = createAsyncThunk('deleteBookingBook', async (bookingId, thunkApi) => {
+  const result = await axios.delete(`${urlAPI}/api/bookings/${bookingId}`).catch(() => {
+    thunkApi.dispatch(
+      setToastMessage({
+        status: false,
+        text: 'Не удалось снять бронирование книги. Попробуйте позже!',
+      })
+    );
+  });
+
+  if (result.status === 200) {
+    thunkApi.dispatch(
+      setToastMessage({
+        status: true,
+        text: 'Бронирование книги успешно отменено!',
+      })
+    );
+  }
+
+  return result.data;
+});
+
 export const addNewReview = createAsyncThunk('newReview', async (data, thunkApi) => {
-  console.log(data);
   const result = await axios
     .post(`${urlAPI}/api/comments`, {
       data,
     })
-    .catch((err) => {
-      console.log(err);
+    .catch(() => {
       thunkApi.dispatch(
         setToastMessage({
           status: false,
@@ -385,6 +457,36 @@ export const loadingSlice = createSlice({
       })
       .addCase(resetPasswordUserAction.rejected, (state) => {
         state.loadingAuthToken = false;
+      })
+      // booking book
+      .addCase(bookingBookAction.pending, (state) => {
+        state.loadingProducts = true;
+      })
+      .addCase(bookingBookAction.fulfilled, (state) => {
+        state.loadingProducts = false;
+      })
+      .addCase(bookingBookAction.rejected, (state) => {
+        state.loadingProducts = false;
+      })
+      //   reBookingBook
+      .addCase(reBookingBook.pending, (state) => {
+        state.loadingProducts = true;
+      })
+      .addCase(reBookingBook.fulfilled, (state) => {
+        state.loadingProducts = false;
+      })
+      .addCase(reBookingBook.rejected, (state) => {
+        state.loadingProducts = false;
+      })
+      //  delete booking
+      .addCase(deleteBookingBook.pending, (state) => {
+        state.loadingProducts = true;
+      })
+      .addCase(deleteBookingBook.fulfilled, (state) => {
+        state.loadingProducts = false;
+      })
+      .addCase(deleteBookingBook.rejected, (state) => {
+        state.loadingProducts = false;
       });
   },
 });

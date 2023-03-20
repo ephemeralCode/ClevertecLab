@@ -9,7 +9,7 @@
   background: rgba(54, 54, 54, 0.3);
   backdrop-filter: blur(10px);
 
-  z-index: 10;
+  z-index: 15;
 }
 
 .icon-loader {

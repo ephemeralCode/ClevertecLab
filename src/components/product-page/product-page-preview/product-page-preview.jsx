@@ -22,7 +22,7 @@ export const ProductPagePreview = ({ product }) => (
         </p>
 
         <div className="container-page-product-btn" type="button">
-          <ProductBtn isBooked={product?.booking} />
+          <ProductBtn product={product} typeAction="booking" />
         </div>
 
         <div className="wrapper-page-product-description-desktop">

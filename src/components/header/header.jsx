@@ -36,7 +36,7 @@ export const Header = () => {
 
           <div className="container-user">
             <button className="wrapper-user" type="button" onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}>
-              <p className="name-user">{`Привет, ${userData?.firstName}!`}</p>
+              <p className="name-user">Привет, Иван!</p>
 
               <img className="avatar-user" src={avatar} alt="user avatar" />
             </button>

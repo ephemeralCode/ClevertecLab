@@ -16,7 +16,11 @@ import {
   selectCategories,
   selectProduct,
 } from '../../store/slices/loader-slice';
-import { selectOpenReviewProduct, toggleOpenReviewProduct } from '../../store/slices/navigation-slice';
+import {
+  selectOpenReviewProduct,
+  setTypeModalWindowProduct,
+  toggleOpenReviewProduct,
+} from '../../store/slices/navigation-slice';
 
 import './product-page.css';
 
@@ -28,11 +32,11 @@ export const ProductPage = () => {
 
   const { id, type } = useParams();
 
-  const [isOpenReview, setIsOpenReview] = useState(false);
+  const [isOpenReview, setIsOpenReview] = useState(true);
   const [isCategory, setIsCategory] = useState(null);
 
   const token = localStorage.getItem('authorization');
-  const userId = JSON.parse(localStorage.getItem('USER_DATA')).id;
+  const userId = JSON.parse(localStorage.getItem('USER_DATA'))?.id;
 
   const permissionReview = product.comments?.find((item) => item.user.commentUserId === userId);
 
@@ -53,8 +57,6 @@ export const ProductPage = () => {
       setIsCategory(categories.find((item) => item.path === type)?.id);
     }
   }, [categories]);
-
-  //   console.log(product);
 
   return (
     <section className="product-page">
@@ -82,27 +84,30 @@ export const ProductPage = () => {
                 <ProductPageDetailedInfo product={product} />
               </div>
 
-              {product?.comments !== null && (
+              <div>
                 <ProductPageContainerReview
                   product={product}
                   isOpenReview={isOpenReview}
                   onToggleReview={() => setIsOpenReview(!isOpenReview)}
                 />
-              )}
-            </div>
 
-            <div className="container-page-product-btn-add-review-user">
-              <button
-                className={`page-product-btn-add-review-user ${
-                  permissionReview === undefined ? 'primary' : 'disabled'
-                }`}
-                type="button"
-                onClick={() => dispatch(toggleOpenReviewProduct(!isOpenReviewProduct))}
-                disabled={permissionReview !== undefined}
-                data-test-id="button-rating"
-              >
-                Оценить книгу
-              </button>
+                <div className="container-page-product-btn-add-review-user" data-test-id="button-rate-book">
+                  <button
+                    className={`page-product-btn-add-review-user ${
+                      permissionReview === undefined ? 'primary' : 'disabled'
+                    }`}
+                    type="button"
+                    onClick={() => {
+                      dispatch(setTypeModalWindowProduct('review'));
+                      dispatch(toggleOpenReviewProduct(!isOpenReviewProduct));
+                    }}
+                    disabled={permissionReview !== undefined}
+                    data-test-id="button-rating"
+                  >
+                    Оценить книгу
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         )}

@@ -48,7 +48,7 @@ export const ProductContent = ({ groupCardProducts }) => {
   const type = searchValue.length ? sortedAndFilteredProducts : sortedProducts[path];
 
   return (
-    <div className={`container-products ${groupCardProducts}`}>
+    <div className={`container-products ${groupCardProducts}`} data-test-id="content">
       {type?.length ? (
         sortedAndFilteredProducts?.map((item) => (
           <CardProduct key={item.id} general={item} path={path} groupCardProducts={groupCardProducts} />

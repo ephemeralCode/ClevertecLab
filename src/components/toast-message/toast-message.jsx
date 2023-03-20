@@ -38,6 +38,7 @@ export const ToastMessage = ({ resultLoading }) => {
         className="container-modal-toast-message-icon-close"
         type="button"
         onClick={() => dispatch(setToastMessage({}))}
+        data-test-id="alert-close"
       >
         <img className="modal-toast-message-icon-close" src={IconClose} alt="" />
       </button>

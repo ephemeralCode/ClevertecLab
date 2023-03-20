@@ -1,60 +1,60 @@
 .container-modal-toast-message {
-    position: fixed;
-    top: 64px;
-    left: 50%;
+  position: fixed;
+  top: 64px;
+  left: 50%;
 
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 
-    max-width: 1110px;
-    width: 100%;
+  max-width: 1110px;
+  width: 90%;
 
-    padding: 24px 32px;
+  padding: 24px 32px;
 
-    border-radius: 5px;
+  border-radius: 5px;
 
-    transform: translateX(-50%);
-    z-index: 15;
+  transform: translateX(-50%);
+  z-index: 15;
 }
 
 .container-modal-toast-message.complete {
-    background: #EBF9F1;
-    border: 1.5px solid #00CA71;
+  background: #ebf9f1;
+  border: 1.5px solid #00ca71;
 }
 
 .container-modal-toast-message.error {
-    background: #FEEBEA;
-    border: 1.5px solid #F42C4F;
+  background: #feebea;
+  border: 1.5px solid #f42c4f;
 }
 
 .wrapper-modal-toast-message {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .modal-toast-message-icon-circle-state {
-    width: 32px;
-    height: 32px;
+  width: 32px;
+  height: 32px;
 }
 
 .modal-toast-message-text {
-    margin: 0 24px;
+  margin: 0 24px;
 
-    font-style: normal;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 24px;
-    color: #363636;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  color: #363636;
 }
 
-.container-modal-toast-message-icon-close{
-    background: none;
-    border: none;
+.container-modal-toast-message-icon-close {
+  background: none;
+  border: none;
 
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .modal-toast-message-icon-close {
-    width: 24px;
-    height: 24px;
+  width: 24px;
+  height: 24px;
 }

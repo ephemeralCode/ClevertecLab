@@ -8,7 +8,6 @@ import {
   productsAction,
   selectCategories,
   selectProducts,
-  selectSortedProducts,
   setSortedProducts,
 } from '../../store/slices/loader-slice';
 
@@ -18,7 +17,6 @@ export const MainPage = () => {
   const dispatch = useDispatch();
   const categories = useSelector(selectCategories);
   const products = useSelector(selectProducts);
-  const sortedProducts = useSelector(selectSortedProducts);
 
   const [groupCardProducts, setGroupCardProducts] = useState('hardly');
 
@@ -32,26 +30,22 @@ export const MainPage = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (!products.length && token) {
-      dispatch(productsAction());
-    }
+    dispatch(productsAction());
   }, [dispatch]);
 
   useEffect(() => {
-    if (products.length && !sortedProducts?.all?.length) {
-      const obj = {};
+    const obj = {};
 
-      categories.forEach((item) => {
-        obj[item.path] = [];
-      });
+    categories.forEach((item) => {
+      obj[item.path] = [];
+    });
 
-      obj.all = [...products];
-      products.forEach((book) => {
-        categories.find((elem) => book?.categories.includes(elem.name) && obj[elem.path].push(book));
-      });
+    obj.all = [...products];
+    products.forEach((book) => {
+      categories.find((elem) => book?.categories.includes(elem.name) && obj[elem.path].push(book));
+    });
 
-      dispatch(setSortedProducts(obj));
-    }
+    dispatch(setSortedProducts(obj));
   }, [products]);
 
   return (

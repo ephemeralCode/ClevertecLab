@@ -1,0 +1,178 @@
+.product-page-book-booking-title {
+  max-width: 300px;
+
+  margin: 0 auto;
+
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 30px;
+  color: #363636;
+}
+
+.wrapper-product-page-book-booking {
+  display: flex;
+  justify-content: center;
+
+  margin: 32px 0 0;
+}
+
+.container-calendar {
+  width: 256px;
+
+  background: #ffffff;
+
+  box-shadow: 0px 2px 4px rgba(191, 196, 201, 0.2), 0px 3px 4px rgba(191, 196, 201, 0.18),
+    0px 1px 5px rgba(191, 196, 201, 0.24);
+  border-radius: 8px;
+}
+
+.calendar-select {
+  width: 130px;
+  border: none;
+
+  text-transform: capitalize;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.1px;
+  color: #a7a7a7;
+}
+
+.container-calendar-toggle-month {
+  display: flex;
+  align-content: center;
+  justify-content: space-between;
+
+  padding: 16px 16px 0;
+}
+
+.container-calendar-btns-toggle-month {
+  display: flex;
+  align-items: center;
+}
+
+.container-calendar-btn-icon-arrow {
+  display: flex;
+
+  width: 22px;
+
+  background: #fff;
+  border: none;
+
+  cursor: pointer;
+}
+
+.container-calendar-btn-icon-arrow + .container-calendar-btn-icon-arrow {
+  margin: 0 0 0 6px;
+}
+
+.calendar-btn-icon-arrow {
+  width: 16px;
+  height: 16px;
+}
+
+.calendar-btn-icon-arrow.prev {
+  transform: rotate(180deg);
+}
+
+.container-calendar-days {
+  padding: 0 16px;
+}
+
+.weekDaysWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  margin: 12px 0 0;
+}
+
+.weekDayCell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 32px;
+  height: 32px;
+
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.2px;
+
+  text-transform: capitalize;
+
+  color: #f83600;
+}
+
+.calendar-content-wrapper {
+  display: flex;
+  flex-direction: row;
+
+  justify-content: space-between;
+}
+
+.calendarDayCell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 32px;
+  width: 32px;
+
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.2px;
+}
+
+.calendarDayCell.default {
+  color: #a7a7a7;
+}
+
+.calendarDayCell.today {
+  color: #f83600;
+}
+
+.calendarDayCell.nextDay {
+  color: #363636;
+}
+
+.calendarDayCell.today,
+.calendarDayCell.nextDay {
+  cursor: pointer;
+  border-radius: 50px;
+}
+
+.calendarDayCell.today:hover,
+.calendarDayCell.nextDay:hover {
+  border: 1px solid #bfc4c9;
+}
+
+.calendarDayCell.today.active,
+.calendarDayCell.nextDay.active {
+  background: linear-gradient(231.58deg, #f83600 -53.35%, #f9d423 297.76%);
+
+  color: #fff;
+}
+
+.calendarDayCell.today.dayOff:hover {
+  border: none;
+}
+
+.calendarDayCell.daysOff {
+  background: #feebea;
+  border-radius: 16px;
+}
+
+.container-product-page-book-booking-btn {
+  margin: 32px 0 0;
+
+  height: 52px;
+}
+
+.container-product-page-book-booking-btn + .container-product-page-book-booking-btn {
+  margin: 16px 0 0;
+}

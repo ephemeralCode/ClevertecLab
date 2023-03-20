@@ -50,7 +50,7 @@ export const CardProductHardly = ({ general, path, groupCardProducts }) => {
         </div>
       </div>
 
-      <CardBtnType isBooked={general?.booking} groupCardProducts={groupCardProducts} />
+      <CardBtnType product={general} groupCardProducts={groupCardProducts} />
     </Link>
   );
 };

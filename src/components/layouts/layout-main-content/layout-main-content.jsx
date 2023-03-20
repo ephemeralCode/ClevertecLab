@@ -1,19 +1,17 @@
-import { Outlet } from 'react-router-dom'
+import { Outlet } from 'react-router-dom';
 
-import { NavigaionMenu } from '../../navigation-menu/navigation-menu'
+import { NavigaionMenu } from '../../navigation-menu/navigation-menu';
 
-import './layout-main-content.css'
+import './layout-main-content.css';
 
 export const LayoutMainContent = () => (
-    <main className='container-main-content'>
-        <div className='wrapper-main-content'>
-            <div className='container-sidebar'>
-                <NavigaionMenu 
-                    dataTestId={['navigation-showcase', 'navigation', 'navigation-terms', 'navigation-contract']}
-                />
-            </div>
+  <main className="container-main-content">
+    <div className="wrapper-main-content">
+      <div className="container-sidebar">
+        <NavigaionMenu dataTestId={['navigation-showcase', 'navigation', 'navigation-terms', 'navigation-contract']} />
+      </div>
 
-            <Outlet />
-        </div>
-    </main>
-)
+      <Outlet />
+    </div>
+  </main>
+);
