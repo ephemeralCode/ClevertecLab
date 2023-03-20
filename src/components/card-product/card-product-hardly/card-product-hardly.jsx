@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { selectSearchValue } from '../../../store/slices/sort-slice';
 
 import { StarRating } from '../../product-general/star-rating/star-rating';
-import { CardProductBtn } from '../card-product-btn/card-product-btn';
+import { CardBtnType } from '../card-btn-type/card-btn-type';
 import { CardProductImage } from '../card-product-image/card-product-image';
 
 import './card-product-hardly.css';
@@ -50,7 +50,7 @@ export const CardProductHardly = ({ general, path, groupCardProducts }) => {
         </div>
       </div>
 
-      <CardProductBtn isBooked={general?.booking} groupCardProducts={groupCardProducts} />
+      <CardBtnType product={general} groupCardProducts={groupCardProducts} />
     </Link>
   );
 };

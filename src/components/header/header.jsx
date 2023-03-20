@@ -1,22 +1,20 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 
 import logo from '../../assets/icons/logo.svg';
 import avatar from '../../assets/images/user/avatar.png';
-import { selectUserData } from '../../store/slices/loader-slice';
 
 import { HeaderMenu } from './header-menu/header-menu';
 
 import './header.css';
 
 export const Header = () => {
-  const userData = useSelector(selectUserData);
-
   const navigate = useNavigate();
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+
+  const userData = JSON.parse(localStorage.getItem('USER_DATA'));
 
   return (
     <header className={`container-header ${isUserMenuOpen ? 'active' : ''}`}>

@@ -1,0 +1,48 @@
+.wrapper-page-product-review + .wrapper-page-product-review {
+  margin: 42px 0 0;
+}
+
+.container-page-product-review-user-info {
+  display: flex;
+  align-items: center;
+}
+
+.page-product-review-user-img {
+  width: 32px;
+  height: 32px;
+}
+
+.wrapper-page-product-review-user {
+  display: flex;
+}
+
+.page-product-review-user-name,
+.page-product-review-date {
+  margin: 0 0 0 24px;
+
+  text-transform: lowercase;
+
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.1px;
+  color: #727272;
+}
+
+.page-product-review-star-rate {
+  display: flex;
+
+  margin: 16px 0 0;
+}
+
+.page-product-review-comment {
+  margin: 16px 0 0;
+
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.1px;
+  color: #363636;
+}

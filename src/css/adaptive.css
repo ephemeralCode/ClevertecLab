@@ -125,9 +125,13 @@
 
     margin: -8px 4px;
   }
+
+  .wrapper-product-page-modal-window {
+    width: auto;
+  }
 }
 
-@media only screen and (max-width: 360px) {
+@media only screen and (max-width: 400px) {
   /* header */
 
   .container-header {
@@ -394,6 +398,10 @@
     width: 100%;
   }
 
+  .container-page-product-img {
+    align-self: center;
+  }
+
   .page-product-detailed-info-point-first {
     padding: 0 40px 0 0;
 
@@ -510,5 +518,30 @@
     border-radius: 16px;
 
     transform: translateY(-50%);
+  }
+
+  .wrapper-product-page-modal-window {
+    padding: 42px 16px 32px;
+    width: 90%;
+  }
+
+  .product-page-modal-window-btn-close-modal {
+    top: 16px;
+    right: 16px;
+
+    width: 32px;
+    height: 32px;
+  }
+
+  .product-page-book-booking-title {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 28px;
+    letter-spacing: 0.1px;
+  }
+
+  .product-page-modal-window-icon-close-modal {
+    width: 16px;
+    height: 16px;
   }
 }

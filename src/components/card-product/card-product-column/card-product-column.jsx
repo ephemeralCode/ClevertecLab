@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 
 import { StarRating } from '../../product-general/star-rating/star-rating';
-import { CardProductBtn } from '../card-product-btn/card-product-btn.jsx';
+import { ProductBtn } from '../../product-btn/product-btn.jsx';
 import { CardProductImage } from '../card-product-image/card-product-image.jsx';
 
 import './card-product-column.css';
@@ -22,7 +22,7 @@ export const CardProductColumn = ({ general, path, groupCardProducts }) => (
           <StarRating amount={general?.rating} />
         </div>
 
-        <CardProductBtn isBooked={general?.booking} groupCardProducts={groupCardProducts} />
+        <ProductBtn isBooked={general?.booking} groupCardProducts={groupCardProducts} />
       </div>
     </div>
   </Link>

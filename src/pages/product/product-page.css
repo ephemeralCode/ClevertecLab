@@ -47,7 +47,9 @@
   margin: 62px 0 0;
 }
 
-.page-product-btn-add-review-user {
-  padding: 14px 99px;
+.container-page-product-btn-add-review-user {
   margin: 42px 0 0 0;
+
+  width: 350px;
+  height: 52px;
 }

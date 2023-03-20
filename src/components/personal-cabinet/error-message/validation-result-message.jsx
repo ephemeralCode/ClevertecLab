@@ -1,6 +1,6 @@
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-import './validaton-result-message.css';
+import './validation-result-message.css';
 
 export const ValidatonResultMessage = ({ validatonResult, reauthenticate }) => (
   <div className="container-validation-result-message" data-test-id="status-block">
@@ -11,11 +11,11 @@ export const ValidatonResultMessage = ({ validatonResult, reauthenticate }) => (
     <p className="validation-result-message-text">{validatonResult.text}</p>
 
     {validatonResult.action && validatonResult.hasBtn && (
-      <NavLink to={validatonResult.action} type="button" onClick={reauthenticate}>
+      <Link to={validatonResult.action} type="button" onClick={reauthenticate}>
         <button className="validation-result-message-btn primary" type="button">
           {validatonResult.textBtn}
         </button>
-      </NavLink>
+      </Link>
     )}
 
     {!validatonResult.action && validatonResult.hasBtn && (

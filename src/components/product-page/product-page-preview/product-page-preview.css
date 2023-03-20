@@ -28,9 +28,11 @@
   color: #a7a7a7;
 }
 
-.page-product-btn {
+.container-page-product-btn {
   margin: 32px 0 0;
-  padding: 14px 95px;
+
+  width: 350px;
+  height: 42px;
 }
 
 .wrapper-page-product-description-desktop {

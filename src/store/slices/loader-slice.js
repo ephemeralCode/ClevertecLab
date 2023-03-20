@@ -31,9 +31,10 @@ export const authorizationUserAction = createAsyncThunk(
 
     if (result.status === 200 && result.data.jwt) {
       localStorage.setItem('authorization', result.data.jwt);
-      const arr = result.data.user;
+      localStorage.setItem('USER_DATA', JSON.stringify(result.data.user));
+      const obj = result.data.user || false;
 
-      thunkApi.dispatch(setUserData(arr));
+      thunkApi.dispatch(setUserData(obj));
     }
 
     return result.data;
@@ -152,7 +153,13 @@ export const resetPasswordUserAction = createAsyncThunk(
 
 export const categoryProductsAction = createAsyncThunk('categories', async (_, thunkApi) => {
   const result = await axios.get(`${urlAPI}/api/categories`).catch(() => {
-    thunkApi.dispatch(toggleToastMessage(true));
+    thunkApi.dispatch(setIsErrorLoading(true));
+    thunkApi.dispatch(
+      setToastMessage({
+        status: false,
+        text: 'Что-то пошло не так. Обновите страницу через некоторое время.',
+      })
+    );
   });
 
   if (result.status === 200 && result.data) {
@@ -166,7 +173,13 @@ export const categoryProductsAction = createAsyncThunk('categories', async (_, t
 
 export const productsAction = createAsyncThunk('products', async (_, thunkApi) => {
   const result = await axios.get(`${urlAPI}/api/books`).catch(() => {
-    thunkApi.dispatch(toggleToastMessage(true));
+    thunkApi.dispatch(setIsErrorLoading(true));
+    thunkApi.dispatch(
+      setToastMessage({
+        status: false,
+        text: 'Что-то пошло не так. Обновите страницу через некоторое время.',
+      })
+    );
   });
 
   if (result.status === 200 && result.data) {
@@ -178,7 +191,13 @@ export const productsAction = createAsyncThunk('products', async (_, thunkApi) =
 
 export const getSelectedProduct = createAsyncThunk('product', async (id, thunkApi) => {
   const result = await axios.get(`${urlAPI}/api/books/${id}`).catch(() => {
-    thunkApi.dispatch(toggleToastMessage(true));
+    thunkApi.dispatch(setIsErrorLoading(true));
+    thunkApi.dispatch(
+      setToastMessage({
+        status: false,
+        text: 'Что-то пошло не так. Обновите страницу через некоторое время.',
+      })
+    );
   });
 
   if (result.status === 200) {
@@ -188,12 +207,113 @@ export const getSelectedProduct = createAsyncThunk('product', async (id, thunkAp
   return result.data;
 });
 
+export const bookingBookAction = createAsyncThunk('bookingBook', async (data, thunkApi) => {
+  const result = await axios
+    .post(`${urlAPI}/api/bookings`, {
+      data,
+    })
+    .catch(() => {
+      thunkApi.dispatch(
+        setToastMessage({
+          status: false,
+          text: 'Что-то пошло не так, книга не забронирована. Попробуйте позже!',
+        })
+      );
+    });
+
+  if (result.status === 200) {
+    thunkApi.dispatch(
+      setToastMessage({
+        status: true,
+        text: 'Книга забронирована. Подробности можно посмотреть на странице Профиль',
+      })
+    );
+  }
+
+  return result.data;
+});
+
+export const reBookingBook = createAsyncThunk('reBookingBook', async ({ bookingId, data }, thunkApi) => {
+  const result = await axios
+    .put(`${urlAPI}/api/bookings/${bookingId}`, {
+      data,
+    })
+    .catch(() => {
+      thunkApi.dispatch(
+        setToastMessage({
+          status: false,
+          text: 'Изменения не были сохранены. Попробуйте позже!',
+        })
+      );
+    });
+
+  if (result.status === 200) {
+    thunkApi.dispatch(
+      setToastMessage({
+        status: true,
+        text: 'Изменения успешно сохранены!',
+      })
+    );
+  }
+
+  return result.data;
+});
+
+export const deleteBookingBook = createAsyncThunk('deleteBookingBook', async (bookingId, thunkApi) => {
+  const result = await axios.delete(`${urlAPI}/api/bookings/${bookingId}`).catch(() => {
+    thunkApi.dispatch(
+      setToastMessage({
+        status: false,
+        text: 'Не удалось снять бронирование книги. Попробуйте позже!',
+      })
+    );
+  });
+
+  if (result.status === 200) {
+    thunkApi.dispatch(
+      setToastMessage({
+        status: true,
+        text: 'Бронирование книги успешно отменено!',
+      })
+    );
+  }
+
+  return result.data;
+});
+
+export const addNewReview = createAsyncThunk('newReview', async (data, thunkApi) => {
+  const result = await axios
+    .post(`${urlAPI}/api/comments`, {
+      data,
+    })
+    .catch(() => {
+      thunkApi.dispatch(
+        setToastMessage({
+          status: false,
+          text: 'Оценка не была отправлена, попробуйте позже.',
+        })
+      );
+    });
+
+  if (result.status === 200) {
+    thunkApi.dispatch(
+      setToastMessage({
+        status: true,
+        text: 'Спасибо, что нашли время на оценку книги!',
+      })
+    );
+  }
+
+  return result.data;
+});
+
 const initialState = {
   loadingAuthToken: false,
   loadingCategories: false,
   loadingProducts: false,
-  toastMessage: false,
+  isErrorLoading: false,
   validationErrorMessage: false,
+  toastMessage: {},
   validationResult: {},
   userData: {},
   categories: [],
@@ -213,10 +333,10 @@ export const loadingSlice = createSlice({
       loadingCategories: payload,
       loadingProducts: payload,
     }),
-    // toast
-    toggleToastMessage: (state, { payload }) => ({
+    // render content
+    setIsErrorLoading: (state, { payload }) => ({
       ...state,
-      toastMessage: payload,
+      isErrorLoading: payload,
     }),
     // user authorization
     toggleValidationErrorMessage: (state, { payload }) => ({
@@ -226,6 +346,10 @@ export const loadingSlice = createSlice({
     setValidationResult: (state, { payload }) => ({
       ...state,
       validationResult: payload,
+    }),
+    setToastMessage: (state, { payload }) => ({
+      ...state,
+      toastMessage: payload,
     }),
     // user data
     setUserData: (state, { payload }) => ({
@@ -284,6 +408,16 @@ export const loadingSlice = createSlice({
       .addCase(getSelectedProduct.rejected, (state) => {
         state.loadingProducts = false;
       })
+      // add new review
+      .addCase(addNewReview.pending, (state) => {
+        state.loadingProducts = true;
+      })
+      .addCase(addNewReview.fulfilled, (state) => {
+        state.loadingProducts = false;
+      })
+      .addCase(addNewReview.rejected, (state) => {
+        state.loadingProducts = false;
+      })
       // authorization user
       .addCase(authorizationUserAction.pending, (state) => {
         state.loadingAuthToken = true;
@@ -323,15 +457,46 @@ export const loadingSlice = createSlice({
       })
       .addCase(resetPasswordUserAction.rejected, (state) => {
         state.loadingAuthToken = false;
+      })
+      // booking book
+      .addCase(bookingBookAction.pending, (state) => {
+        state.loadingProducts = true;
+      })
+      .addCase(bookingBookAction.fulfilled, (state) => {
+        state.loadingProducts = false;
+      })
+      .addCase(bookingBookAction.rejected, (state) => {
+        state.loadingProducts = false;
+      })
+      //   reBookingBook
+      .addCase(reBookingBook.pending, (state) => {
+        state.loadingProducts = true;
+      })
+      .addCase(reBookingBook.fulfilled, (state) => {
+        state.loadingProducts = false;
+      })
+      .addCase(reBookingBook.rejected, (state) => {
+        state.loadingProducts = false;
+      })
+      //  delete booking
+      .addCase(deleteBookingBook.pending, (state) => {
+        state.loadingProducts = true;
+      })
+      .addCase(deleteBookingBook.fulfilled, (state) => {
+        state.loadingProducts = false;
+      })
+      .addCase(deleteBookingBook.rejected, (state) => {
+        state.loadingProducts = false;
       });
   },
 });
 
 export const {
   toggleLoading,
-  toggleToastMessage,
+  setIsErrorLoading,
   toggleValidationErrorMessage,
   setValidationResult,
+  setToastMessage,
   setUserData,
   setCategories,
   setProducts,
@@ -345,9 +510,11 @@ export const selectLoadingCategories = (state) => state.loading.loadingCategorie
 
 export const selectLoadingProducts = (state) => state.loading.loadingProducts;
 
-export const selectToastMessage = (state) => state.loading.toastMessage;
+export const selectIsErrorLoading = (state) => state.loading.isErrorLoading;
 
 export const selectValidationErrorMessage = (state) => state.loading.validationErrorMessage;
+
+export const selectToastMessage = (state) => state.loading.toastMessage;
 
 export const selectValidationResult = (state) => state.loading.validationResult;
 

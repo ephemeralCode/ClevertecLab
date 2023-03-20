@@ -1,0 +1,46 @@
+.container-page-product-review {
+  margin: 62px 0 0;
+}
+
+.btn-page-product-review {
+  display: flex;
+
+  width: 100%;
+
+  background: none;
+  border: none;
+
+  cursor: pointer;
+}
+
+.btn-page-product-review .page-product-review-title {
+  padding: 0 24px 16px 0;
+}
+
+.page-product-review-amount {
+  margin: 0 0 0 2px;
+
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0.1px;
+  color: #a7a7a7;
+}
+
+.page-product-review-title-arrow {
+  transform: rotate(180deg);
+}
+
+.page-product-review-title-arrow.active {
+  transform: rotate(0deg);
+}
+
+.wrapper-page-product-reviews {
+  display: none;
+
+  margin: 16px 0 0;
+}
+
+.wrapper-page-product-reviews.active {
+  display: block;
+}

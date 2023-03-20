@@ -46,7 +46,6 @@ export const Authorization = () => {
   });
 
   const onSubmit = async ({ identifier, password }) => {
-    // TODO useEffect
     const resultAction = await dispatch(authorizationUserAction({ identifier, password }));
 
     if (authorizationUserAction.fulfilled.match(resultAction)) {

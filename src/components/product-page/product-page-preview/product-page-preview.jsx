@@ -1,4 +1,5 @@
 import React from 'react';
+import { ProductBtn } from '../../product-btn/product-btn';
 
 import { ProductPageSwiper } from '../product-page-swiper/product-page-swiper';
 
@@ -20,9 +21,9 @@ export const ProductPagePreview = ({ product }) => (
           {product?.authors}, {product?.issueYear}
         </p>
 
-        <button className="page-product-btn primary" type="button">
-          Забронировать
-        </button>
+        <div className="container-page-product-btn" type="button">
+          <ProductBtn product={product} typeAction="booking" />
+        </div>
 
         <div className="wrapper-page-product-description-desktop">
           <h3 className="page-product-description-title">О книге</h3>
