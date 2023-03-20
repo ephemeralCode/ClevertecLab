@@ -8,7 +8,7 @@ import {
 } from '../../../store/slices/loader-slice';
 
 import { Loader } from '../../loader/loader';
-import { ValidatonResultMessage } from '../../personal-cabinet/error-message/validaton-result-message';
+import { ValidatonResultMessage } from '../../personal-cabinet/error-message/validation-result-message';
 
 import './layout-personal-cabinet.css';
 
